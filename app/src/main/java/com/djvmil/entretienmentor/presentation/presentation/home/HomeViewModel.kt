@@ -59,9 +59,11 @@ class HomeViewModel(
                         result.map { list ->
                             list.map {
                                 it.toUi()
+
                             }
                         }.map {
                             it.toPersistentList()
+
                         }
                 }
         }
