@@ -24,8 +24,7 @@ class HomeViewModel(
     private val getAllFavoriteMovieUseCase: GetMoviesOrFavoriteMoviesUseCase
 ) : ViewModel() {
 
-    private val _uiMovies =
-        MutableStateFlow<ResultEM<PersistentList<MovieUiModel>, ErrorEM>>(ResultEM.Loading)
+    private val _uiMovies = MutableStateFlow<ResultEM<PersistentList<MovieUiModel>, ErrorEM>>(ResultEM.Loading)
     val uiMovies = _uiMovies.asStateFlow()
 
     fun getMovies() {
