@@ -111,7 +111,6 @@ fun ColorButtonNavBar(navActions: NavigationActions) {
             animationSpec = tween(1000)
         )
     ) {
-        val context = LocalContext.current
         colorButtons.forEachIndexed { index, it ->
             ColorButton(
                 modifier = Modifier.fillMaxSize(),
@@ -122,7 +121,7 @@ fun ColorButtonNavBar(navActions: NavigationActions) {
                     prevSelectedIndex = selectedItem
                     selectedItem = index
                     when(selectedItem){
-                        0 -> navActions.navigateToDashboard()
+                        0 -> navActions.navigateToHome()
                         1 -> navActions.navigateToChat()
                         2 -> navActions.navigateToBlog()
                         3 -> navActions.navigateToComminity()
