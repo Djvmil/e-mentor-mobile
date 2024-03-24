@@ -78,6 +78,8 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+    implementation("com.google.accompanist:accompanist-pager:0.24.13-rc")
+    implementation("androidx.graphics:graphics-shapes:1.0.0-alpha05")
 
 
     implementation(libs.koin.android)
