@@ -11,27 +11,55 @@ import com.djvmil.entretienmentor.R
 // Set of Material typography styles to start with
 val Typography = Typography(
     bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular)),
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     ),
-    /*body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+    bodyMedium = TextStyle(
+        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular)),
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     ),
-    button = TextStyle(
+    bodySmall = TextStyle(
         fontSize = 18.sp,
-        fontFamily = FontFamily(Font(R.font.helvetica_neue_bold))
+        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
     ),
-    subtitle1 = TextStyle(
+    titleLarge = TextStyle(
         fontSize = 14.sp,
         fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
     ),
-    subtitle2 = TextStyle(
+    titleMedium = TextStyle(
         fontSize = 12.sp,
         fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-    )*/
+    ),
+    titleSmall = TextStyle(
+        fontSize = 12.sp,
+        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+    ),
+    displayLarge = TextStyle(
+        fontSize = 14.sp,
+        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+    ),
+    displayMedium = TextStyle(
+        fontSize = 12.sp,
+        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+    ),
+    displaySmall = TextStyle(
+        fontSize = 12.sp,
+        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+    ),
+    labelLarge = TextStyle(
+        fontSize = 14.sp,
+        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+    ),
+    labelMedium = TextStyle(
+        fontSize = 12.sp,
+        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+    ),
+    labelSmall = TextStyle(
+        fontSize = 12.sp,
+        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+    )
 )
