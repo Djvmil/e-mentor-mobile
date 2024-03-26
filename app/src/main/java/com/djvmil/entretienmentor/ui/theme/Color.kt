@@ -65,8 +65,8 @@ Background: #FFFFFF (white)
 Text: #333333 (dark grey for high contrast)
 Secondary: #E6E6FF (very light blue for secondary elements or backgrounds)
 Highlight: #CCCCFF (lighter blue for hover states or secondary buttons)
-Dark Mode:
 
+Dark Mode:
 Primary: #0009FF (for buttons and icons)
 Background: #121212 (dark grey, almost black)
 Text: #FFFFFF (white for high contrast)
