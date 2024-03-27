@@ -1,5 +1,6 @@
 package com.djvmil.entretienmentor.presentation.presentation.auth.login
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -89,6 +90,7 @@ fun TopAuthPage(modifier: Modifier) {
                 shape = CurvedShape(CurveType.LTR)
                 clip = true
             }
+            .background(MaterialTheme.colorScheme.background)
     ) {
         Column(
             modifier = Modifier,
@@ -138,7 +140,7 @@ fun BottomAuthPage(modifier: Modifier) {
                 shape = CurvedShape(CurveType.RTL)
                 clip = true
             }
-            .background(colorAccent)
+            .background(MaterialTheme.colorScheme.background)
     ) {
         Column(
             modifier = Modifier
@@ -152,7 +154,7 @@ fun BottomAuthPage(modifier: Modifier) {
                 modifier = Modifier.padding(start = 18.dp),
                 style = TextStyle(
                     fontSize = 18.sp,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.SemiBold
                 )
             )
@@ -165,14 +167,14 @@ fun BottomAuthPage(modifier: Modifier) {
                         shape = RoundedCornerShape(100.dp)
                         clip = true
                     }
-                    .background(Color.Blue),
+                    .background(MaterialTheme.colorScheme.primary),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "LOGIN",
                     style = TextStyle(
                         fontSize = 24.sp,
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onPrimary,
                         fontWeight = FontWeight.W900
                     )
                 )
@@ -182,8 +184,14 @@ fun BottomAuthPage(modifier: Modifier) {
 
 }
 
-
-@Preview(showBackground = true)
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    name = "DefaultPreviewDark"
+)
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    name = "DefaultPreviewLight"
+)
 @Composable
 fun DefaultPreview() {
     LoginScreen(openDashboard = {})

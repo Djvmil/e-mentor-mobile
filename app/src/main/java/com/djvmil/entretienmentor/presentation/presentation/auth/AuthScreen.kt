@@ -1,5 +1,6 @@
 package com.djvmil.entretienmentor.presentation.presentation.auth
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,6 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Face
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -78,7 +80,8 @@ fun BottomAuthPage(navActions: NavigationActions) {
             .graphicsLayer {
                 shape = RoundedCornerShape(20.dp)
                 clip = true
-            },
+            }
+            .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center
     ){
         Column(modifier = Modifier
@@ -88,9 +91,9 @@ fun BottomAuthPage(navActions: NavigationActions) {
             Text(
                 modifier = Modifier.padding(top = 20.dp),
                 text = "Hello, Welcome !",
+                color = MaterialTheme.colorScheme.primary,
                 style = TextStyle(
                     fontSize = 24.sp,
-                    color = Color.Black,
                     fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily(Font(R.font.helvetica_neue_bold))
                 )
@@ -100,7 +103,7 @@ fun BottomAuthPage(navActions: NavigationActions) {
                 text = "De l'entraînement à la réussite : \nEntretienMentor vous accompagne.!",
                 style = TextStyle(
                     textAlign = TextAlign.Center,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.Normal,
                     fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
                 ),
@@ -116,7 +119,7 @@ fun BottomAuthPage(navActions: NavigationActions) {
                         clip = true
                     }
                     .clickable { navActions.navigateToLogin() }
-                    .background(light_gray),
+                    .background(MaterialTheme.colorScheme.primary),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -141,7 +144,7 @@ fun BottomAuthPage(navActions: NavigationActions) {
                         clip = true
                     }
                     .clickable { navActions.navigateToRegister() }
-                    .background(light_gray),
+                    .background(MaterialTheme.colorScheme.primary),
                 contentAlignment = Alignment.Center
             ) {
 
@@ -149,7 +152,7 @@ fun BottomAuthPage(navActions: NavigationActions) {
                     text = "REGISTER",
                     style = TextStyle(
                         fontSize = 20.sp,
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onPrimary,
                         fontWeight = FontWeight.Bold,
                         fontFamily = FontFamily(Font(R.font.helvetica_neue_bold))
                     )
@@ -208,7 +211,14 @@ fun BottomAuthPage(navActions: NavigationActions) {
 
 }
 
-@Preview
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    name = "DefaultPreviewDark"
+)
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    name = "DefaultPreviewLight"
+)
 @Composable
 fun AuthScreenPreview(){
     AuthScreen(NavigationActions(rememberNavController()))
