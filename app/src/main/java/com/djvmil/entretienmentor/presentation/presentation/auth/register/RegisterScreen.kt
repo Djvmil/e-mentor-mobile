@@ -1,298 +1,170 @@
 package com.djvmil.entretienmentor.presentation.presentation.auth.register
 
-import androidx.compose.foundation.Canvas
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.imageResource
-import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ConstraintLayout
-import com.djvmil.entretienmentor.ui.theme.*
 import com.djvmil.entretienmentor.R
+import com.djvmil.entretienmentor.presentation.shape.CurveType
+import com.djvmil.entretienmentor.presentation.shape.CurvedShape
+import com.djvmil.entretienmentor.presentation.shape.placeAt
+import kotlin.math.roundToInt
 
 @Composable
 fun RegisterScreen(openDashboard: () -> Unit) {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            item {
-                ConstraintLayout {
-                    val (image, loginForm) = createRefs()
-                    Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier
-                            .height(280.dp)
-                            .constrainAs(image) {
-                                top.linkTo(loginForm.top)
-                                bottom.linkTo(loginForm.top)
-                                start.linkTo(parent.start)
-                                end.linkTo(parent.end)
-                            }) {
-                        HeaderView()
-                    }
-                    Card(
-                        shape = RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp),
-                        //backgroundColor = ghost_white,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(top = 100.dp)
-                            .constrainAs(loginForm) {
-                                bottom.linkTo(parent.bottom)
-                                start.linkTo(parent.start)
-                                end.linkTo(parent.end)
-                            },
-                    ) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(30.dp)
-                        ) {
 
-                            val loginText = "Log in to your account."
-                            val loginWord = "Log in"
-                            val loginAnnotatedString = buildAnnotatedString {
-                                append(loginText)
-                                addStyle(
-                                    style = SpanStyle(
-                                        color = dark_gray,
-                                        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-                                    ),
-                                    start = 0,
-                                    end = loginText.length
-                                )
-                                addStyle(
-                                    style = SpanStyle(
-                                        color = colorPrimary,
-                                        fontFamily = FontFamily(Font(R.font.helvetica_neue_medium))
-                                    ),
-                                    start = 0,
-                                    end = loginWord.length
-                                )
-                            }
-
-                            Text(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(top = 10.dp, bottom = 20.dp),
-                                text = loginAnnotatedString,
-                                textAlign = TextAlign.Center,
-                                fontSize = 22.sp,
-                            )
-                            Text(
-                                text = "Email Address",
-                                //style = MaterialTheme.typography.subtitle1.copy(color = gray),
-                                style = MaterialTheme.typography.titleMedium.copy(color = gray),
-                                modifier = Modifier.padding(bottom = 10.dp, top = 10.dp)
-                            )
-
-                            CustomStyleTextField(
-                                "Email Address",
-                                R.drawable.ic_email,
-                                KeyboardType.Email,
-                                VisualTransformation.None
-                            )
-
-                            Text(
-                                text = "Password",
-                                //style = MaterialTheme.typography.subtitle1.copy(color = gray),
-                                style = MaterialTheme.typography.titleMedium.copy(color = gray),
-                                modifier = Modifier.padding(bottom = 10.dp, top = 20.dp)
-                            )
-                            CustomStyleTextField(
-                                "Password",
-                                R.drawable.ic_password,
-                                KeyboardType.Password,
-                                PasswordVisualTransformation()
-                            )
-
-                            Text(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(top = 10.dp),
-                                text = "Forgot Password",
-                                textAlign = TextAlign.End,
-                                //style = MaterialTheme.typography.subtitle2.copy(color = colorPrimary)
-                                style = MaterialTheme.typography.titleMedium.copy(color = colorPrimary)
-                            )
-                            Button(
-                                onClick = openDashboard,
-                                modifier = Modifier
-                                    .padding(top = 30.dp, bottom = 34.dp)
-                                    .align(Alignment.CenterHorizontally)
-                                    .fillMaxWidth(),
-                                shape = RoundedCornerShape(16.dp)
-                            ) {
-                                Text(
-                                    modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
-                                    text = "Login",
-                                    color = Color.White,
-                                    style = MaterialTheme.typography.displayMedium
-                                )
-                            }
-
-                            val signInText = "Don't have an account? Sign In"
-                            val signInWord = "Sign In"
-                            val signInAnnotatedString = buildAnnotatedString {
-                                append(signInText)
-                                addStyle(
-                                    style = SpanStyle(
-                                        color = light_gray,
-                                        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-                                    ),
-                                    start = 0,
-                                    end = signInText.length
-                                )
-                                addStyle(
-                                    style = SpanStyle(
-                                        color = colorPrimary,
-                                        fontFamily = FontFamily(Font(R.font.helvetica_neue_medium))
-                                    ),
-                                    start = signInText.indexOf(signInWord),
-                                    end = signInText.length
-                                )
-                            }
-
-                            Text(
-                                modifier = Modifier.fillMaxWidth(),
-                                text = signInAnnotatedString,
-                                style = TextStyle(
-                                    fontSize = 14.sp
-                                ),
-                                textAlign = TextAlign.Center
-                            )
-                        }
-                    }
-                }
-            }
-        }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun CustomStyleTextField(
-    placeHolder: String,
-    leadingIconId: Int,
-    keyboardType: KeyboardType,
-    visualTransformation: VisualTransformation
-) {
-    val textState = remember { mutableStateOf(TextFieldValue()) }
-
-    OutlinedTextField(
+    val density = LocalDensity.current
+    val loginY = density.run { 510.dp.toPx() }
+    TopRegisterPage(
         modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White),
-        value = textState.value,
-        onValueChange = { valueChanged ->
-            textState.value = valueChanged
-        },
-        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
-        placeholder = { Text(text = placeHolder) },
-        leadingIcon = {
-            Row(
-                modifier = Modifier.wrapContentWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                content = {
-                    Image(
-                        modifier = Modifier
-                            .padding(start = 10.dp, end = 10.dp)
-                            .size(18.dp),
-                        bitmap = ImageBitmap.imageResource(id = leadingIconId),  // material icon
-                        colorFilter = ColorFilter.tint(colorPrimary),
-                        contentDescription = "custom_text_field"
-                    )
-                    Canvas(
-                        modifier = Modifier.height(24.dp)
-                    ) {
-                        // Allows you to draw a line between two points (p1 & p2) on the canvas.
-                        drawLine(
-                            color = Color.LightGray,
-                            start = Offset(0f, 0f),
-                            end = Offset(0f, size.height),
-                            strokeWidth = 2.0F
-                        )
-                    }
-                }
-            )
-        },
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = colorPrimary,
-            unfocusedBorderColor = Color.Transparent,
-            focusedLabelColor = Color.White,
-           // trailingIconColor = Color.White,
-//            disabledTextColor = NaviBlue
-        ),
-        shape = RoundedCornerShape(10.dp),
-        textStyle = TextStyle(color = Color.Black, fontSize = 16.sp),
-        visualTransformation = visualTransformation
-    )
+            .fillMaxWidth()
+            .height(650.dp)
+            .placeAt(0, 0))
+
+    BottomRegisterPage(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp)
+            .placeAt(0, loginY.roundToInt()))
 
 }
 
-
 @Composable
-fun HeaderView() {
-    Image(
-        modifier = Modifier.fillMaxSize(),
-        bitmap = ImageBitmap.imageResource(id = R.drawable.login_bg),
-        contentScale = ContentScale.FillWidth,
-        contentDescription = "header_view_login_bg"
-    )
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(bottom = 40.dp)
+fun TopRegisterPage(modifier: Modifier) {
+    var text by remember {
+        mutableStateOf("")
+    }
+
+    Box(
+        modifier = modifier
+            .graphicsLayer {
+                shape = CurvedShape(CurveType.LTR)
+                clip = true
+            }
+            .background(MaterialTheme.colorScheme.background)
     ) {
-        Image(
-            modifier = Modifier.wrapContentWidth(),
-            bitmap = ImageBitmap.imageResource(id = R.drawable.flower_logo),
-            contentDescription = "header_view_flower_logo"
-        )
-        Text(
-            text = "FloraGoGo",
-            color = Color.White,
-            style = TextStyle(
-                fontSize = 40.sp,
-                fontFamily = FontFamily(Font(R.font.josefin_sans_semibold_italic)),
-                letterSpacing = 2.sp
+        Column(
+            modifier = Modifier,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Box(modifier = Modifier.padding(10.dp)){
+                Image(painter = painterResource(id = R.drawable.head_auth), contentDescription ="Image Header" )
+            }
+
+            Text(
+                modifier = Modifier,
+                text = "Welcome",
+                fontSize = 24.sp,
+                fontFamily = FontFamily(Font(R.font.josefin_sans_semibold))
             )
-        )
+
+            Text(
+                modifier = Modifier,
+                text = "By Signing in you are agreeing our",
+                fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+            )
+
+            Text(
+                modifier = Modifier,
+                text = "Term and privacy policy",
+                fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+            )
+
+            OutlinedTextField(value = "Enter your email", onValueChange = {})
+            OutlinedTextField(value = "Enter your password", onValueChange = {})
+
+        }
     }
 }
 
-@Preview(showBackground = true)
+@Composable
+fun BottomRegisterPage(modifier: Modifier) {
+    Box(
+        modifier = modifier
+            .graphicsLayer {
+                shape = CurvedShape(CurveType.RTL)
+                clip = true
+            }
+            .background(MaterialTheme.colorScheme.background)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Bottom,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Already have an account?",
+                modifier = Modifier.padding(start = 18.dp),
+                style = TextStyle(
+                    fontSize = 18.sp,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontWeight = FontWeight.SemiBold
+                )
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+                    .graphicsLayer {
+                        shape = RoundedCornerShape(100.dp)
+                        clip = true
+                    }
+                    .background(MaterialTheme.colorScheme.primary),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "LOGIN",
+                    style = TextStyle(
+                        fontSize = 24.sp,
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        fontWeight = FontWeight.W900
+                    )
+                )
+            }
+        }
+    }
+
+}
+
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    name = "DefaultPreviewDark"
+)
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    name = "DefaultPreviewLight"
+)
 @Composable
 fun DefaultPreview() {
     RegisterScreen(openDashboard = {})

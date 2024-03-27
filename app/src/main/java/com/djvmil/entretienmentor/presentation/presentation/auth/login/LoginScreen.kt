@@ -119,14 +119,10 @@ fun TopAuthPage(modifier: Modifier) {
                 fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
             )
 
-            CustomEditText(
-                hint = "Enter your email",
-                icon = Icons.Rounded.Person
-            )
-            CustomEditText(
-                hint = "Enter your password",
-                icon = Icons.Rounded.Lock
-            )
+
+            OutlinedTextField(value = "Enter your email", onValueChange = {})
+            OutlinedTextField(value = "Enter your password", onValueChange = {})
+
 
         }
     }

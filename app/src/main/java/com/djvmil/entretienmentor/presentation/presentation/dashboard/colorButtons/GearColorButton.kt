@@ -4,6 +4,7 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -12,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.LayoutDirection
-import com.djvmil.entretienmentor.ui.theme.LightGrey
 
 class GearColorButton(
     override val animationSpec: FiniteAnimationSpec<Float>,
@@ -42,7 +42,7 @@ class GearColorButton(
         )
 
         val color = animateColorAsState(
-            targetValue = if (isSelected) Color.Black else LightGrey,
+            targetValue = if (isSelected) Color.Black else MaterialTheme.colorScheme.primary,
             label = "colorAnimation"
         )
 

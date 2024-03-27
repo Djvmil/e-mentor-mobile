@@ -2,19 +2,6 @@ package com.djvmil.entretienmentor.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val colorPrimary = Color(0xFF0000FF) // Buttons, icons, active states
-val colorAccent = Color(0xFFE6E6FF) // Backgrounds for cards, input fields
-val background = Color(0xFFFFFFFF)
-
-val gray = Color(0xFF4B4F5A)
-val dark_gray = Color(0xFF54555A)
-val light_gray = Color(0xFF696969)
-val ghost_white = Color(0xFFF8F8F8)
-val text_hint_color = Color(0xFFA7A7A7)
-val LightPurple = Color(0xFFBCA1E7)
-val RoyalPurple = Color(0xFF64419F)
-val LightGrey = Color(0xFFB1B1B1)
-
 /*
 Light Mode:
 

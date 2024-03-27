@@ -38,8 +38,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
 import com.djvmil.entretienmentor.R
 import com.djvmil.entretienmentor.ui.navigation.NavigationActions
-import com.djvmil.entretienmentor.ui.theme.background
-import com.djvmil.entretienmentor.ui.theme.light_gray
 
 @Composable
 fun AuthScreen(navActions: NavigationActions) {
@@ -81,7 +79,7 @@ fun BottomAuthPage(navActions: NavigationActions) {
                 shape = RoundedCornerShape(20.dp)
                 clip = true
             }
-            .background(MaterialTheme.colorScheme.background),
+            .background(MaterialTheme.colorScheme.secondary),
         contentAlignment = Alignment.Center
     ){
         Column(modifier = Modifier

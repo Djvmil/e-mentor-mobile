@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,7 +19,6 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.djvmil.entretienmentor.ui.theme.colorPrimary
 
 //https://github.com/aqua30/CustomLoginDesign/
 fun ltrCurve(size: Size) = Path().apply {
@@ -141,7 +141,7 @@ fun CurvePath(modifier: Modifier) {
                     shape = CurvedShape(CurveType.LTR)
                     clip = true
                 }
-                .background(colorPrimary)
+                .background(MaterialTheme.colorScheme.secondary)
         ) {
 
         }
