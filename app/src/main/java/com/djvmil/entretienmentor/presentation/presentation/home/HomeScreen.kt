@@ -39,9 +39,7 @@ import androidx.compose.ui.unit.sp
 import com.djvmil.entretienmentor.R
 import com.djvmil.entretienmentor.presentation.model.MovieUiModel
 import com.djvmil.entretienmentor.presentation.util.ShimmerMovieItemCount
-import com.djvmil.entretienmentor.ui.theme.EmptyMovieSize
 import com.djvmil.entretienmentor.ui.theme.EmptyTextStyle
-import com.djvmil.entretienmentor.ui.theme.MovieItemHeight
 import com.djvmil.entretienmentor.ui.theme.NormalPadding
 import kotlinx.collections.immutable.PersistentList
 import org.koin.androidx.compose.koinViewModel
@@ -153,35 +151,6 @@ fun TopBanner() {
 }
 
 @Composable
-fun EmptyMovies() {
-    Column(
-        modifier = Modifier
-            .padding(NormalPadding)
-            .fillMaxWidth()
-            .height(MovieItemHeight),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Icon(
-            modifier = Modifier
-                .size(EmptyMovieSize),
-            imageVector = Icons.Filled.Warning,
-            tint = Color.DarkGray,
-            contentDescription = null
-        )
-        Divider(
-            Modifier
-                .height(NormalPadding),
-            color = Color.Transparent
-        )
-        Text(
-            text = stringResource(id = R.string.movie_not_found),
-            style = EmptyTextStyle
-        )
-    }
-}
-
-@Composable
 fun ShowMovies(
     movies: PersistentList<MovieUiModel>,
     onShowDetail: (movieId: Int) -> Unit
@@ -225,7 +194,7 @@ private fun TopBannerPreview() {
 @Preview
 @Composable
 private fun EmptyMoviesPreview() {
-    EmptyMovies()
+   // EmptyMovies()
 }
 
 @Preview

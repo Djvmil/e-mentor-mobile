@@ -9,57 +9,35 @@ import androidx.compose.ui.unit.sp
 import com.djvmil.entretienmentor.R
 
 // Set of Material typography styles to start with
-val Typography = Typography(
+val typography = Typography(
+    headlineSmall = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 24.sp,
+        lineHeight = 32.sp,
+        letterSpacing = 0.sp
+    ),
+    titleLarge = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 18.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.sp
+    ),
     bodyLarge = TextStyle(
-        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular)),
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.15.sp
     ),
     bodyMedium = TextStyle(
-        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular)),
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
-    ),
-    bodySmall = TextStyle(
-        fontSize = 18.sp,
-        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-    ),
-    titleLarge = TextStyle(
+        fontWeight = FontWeight.Medium,
         fontSize = 14.sp,
-        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-    ),
-    titleMedium = TextStyle(
-        fontSize = 12.sp,
-        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-    ),
-    titleSmall = TextStyle(
-        fontSize = 12.sp,
-        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-    ),
-    displayLarge = TextStyle(
-        fontSize = 14.sp,
-        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-    ),
-    displayMedium = TextStyle(
-        fontSize = 12.sp,
-        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-    ),
-    displaySmall = TextStyle(
-        fontSize = 12.sp,
-        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-    ),
-    labelLarge = TextStyle(
-        fontSize = 14.sp,
-        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+        lineHeight = 20.sp,
+        letterSpacing = 0.25.sp
     ),
     labelMedium = TextStyle(
+        fontWeight = FontWeight.SemiBold,
         fontSize = 12.sp,
-        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-    ),
-    labelSmall = TextStyle(
-        fontSize = 12.sp,
-        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+        lineHeight = 16.sp,
+        letterSpacing = 0.5.sp
     )
 )

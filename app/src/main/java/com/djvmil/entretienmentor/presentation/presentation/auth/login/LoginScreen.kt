@@ -13,6 +13,7 @@ import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -62,23 +63,17 @@ fun LoginScreen(openDashboard: () -> Unit) {
 
     val density = LocalDensity.current
     val loginY = density.run { 510.dp.toPx() }
-    Box(
+    TopAuthPage(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-    ) {
+            .fillMaxWidth()
+            .height(650.dp)
+            .placeAt(0,0))
 
-        TopAuthPage(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(600.dp)
-                .placeAt(0,0))
-        BottomAuthPage(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(250.dp)
-                .placeAt(0,loginY.roundToInt()))
-    }
+    BottomAuthPage(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp)
+            .placeAt(0,loginY.roundToInt()))
 
 }
 
@@ -94,7 +89,6 @@ fun TopAuthPage(modifier: Modifier) {
                 shape = CurvedShape(CurveType.LTR)
                 clip = true
             }
-            .background(colorPrimary)
     ) {
         Column(
             modifier = Modifier,
@@ -144,7 +138,7 @@ fun BottomAuthPage(modifier: Modifier) {
                 shape = CurvedShape(CurveType.RTL)
                 clip = true
             }
-            .background(colorPrimary)
+            .background(colorAccent)
     ) {
         Column(
             modifier = Modifier

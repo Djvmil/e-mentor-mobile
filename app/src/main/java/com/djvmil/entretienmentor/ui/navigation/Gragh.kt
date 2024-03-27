@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.djvmil.entretienmentor.ui.navigation.graph.auth
 import com.djvmil.entretienmentor.ui.navigation.graph.blog
 import com.djvmil.entretienmentor.ui.navigation.graph.chat
 import com.djvmil.entretienmentor.ui.navigation.graph.comminity
@@ -25,11 +26,11 @@ fun NavGraph(
     navActions: NavigationActions = remember(navController) {
         NavigationActions(navController)
     },
-    startDestination: String = Destinations.HOME_ROUTE,
+    isAuth: Boolean,
 ) {
+    val startDestination: String = if(isAuth) Destinations.HOME_ROUTE else Destinations.AUTH_ROUTE
     val currentNavBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = currentNavBackStackEntry?.destination?.route ?: startDestination
-
     NavHost(
         navController = navController,
         startDestination = startDestination,
@@ -73,6 +74,11 @@ fun NavGraph(
         )
 
         profile(
+            modifier = modifier,
+            navActions = navActions
+        )
+
+        auth(
             modifier = modifier,
             navActions = navActions
         )

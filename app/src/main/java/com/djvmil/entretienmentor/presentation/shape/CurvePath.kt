@@ -1,9 +1,24 @@
 package com.djvmil.entretienmentor.presentation.shape
 
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.djvmil.entretienmentor.ui.theme.colorPrimary
 
 //https://github.com/aqua30/CustomLoginDesign/
 fun ltrCurve(size: Size) = Path().apply {
@@ -110,4 +125,30 @@ fun rtlCurve(size: Size) = Path().apply {
         sweepAngleDegrees = 90f,
         forceMoveTo = false
     )
+}
+
+@Composable
+fun CurvePath(modifier: Modifier) {
+    var text by remember {
+        mutableStateOf("")
+    }
+
+    Column(Modifier.fillMaxSize()) {
+        Box(
+            modifier = modifier.padding(30.dp)
+                .fillMaxSize()
+                .graphicsLayer {
+                    shape = CurvedShape(CurveType.LTR)
+                    clip = true
+                }
+                .background(colorPrimary)
+        ) {
+
+        }
+    }
+}
+@Preview(showBackground = true)
+@Composable
+fun CurvePathPreview() {
+    CurvePath(Modifier)
 }

@@ -3,6 +3,7 @@ package com.djvmil.entretienmentor.ui.navigation
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import com.djvmil.entretienmentor.ui.navigation.DestinationsArgs.MOVIE_DETAIL_ID_ARG
+import com.djvmil.entretienmentor.ui.navigation.Screens.AUTH_SCREEN
 import com.djvmil.entretienmentor.ui.navigation.Screens.BLOG_SCREEN
 import com.djvmil.entretienmentor.ui.navigation.Screens.CHAT_SCREEN
 import com.djvmil.entretienmentor.ui.navigation.Screens.COMMINITY_SCREEN
@@ -16,6 +17,7 @@ import com.djvmil.entretienmentor.ui.navigation.Screens.REGISTER_SCREEN
 private object Screens {
     const val DASHBOARD_SCREEN = "dashboard"
     const val HOME_SCREEN = "home"
+    const val AUTH_SCREEN = "auth"
     const val LOGIN_SCREEN = "login"
     const val REGISTER_SCREEN = "register"
     const val PROFILE_SCREEN = "profile"
@@ -30,6 +32,7 @@ object DestinationsArgs {
 }
 
 object Destinations {
+    const val AUTH_ROUTE = AUTH_SCREEN
     const val LOGIN_ROUTE = LOGIN_SCREEN
     const val REGISTER_ROUTE = REGISTER_SCREEN
     const val PROFILE_ROUTE = PROFILE_SCREEN
@@ -42,6 +45,10 @@ object Destinations {
 }
 
 class NavigationActions(private val navController: NavHostController) {
+    fun navigateToAuth() {
+        navController.navigate(Destinations.AUTH_ROUTE)
+    }
+
     fun navigateToLogin() {
         navController.navigate(Destinations.LOGIN_ROUTE)
     }

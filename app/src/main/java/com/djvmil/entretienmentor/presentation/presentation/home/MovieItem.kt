@@ -30,9 +30,6 @@ import com.djvmil.entretienmentor.presentation.model.MovieUiModel
 import com.djvmil.entretienmentor.ui.theme.DetailIcon
 import com.djvmil.entretienmentor.ui.theme.HighPadding
 import com.djvmil.entretienmentor.ui.theme.MovieDetailItemTextStyle
-import com.djvmil.entretienmentor.ui.theme.MovieItemHeight
-import com.djvmil.entretienmentor.ui.theme.MovieItemRound
-import com.djvmil.entretienmentor.ui.theme.MovieItemWidth
 import com.djvmil.entretienmentor.ui.theme.NormalPadding
 import com.djvmil.entretienmentor.ui.theme.SmallEvelation
 import com.djvmil.entretienmentor.ui.theme.SmallPadding
@@ -48,8 +45,8 @@ fun MovieItem(
         modifier = Modifier
             .background(Color.White)
             .padding(all = SmallPadding)
-            .wrapContentSize()
-            .clip(RoundedCornerShape(size = MovieItemRound)),
+            .wrapContentSize(),
+            //.clip(RoundedCornerShape(size = MovieItemRound)),
         shadowElevation = SmallEvelation,
         tonalElevation = SmallEvelation
     ) {
@@ -70,7 +67,7 @@ fun MovieItem(
 
             Image(
                 modifier = Modifier
-                    .size(width = MovieItemWidth, height = MovieItemHeight)
+                    //.size(width = MovieItemWidth, height = MovieItemHeight)
                     .constrainAs(image) {
                         linkTo(
                             start = parent.start,

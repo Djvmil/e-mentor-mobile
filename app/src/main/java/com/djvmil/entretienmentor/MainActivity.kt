@@ -6,7 +6,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.djvmil.entretienmentor.presentation.presentation.auth.AuthScreen
 import com.djvmil.entretienmentor.presentation.presentation.dashboard.DashboardScreen
-import com.djvmil.entretienmentor.presentation.presentation.onboarding.OnBoarding
 import com.google.accompanist.pager.ExperimentalPagerApi
 
 class MainActivity : ComponentActivity() {
@@ -15,7 +14,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AuthScreen()
+            DashboardScreen( false)
         }
     }
 }

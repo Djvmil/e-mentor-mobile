@@ -1,7 +1,6 @@
 package com.djvmil.entretienmentor.presentation.presentation.dashboard
 
 import android.annotation.SuppressLint
-import android.widget.Toast
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
@@ -14,7 +13,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -30,7 +28,9 @@ import com.djvmil.entretienmentor.ui.theme.EntretienMentorTheme
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun DashboardScreen() {
+fun DashboardScreen(
+    isAuth: Boolean = false
+) {
     val navController: NavHostController = rememberNavController()
     val navActions: NavigationActions = remember(navController) {
         NavigationActions(navController)
@@ -69,7 +69,7 @@ fun DashboardScreen() {
                     )*/
                 },
                 bottomBar = {
-                    ColorButtonNavBar(navActions)
+                    if(isAuth) ColorButtonNavBar(navActions)
                 },
                 modifier = Modifier,
                 snackbarHost = {},
@@ -77,7 +77,8 @@ fun DashboardScreen() {
                 content = {
                     NavGraph(
                         navController = navController,
-                        navActions = navActions
+                        navActions = navActions,
+                        isAuth = isAuth
                     )
 
                 }
