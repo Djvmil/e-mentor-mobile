@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.djvmil.entretienmentor.presentation.presentation.auth.AuthScreen
 import com.djvmil.entretienmentor.presentation.presentation.dashboard.DashboardScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
 

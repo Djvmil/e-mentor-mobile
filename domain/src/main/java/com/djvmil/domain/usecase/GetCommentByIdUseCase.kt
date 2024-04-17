@@ -1,6 +1,5 @@
 package com.djvmil.domain.usecase
 
-import com.djvmil.data.repository.CommentRepository
 import com.djvmil.core.ErrorEM
 import com.djvmil.core.ResultEM
 import com.djvmil.core.map

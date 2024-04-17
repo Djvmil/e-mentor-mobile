@@ -1,25 +1,24 @@
 package com.djvmil.entretienmentor.presentation.presentation.auth.login
 
 import android.content.res.Configuration
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Lock
-import androidx.compose.material.icons.rounded.Person
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.ColorScheme
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material.icons.outlined.ArrowForward
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,33 +26,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ConstraintLayout
-import com.djvmil.entretienmentor.ui.theme.*
 import com.djvmil.entretienmentor.R
-import com.djvmil.entretienmentor.presentation.presentation.auth.CustomEditText
+import com.djvmil.entretienmentor.presentation.presentation.dashboard.colorButtons
 import com.djvmil.entretienmentor.presentation.shape.CurveType
 import com.djvmil.entretienmentor.presentation.shape.CurvedShape
 import com.djvmil.entretienmentor.presentation.shape.placeAt
@@ -63,18 +47,21 @@ import kotlin.math.roundToInt
 fun LoginScreen(openDashboard: () -> Unit) {
 
     val density = LocalDensity.current
-    val loginY = density.run { 510.dp.toPx() }
-    TopAuthPage(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(650.dp)
-            .placeAt(0,0))
+    val loginY = density.run { -20.dp.toPx() }
 
-    BottomAuthPage(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp)
-            .placeAt(0,loginY.roundToInt()))
+    Column(modifier = Modifier.fillMaxSize() ) {
+        TopAuthPage(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(700.dp)
+                .placeAt(0, 0))
+
+        BottomAuthPage(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(250.dp)
+                .placeAt(0, loginY.roundToInt()))
+    }
 
 }
 
@@ -120,9 +107,36 @@ fun TopAuthPage(modifier: Modifier) {
             )
 
 
-            OutlinedTextField(value = "Enter your email", onValueChange = {})
-            OutlinedTextField(value = "Enter your password", onValueChange = {})
-
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                value = "Enter your email",
+                onValueChange = {})
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                value = "Enter your password",
+                onValueChange = {})
+            Box(
+                modifier = Modifier
+                    .padding(top = 70.dp, end = 20.dp)
+                    .align(Alignment.End)
+                    .size(70.dp)
+                    .graphicsLayer {
+                        shape = RoundedCornerShape(45.dp)
+                        clip = true
+                    }
+                    .background(MaterialTheme.colorScheme.primary),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    modifier = Modifier,
+                    imageVector = Icons.Outlined.ArrowForward,
+                    tint = MaterialTheme.colorScheme.onPrimary,
+                    contentDescription = "Login Button")
+            }
 
         }
     }
@@ -147,7 +161,9 @@ fun BottomAuthPage(modifier: Modifier) {
         ) {
             Text(
                 text = "Already have an account?",
-                modifier = Modifier.padding(start = 18.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 18.dp),
                 style = TextStyle(
                     fontSize = 18.sp,
                     color = MaterialTheme.colorScheme.primary,
@@ -158,16 +174,16 @@ fun BottomAuthPage(modifier: Modifier) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(60.dp)
+                    .height(50.dp)
                     .graphicsLayer {
-                        shape = RoundedCornerShape(100.dp)
+                        shape = RoundedCornerShape(50.dp)
                         clip = true
                     }
                     .background(MaterialTheme.colorScheme.primary),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "LOGIN",
+                    text = "Register",
                     style = TextStyle(
                         fontSize = 24.sp,
                         color = MaterialTheme.colorScheme.onPrimary,

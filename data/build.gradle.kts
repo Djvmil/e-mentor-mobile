@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
@@ -60,6 +59,11 @@ dependencies {
     implementation(libs.ktor.serialization)
     implementation(libs.ktor.negotiation)
     implementation(libs.ktor.logging)
+    //implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
+
+    //implementation("androidx.datastore:datastore-preferences-core:1.1.0")
+    //implementation("androidx.datastore:datastore-core:1.1.0")
+    implementation(libs.androidx.datastore.core)
 
     implementation(libs.sqldelight.android)
     implementation(libs.sqldelight.coroutines)

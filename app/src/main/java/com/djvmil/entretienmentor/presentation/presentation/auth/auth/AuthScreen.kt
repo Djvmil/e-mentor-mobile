@@ -1,4 +1,4 @@
-package com.djvmil.entretienmentor.presentation.presentation.auth
+package com.djvmil.entretienmentor.presentation.presentation.auth.auth
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image

@@ -3,12 +3,14 @@ package com.djvmil.data.di
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.djvmil.DatabaseSource
+import com.djvmil.data.repository.AuthRepository
+import com.djvmil.data.repository.AuthRepositoryImpl
 import com.djvmil.data.repository.MovieRepository
 import com.djvmil.data.repository.MovieRepositoryImpl
 import com.djvmil.data.source.api.api.ApiService
 import com.djvmil.data.source.api.api.ApiServiceImpl
 import com.djvmil.data.source.api.util.CustomHttpLogger
-import com.djvmil.data.source.api.util.Rout
+import com.djvmil.data.source.api.util.Route
 import com.djvmil.data.source.datastore.DataStoreSource
 import com.djvmil.data.source.db.dao.CommentDao
 import com.djvmil.data.source.db.dao.CommentDaoImpl
@@ -32,6 +34,7 @@ import org.koin.dsl.module
 
 val dataModule = module {
     single<MovieRepository> { MovieRepositoryImpl(api = get(), dao = get(), dataStore = get()) }
+    single<AuthRepository> { AuthRepositoryImpl(apiService = get()) }
 
     single { DataStoreSource() }
 
@@ -49,16 +52,26 @@ val dataModule = module {
             install(Logging) {
                 logger = CustomHttpLogger()
                 level = LogLevel.ALL
+                /*logger = object : Logger {
+                    override fun log(message: String) {
+                        Log.i("HttpClient", message)
+                    }
+                }*/
             }
             install(DefaultRequest) {
-                url(Rout.BASE_URL)
+                url(
+                    host = Route.BASE_URL,
+                    path = Route.URI_URL
+                )
                 header(HttpHeaders.ContentType, ContentType.Application.Json)
+                header(HttpHeaders.Accept, ContentType.Application.Json)
             }
             install(ContentNegotiation) {
                 json(Json {
                     ignoreUnknownKeys = true
                 })
             }
+
         }
     }
     single<MovieDao> { MovieDaoImpl(db = get()) }

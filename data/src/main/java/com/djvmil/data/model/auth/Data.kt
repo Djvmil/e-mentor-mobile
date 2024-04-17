@@ -1,18 +1,21 @@
 package com.djvmil.data.model.auth
 
-import kotlinx.serialization.SerialName
+import com.squareup.moshi.Json
 
 data class Data(
-
-    @SerialName("id")
+    @field:Json(name = "id")
     var id: Int? = null,
-    @SerialName("email")
+
+    @field:Json(name = "email")
     var email: String? = null,
-    @SerialName("first_name")
+
+    @field:Json(name = "firstname")
     var firstName: String? = null,
-    @SerialName("last_name")
+
+    @field:Json(name = "lastname")
     var lastName: String? = null,
-    @SerialName("avatar")
+
+    @field:Json(name = "avatar")
     var avatar: String? = null
 
 )

@@ -1,19 +1,23 @@
 package com.djvmil.data.model.auth
 
-import kotlinx.serialization.SerialName
+import com.squareup.moshi.Json
 
 data class AuthRequest(
-    @SerialName("id")
+    @field:Json(name = "id")
     var id: Int? = null,
-    @SerialName("email")
-    var email: String? = null,
-    @SerialName("first_name")
+    @field:Json(name = "firstname")
     var firstName: String? = null,
-    @SerialName("last_name")
+    @field:Json(name = "lastname")
     var lastName: String? = null,
-    @SerialName("avatar")
+    @field:Json(name = "avatar")
     var avatar: String? = null,
-    @SerialName("password")
+    @field:Json(name = "phoneNumber")
+    var phoneNumber: String? = null,
+    @field:Json(name = "email")
+    var email: String? = null,
+    @field:Json(name = "username")
+    var username: String? = null,
+    @field:Json(name = "password")
     var password: String? = null
 
 )

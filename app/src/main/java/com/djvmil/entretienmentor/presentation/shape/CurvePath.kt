@@ -26,7 +26,7 @@ fun ltrCurve(size: Size) = Path().apply {
     val width = size.width
     val height = size.height
     val radius = 100f
-    val upShift = height * (1f - 0.2f)
+    val upShift = height * (1f - 0.1f)
     arcTo(
         rect = Rect(
             left = 0f,
@@ -80,7 +80,7 @@ fun rtlCurve(size: Size) = Path().apply {
     val width = size.width
     val height = size.height
     val radius = 100f
-    val upShift = height * (1f - 0.5f)
+    val upShift = height * (1f - 0.6f)
     arcTo(
         rect = Rect(
             left = 0f,

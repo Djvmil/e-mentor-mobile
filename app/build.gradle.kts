@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
@@ -78,9 +77,9 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
-    implementation("com.google.accompanist:accompanist-pager:0.24.13-rc")
-    implementation("androidx.graphics:graphics-shapes:1.0.0-alpha05")
 
+    implementation(libs.accompanist.pager)
+    implementation(libs.androidx.graphics.shapes)
 
     implementation(libs.koin.android)
     implementation(libs.koin.compose)

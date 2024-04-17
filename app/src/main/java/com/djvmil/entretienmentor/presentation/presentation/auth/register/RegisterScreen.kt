@@ -11,7 +11,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ArrowForward
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -33,6 +37,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.djvmil.entretienmentor.R
+import com.djvmil.entretienmentor.presentation.presentation.auth.login.BottomAuthPage
+import com.djvmil.entretienmentor.presentation.presentation.auth.login.TopAuthPage
 import com.djvmil.entretienmentor.presentation.shape.CurveType
 import com.djvmil.entretienmentor.presentation.shape.CurvedShape
 import com.djvmil.entretienmentor.presentation.shape.placeAt
@@ -41,19 +47,23 @@ import kotlin.math.roundToInt
 @Composable
 fun RegisterScreen(openDashboard: () -> Unit) {
 
-    val density = LocalDensity.current
-    val loginY = density.run { 510.dp.toPx() }
-    TopRegisterPage(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(650.dp)
-            .placeAt(0, 0))
 
-    BottomRegisterPage(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp)
-            .placeAt(0, loginY.roundToInt()))
+    val density = LocalDensity.current
+    val loginY = density.run { -20.dp.toPx() }
+
+    Column(modifier = Modifier.fillMaxSize() ) {
+        TopRegisterPage(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(700.dp)
+                .placeAt(0,0))
+
+        BottomRegisterPage(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(240.dp)
+                .placeAt(0, loginY.roundToInt()))
+    }
 
 }
 
@@ -62,6 +72,7 @@ fun TopRegisterPage(modifier: Modifier) {
     var text by remember {
         mutableStateOf("")
     }
+
 
     Box(
         modifier = modifier
@@ -98,8 +109,53 @@ fun TopRegisterPage(modifier: Modifier) {
                 fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
             )
 
-            OutlinedTextField(value = "Enter your email", onValueChange = {})
-            OutlinedTextField(value = "Enter your password", onValueChange = {})
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                value = "Enter your firstname",
+                onValueChange = {})
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                value = "Enter your lastname",
+                onValueChange = {})
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                value = "Enter your email",
+                onValueChange = {})
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                value = "Enter your password",
+                onValueChange = {})
+
+            Box(
+                modifier = Modifier
+                    .padding(15.dp)
+                    .align(Alignment.End)
+                    .size(70.dp)
+                    .graphicsLayer {
+                        shape = RoundedCornerShape(45.dp)
+                        clip = true
+                    }
+                    .background(MaterialTheme.colorScheme.primary),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    modifier = Modifier,
+                    imageVector = Icons.Outlined.ArrowForward,
+                    tint = MaterialTheme.colorScheme.onPrimary,
+                    contentDescription = "Register Button")
+            }
 
         }
     }
@@ -124,7 +180,9 @@ fun BottomRegisterPage(modifier: Modifier) {
         ) {
             Text(
                 text = "Already have an account?",
-                modifier = Modifier.padding(start = 18.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 18.dp),
                 style = TextStyle(
                     fontSize = 18.sp,
                     color = MaterialTheme.colorScheme.primary,
