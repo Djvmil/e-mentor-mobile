@@ -22,6 +22,8 @@ inline fun <V, reified E : Any?> ResultEM<V, E>.fold(
         is ResultEM.Failure -> failure(error)
     }
 
+
+
 inline fun <V, U, reified E : Any?> ResultEM<V, E>.map(transform: (V) -> U): ResultEM<U, E> {
 
     return when (this) {
