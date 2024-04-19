@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.sqldelight)
-    alias(libs.plugins.protobuf)
 }
 
 android {
@@ -42,8 +41,6 @@ sqldelight {
         }
     }
 }
-
-
 dependencies {
 
     implementation(project(":core"))
@@ -63,15 +60,11 @@ dependencies {
     implementation(libs.ktor.logging)
     //implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
 
-    //implementation("androidx.datastore:datastore-preferences-core:1.1.0")
-    //implementation("androidx.datastore:datastore-core:1.1.0")
-    implementation(libs.androidx.datastore.core)
+    //datastore
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.datastore.proto)
 
-    implementation  ("androidx.datastore:datastore:1.0.0")
-    // Starting from Protobuf 3.8.0, use the lite runtime library
-    implementation  ("com.google.protobuf:protobuf-javalite:3.18.0")
-
-    implementation ("com.google.code.gson:gson:2.8.7")
+    implementation (libs.gson)
     implementation(libs.sqldelight.android)
     implementation(libs.sqldelight.coroutines)
 }

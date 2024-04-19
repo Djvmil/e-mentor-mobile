@@ -46,19 +46,9 @@ val dataModule = module {
 
     single { DataStoreSource() }
 
-    single {
-        DataStoreFactory.create(
-            serializer = get<UserPreferencesSerializer>(),
-            scope = CoroutineScope(get<CoroutineDispatcher>() + SupervisorJob()),
-            migrations = listOf(
-                IntToStringIdsMigration,
-            )
-        ) {
-            androidContext().dataStoreFile("user_preferences.pb")
-        }
-    }
 
-    singleOf(::DataStorePreferenceAPIImpl)
+
+   // singleOf(::DataStorePreferenceAPIImpl)
 
 
     single {

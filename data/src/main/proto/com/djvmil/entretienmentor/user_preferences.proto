@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "com.djvmil.data.source.datastore.datastore_tuto";
+option java_multiple_files = true;
+
+
+message UserPreferences {
+
+    string access_token = 1
+    bool is_login = 2;
+    StepsStarting steps_starting = 3;
+
+    enum StepsStarting {
+        NONE = 0,
+        ON_BOARDING = 1,
+        ON_HOME_USER = 2
+
+    }
+}

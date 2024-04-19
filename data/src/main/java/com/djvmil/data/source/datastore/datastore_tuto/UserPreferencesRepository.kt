@@ -1,8 +1,10 @@
 package com.djvmil.data.source.datastore.datastore_tuto
 
+import android.content.Context
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.IOException
+import androidx.datastore.dataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
@@ -25,6 +27,12 @@ data class UserPreferences(
     val isLogin: Boolean,
     val stepsStarting: StepsStarting
 )
+
+// Build the DataStore
+private val Context.userPreferencesStore: DataStore<UserPreferences> by dataStore(
+    fileName = "DATA_STORE_FILE_NAME",
+    serializer = UserPreferencesSerializer)
+
 
 /**
  * Class that handles saving and retrieving user preferences
