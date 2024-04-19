@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "com/djvmil/data/source/datastore/steps_starting.proto";
+
+option java_package = "com.djvmil.data.source.datastore";
+option java_multiple_files = true;
+
+
+message UserPreferences {
+    string access_token = 1;
+    bool is_login = 2;
+    StepsStarting steps_starting = 3;
+}

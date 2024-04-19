@@ -26,6 +26,9 @@ androidxDataStore = "1.1.0"
 accompanist = "0.27.0"
 graphicsShapes = "1.0.0-alpha05"
 
+protobuf-kotlin-lite = "3.24.4"
+protobuf-plugin = "0.9.4"
+
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
@@ -71,6 +74,8 @@ accompanist-pager = { group = "com.google.accompanist", name = "accompanist-page
 accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanist" }
 accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
 androidx-graphics-shapes = { group = "androidx.graphics", name = "graphics-shapes", version.ref = "graphicsShapes" }
+protobuf-kotlin-lite = {module = "com.google.protobuf:protobuf-kotlin-lite", version.ref = "protobuf-kotlin-lite"}
+protobuf-java-lite = {module = "com.google.protobuf:protobuf-kotlin-lite", version.ref = "protobuf-kotlin-lite"}
 
 
 [plugins]
@@ -81,5 +86,6 @@ org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.re
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "org-jetbrains-kotlin-android" }
 
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+protobuf = { id = "com.google.protobuf", version.ref = "protobuf-plugin"}
 
 [bundles]

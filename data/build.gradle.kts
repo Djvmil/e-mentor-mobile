@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.sqldelight)
+    alias(libs.plugins.protobuf)
 }
 
 android {
@@ -63,8 +64,28 @@ dependencies {
     //datastore
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.datastore.proto)
+    //implementation(libs.protobuf.kotlin.lite)
+    implementation(libs.protobuf.java.lite)
 
     implementation (libs.gson)
     implementation(libs.sqldelight.android)
     implementation(libs.sqldelight.coroutines)
+}
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.24.4"
+    }
+
+    // Generates the kotlin Protobuf-lite code for the Protobufs in this project. See
+    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
+    // for more information.
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+                create("java") {
+                    option("lite")
+                }
+            }
+        }
+    }
 }

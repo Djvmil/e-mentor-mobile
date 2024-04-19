@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "com.djvmil.data.source.datastore";
+option java_multiple_files = true;
+
+enum StepsStarting {
+    NONE = 0;
+    ON_BOARDING = 1;
+    ON_HOME_USER = 2;
+}
