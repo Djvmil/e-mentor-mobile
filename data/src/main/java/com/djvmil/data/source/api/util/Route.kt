@@ -1,7 +1,7 @@
 package com.djvmil.data.source.api.util
 
 object Route {
-    const val BASE_URL = "http://51.75.27.211:8989"
+    const val BASE_URL = "51.75.27.211:8989"
     const val URI_URL = "em/api/"
     const val AUTH_URL = "auth"
     const val USER_URL = "users"

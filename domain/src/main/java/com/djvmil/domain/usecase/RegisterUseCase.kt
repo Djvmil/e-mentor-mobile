@@ -16,8 +16,8 @@ import kotlinx.coroutines.flow.map
 
 class RegisterUseCase internal constructor(
     private val repository: AuthRepository
-) : UseCase<AuthRequest, Flow<ResultEM<AuthResult<ResponseAuthData>, ErrorEM>>>  {
-    override suspend fun invoke(input: AuthRequest): Flow<ResultEM<AuthResult<ResponseAuthData>, ErrorEM>> =
+) : UseCase<AuthRequest, Flow<ResultEM<AuthResult<String>, ErrorEM>>>  {
+    override suspend fun invoke(input: AuthRequest): Flow<ResultEM<AuthResult<String>, ErrorEM>> =
         repository.register(input)/*.map {
             it.map { it.toDomain() }
         }*/

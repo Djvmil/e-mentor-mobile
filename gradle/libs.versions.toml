@@ -22,8 +22,10 @@ ktor = "2.3.7"
 koin = "3.5.3"
 sqldelight = "2.0.1"
 androidxDataStore = "1.1.0"
-accompanistPager = "0.24.13-rc"
+accompanist = "0.27.0"
 graphicsShapes = "1.0.0-alpha05"
+protobufPlugin = "0.8.19"
+protobuf = "3.21.9"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -63,9 +65,13 @@ koin-test-junit4 = { group = "io.insert-koin", name = "koin-test-junit4", versio
 sqldelight-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
 sqldelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqldelight" }
 
-androidx-datastore-core = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
-accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref = "accompanistPager" }
+androidx-datastore-core = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDataStore" }
+accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref = "accompanist" }
+accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanist" }
+accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
 androidx-graphics-shapes = { group = "androidx.graphics", name = "graphics-shapes", version.ref = "graphicsShapes" }
+protobuf-protoc = { group = "com.google.protobuf", name = "protoc", version.ref = "protobuf" }
+
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
@@ -75,4 +81,6 @@ org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.re
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "org-jetbrains-kotlin-android" }
 
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
+
 [bundles]

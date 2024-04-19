@@ -1,5 +1,7 @@
 package com.djvmil.data.di
 
+import androidx.datastore.core.DataStoreFactory
+import androidx.datastore.dataStoreFile
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.djvmil.DatabaseSource
@@ -12,6 +14,7 @@ import com.djvmil.data.source.api.api.ApiServiceImpl
 import com.djvmil.data.source.api.util.CustomHttpLogger
 import com.djvmil.data.source.api.util.Route
 import com.djvmil.data.source.datastore.DataStoreSource
+import com.djvmil.data.source.datastore.datastore_1.DataStorePreferenceAPIImpl
 import com.djvmil.data.source.db.dao.CommentDao
 import com.djvmil.data.source.db.dao.CommentDaoImpl
 import com.djvmil.data.source.db.dao.MovieDao
@@ -23,13 +26,18 @@ import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.observer.ResponseObserver
 import io.ktor.client.request.header
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.serialization.json.Json
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 val dataModule = module {
@@ -37,6 +45,21 @@ val dataModule = module {
     single<AuthRepository> { AuthRepositoryImpl(apiService = get()) }
 
     single { DataStoreSource() }
+
+    single {
+        DataStoreFactory.create(
+            serializer = get<UserPreferencesSerializer>(),
+            scope = CoroutineScope(get<CoroutineDispatcher>() + SupervisorJob()),
+            migrations = listOf(
+                IntToStringIdsMigration,
+            )
+        ) {
+            androidContext().dataStoreFile("user_preferences.pb")
+        }
+    }
+
+    singleOf(::DataStorePreferenceAPIImpl)
+
 
     single {
         val driver: SqlDriver = AndroidSqliteDriver(
@@ -58,6 +81,12 @@ val dataModule = module {
                     }
                 }*/
             }
+            install(ResponseObserver) {
+                onResponse { response ->
+                    println("HTTP status: ${response.status.value}")
+                }
+            }
+
             install(DefaultRequest) {
                 url(
                     host = Route.BASE_URL,
@@ -79,4 +108,6 @@ val dataModule = module {
 
     single { Dispatchers.Default }
     single<ApiService> { ApiServiceImpl(httpClient = get()) }
+
+    single { Dispatchers.IO }
 }

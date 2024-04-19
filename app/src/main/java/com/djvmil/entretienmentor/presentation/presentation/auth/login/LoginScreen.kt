@@ -36,16 +36,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.djvmil.entretienmentor.R
 import com.djvmil.entretienmentor.presentation.presentation.dashboard.colorButtons
 import com.djvmil.entretienmentor.presentation.shape.CurveType
 import com.djvmil.entretienmentor.presentation.shape.CurvedShape
 import com.djvmil.entretienmentor.presentation.shape.placeAt
+import org.koin.androidx.compose.koinViewModel
 import kotlin.math.roundToInt
 
 @Composable
-fun LoginScreen(openDashboard: () -> Unit) {
+fun LoginScreen(
+    openDashboard: () -> Unit,
+    viewModel: LoginViewModel = koinViewModel()
+) {
 
+
+    viewModel.login()
     val density = LocalDensity.current
     val loginY = density.run { -20.dp.toPx() }
 
