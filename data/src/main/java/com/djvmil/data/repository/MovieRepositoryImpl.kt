@@ -6,7 +6,7 @@ import com.djvmil.data.model.toDatabase
 import com.djvmil.data.source.api.api.ApiService
 import com.djvmil.core.ErrorEM
 import com.djvmil.core.ResultEM
-import com.djvmil.data.source.datastore.DataStoreSource
+import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
 import com.djvmil.data.source.db.dao.MovieDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.map
 class MovieRepositoryImpl(
     val api: ApiService,
     val dao: MovieDao,
-    val dataStore: DataStoreSource
+    val dataStore: AppSettingsDataStoreSource
 ) : MovieRepository {
     override suspend fun getFromApi() {
         api.getMovies().collect { result ->

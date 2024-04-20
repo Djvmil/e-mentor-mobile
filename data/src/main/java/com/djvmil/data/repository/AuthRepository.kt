@@ -9,5 +9,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
     suspend fun login(loginRequest: AuthRequest): Flow<ResultEM<AuthResult<ResponseAuthData>, ErrorEM>>
-    suspend fun register(registerRequest: AuthRequest): Flow<ResultEM<AuthResult<ResponseAuthData>, ErrorEM>>
+    suspend fun register(registerRequest: AuthRequest): Flow<ResultEM<AuthResult<String>, ErrorEM>>
 }

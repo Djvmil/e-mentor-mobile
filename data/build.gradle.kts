@@ -32,6 +32,7 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
 }
 
 sqldelight {
@@ -41,7 +42,6 @@ sqldelight {
         }
     }
 }
-
 dependencies {
 
     implementation(project(":core"))
@@ -61,10 +61,12 @@ dependencies {
     implementation(libs.ktor.logging)
     //implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
 
-    //implementation("androidx.datastore:datastore-preferences-core:1.1.0")
-    //implementation("androidx.datastore:datastore-core:1.1.0")
-    implementation(libs.androidx.datastore.core)
+    //datastore
+    implementation(libs.androidx.datastore.proto)
+    implementation(libs.kotlinx.serialization.protobuf)
+    implementation (libs.tink.android)
 
+    implementation (libs.gson)
     implementation(libs.sqldelight.android)
     implementation(libs.sqldelight.coroutines)
 }

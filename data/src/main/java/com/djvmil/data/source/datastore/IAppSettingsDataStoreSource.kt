@@ -1,0 +1,22 @@
+package com.djvmil.data.source.datastore
+
+import com.djvmil.data.source.datastore.model.AppSettings
+import com.djvmil.data.source.datastore.model.AppTheme
+import com.djvmil.data.source.datastore.model.StepsStarting
+import kotlinx.coroutines.flow.Flow
+
+interface IAppSettingsDataStoreSource {
+    fun appSetting(): Flow<AppSettings?>
+    suspend fun update(transform: suspend (current: AppSettings?) -> AppSettings?): AppSettings?
+
+    suspend fun setTheme(theme: AppTheme)
+    fun  getTheme(): Flow<AppTheme?>
+    suspend fun setIsLogin(status: Boolean)
+    fun isLogin(): Flow<Boolean?>
+    suspend fun setStepsStarting(steps: StepsStarting)
+    fun getStepsStarting(): Flow<StepsStarting?>
+    suspend fun setAccessToken(accessToken: String)
+    fun getAccessToken(): Flow<String?>
+
+
+}
