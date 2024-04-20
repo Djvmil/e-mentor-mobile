@@ -1,0 +1,26 @@
+CREATE TABLE communities (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    title TEXT NOT NULL,
+    imageUrl TEXT NOT NULL,
+    numComments INTEGER NOT NULL,
+    numLikes INTEGER NOT NULL,
+    isLiked INTEGER NOT NULL
+);
+
+insert:
+INSERT OR IGNORE INTO communities VALUES (:id,:title,:imageUrl,:numComments,:numLikes,:isLiked);
+
+deleteAll:
+DELETE FROM communities;
+
+getAll:
+SELECT * FROM communities;
+
+getCommunity:
+SELECT * FROM communities WHERE id=:id;
+
+getAllLiked:
+SELECT * FROM communities WHERE isLiked = 1;
+
+update:
+UPDATE OR ABORT communities SET id = :id,title = :title,imageUrl = :imageUrl,numComments = :numComments,numLikes = :numLikes,isLiked = :isLiked WHERE id = :id;

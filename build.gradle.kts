@@ -6,7 +6,6 @@ plugins {
         alias(org.jetbrains.kotlin.android) apply false
         alias(kotlin.serialization) apply false
         alias(sqldelight) apply false
-        alias(libs.plugins.protobuf) apply false
     }
 }
 true // Needed to make the Suppress annotation work for the plugins block

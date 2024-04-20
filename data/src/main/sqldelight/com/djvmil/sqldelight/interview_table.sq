@@ -1,0 +1,23 @@
+CREATE TABLE interviews (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    title TEXT NOT NULL,
+    imageUrl TEXT NOT NULL,
+    numComments INTEGER NOT NULL,
+    numLikes INTEGER NOT NULL,
+    isLiked INTEGER NOT NULL
+);
+
+insert:
+INSERT OR IGNORE INTO interviews VALUES (:id,:title,:imageUrl,:numComments,:numLikes,:isLiked);
+
+deleteAll:
+DELETE FROM interviews;
+
+getAll:
+SELECT * FROM interviews;
+
+getInterview:
+SELECT * FROM interviews WHERE id=:id;
+
+update:
+UPDATE OR ABORT interviews SET id = :id,title = :title,imageUrl = :imageUrl,numComments = :numComments,numLikes = :numLikes,isLiked = :isLiked WHERE id = :id;

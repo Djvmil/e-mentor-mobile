@@ -1,0 +1,26 @@
+CREATE TABLE blogs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    title TEXT NOT NULL,
+    imageUrl TEXT NOT NULL,
+    numComments INTEGER NOT NULL,
+    numLikes INTEGER NOT NULL,
+    isLiked INTEGER NOT NULL
+);
+
+insert:
+INSERT OR IGNORE INTO blogs VALUES (:id,:title,:imageUrl,:numComments,:numLikes,:isLiked);
+
+deleteAll:
+DELETE FROM blogs;
+
+getAll:
+SELECT * FROM blogs;
+
+getBlog:
+SELECT * FROM blogs WHERE id=:id;
+
+getAllLiked:
+SELECT * FROM blogs WHERE isLiked = 1;
+
+update:
+UPDATE OR ABORT blogs SET id = :id,title = :title,imageUrl = :imageUrl,numComments = :numComments,numLikes = :numLikes,isLiked = :isLiked WHERE id = :id;

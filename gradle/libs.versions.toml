@@ -17,7 +17,7 @@ compose-coil = "2.5.0"
 appcompat = "1.6.1"
 material = "1.11.0"
 material3 = "1.2.1"
-kotlinx-immutable-collection = "0.3.5"
+kotlinx-immutable-collection = "0.3.7"
 kotlinx-serialization = "1.6.2"
 ktor = "2.3.7"
 koin = "3.5.3"
@@ -28,6 +28,9 @@ graphicsShapes = "1.0.0-alpha05"
 
 protobuf-kotlin-lite = "3.24.4"
 protobuf-plugin = "0.9.4"
+kotlinx-serialization-protobuf = "1.6.2"
+encryptedDatastore = "1.0.0-beta01"
+tinkAndroid = "1.8.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -41,6 +44,7 @@ compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = 
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
 compose-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "compose-constraintlayout" }
 compose-coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "compose-coil" }
+tink-android = { group = "com.google.crypto.tink", name = "tink-android", version.ref = "tinkAndroid" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
@@ -68,15 +72,12 @@ koin-test-junit4 = { group = "io.insert-koin", name = "koin-test-junit4", versio
 sqldelight-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
 sqldelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqldelight" }
 
-androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDataStore" }
 androidx-datastore-proto = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
 accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref = "accompanist" }
 accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanist" }
 accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
 androidx-graphics-shapes = { group = "androidx.graphics", name = "graphics-shapes", version.ref = "graphicsShapes" }
-protobuf-kotlin-lite = {module = "com.google.protobuf:protobuf-kotlin-lite", version.ref = "protobuf-kotlin-lite"}
-protobuf-java-lite = {module = "com.google.protobuf:protobuf-kotlin-lite", version.ref = "protobuf-kotlin-lite"}
-
+kotlinx-serialization-protobuf = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-protobuf", version.ref = "kotlinx-serialization-protobuf" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
