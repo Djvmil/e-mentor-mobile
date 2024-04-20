@@ -2,7 +2,6 @@ package com.djvmil.data.di
 
 import android.content.Context
 import androidx.datastore.core.DataStoreFactory
-import androidx.datastore.dataStoreFile
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.djvmil.DatabaseSource
@@ -21,6 +20,7 @@ import com.djvmil.data.source.datastore.AppSettingsDataStoreSource.Companion.KEY
 import com.djvmil.data.source.datastore.AppSettingsDataStoreSource.Companion.MASTER_KEY_URI
 import com.djvmil.data.source.datastore.AppSettingsDataStoreSource.Companion.PREFERENCE_FILE
 import com.djvmil.data.source.datastore.AppSettingsSerializer
+import com.djvmil.data.source.datastore.IAppSettingsDataStoreSource
 import com.djvmil.data.source.db.dao.CommentDao
 import com.djvmil.data.source.db.dao.CommentDaoImpl
 import com.djvmil.data.source.db.dao.MovieDao
@@ -41,7 +41,6 @@ import io.ktor.client.request.header
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
-import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.json.Json
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.singleOf
@@ -80,7 +79,7 @@ val dataModule = module {
         )
     }
 
-    singleOf(::AppSettingsDataStoreSource)
+    single<IAppSettingsDataStoreSource>{AppSettingsDataStoreSource(get(), get())}
 
     single {
         val driver: SqlDriver = AndroidSqliteDriver(
@@ -124,11 +123,8 @@ val dataModule = module {
 
         }
     }
+
     single<MovieDao> { MovieDaoImpl(db = get()) }
     single<CommentDao> { CommentDaoImpl(db = get()) }
-
-    single { Dispatchers.Default }
     single<ApiService> { ApiServiceImpl(httpClient = get()) }
-
-    single { Dispatchers.IO }
 }

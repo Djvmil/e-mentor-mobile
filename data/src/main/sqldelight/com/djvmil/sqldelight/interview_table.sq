@@ -1,14 +1,15 @@
 CREATE TABLE interviews (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     title TEXT NOT NULL,
-    imageUrl TEXT NOT NULL,
-    numComments INTEGER NOT NULL,
-    numLikes INTEGER NOT NULL,
-    isLiked INTEGER NOT NULL
+    description TEXT,
+    requiredSkills TEXT,
+    company TEXT,
+    dateCreated TEXT,
+    dateUpdated TEXT
 );
 
 insert:
-INSERT OR IGNORE INTO interviews VALUES (:id,:title,:imageUrl,:numComments,:numLikes,:isLiked);
+INSERT OR IGNORE INTO interviews VALUES (:id,:title,:description,:requiredSkills,:company,:dateCreated,:dateUpdated);
 
 deleteAll:
 DELETE FROM interviews;
@@ -20,4 +21,4 @@ getInterview:
 SELECT * FROM interviews WHERE id=:id;
 
 update:
-UPDATE OR ABORT interviews SET id = :id,title = :title,imageUrl = :imageUrl,numComments = :numComments,numLikes = :numLikes,isLiked = :isLiked WHERE id = :id;
+UPDATE OR ABORT interviews SET id = :id,title = :title,description = :description,requiredSkills = :requiredSkills,company = :company,dateCreated = :dateCreated ,dateUpdated = :dateUpdated WHERE id = :id;
