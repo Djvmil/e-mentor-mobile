@@ -14,7 +14,7 @@ val featureModule = module {
     viewModel { HomeViewModel(get(), get()) }
     viewModel { DetailViewModel(get(), get()) }
     viewModel { RegisterViewModel(get(), get(named("IODispatcher"))) }
-    viewModel { LoginViewModel(get(), get(), get()) }
+    viewModel { LoginViewModel(get(), get(), get(), get()) }
 
     single(named("IODispatcher")) {
         Dispatchers.IO

@@ -3,6 +3,7 @@ gson = "2.10.1"
 kotlinCompilerExtensionVersion = "1.5.7"
 
 agp = "8.2.2"
+ktorClientAuth = "2.3.7"
 org-jetbrains-kotlin-android = "1.9.21"
 core-ktx = "1.13.0"
 junit = "4.13.2"
@@ -63,6 +64,7 @@ ktor-android = { group = "io.ktor", name = "ktor-client-android", version.ref = 
 ktor-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
+ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
 
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }

@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.ktor.serialization)
     implementation(libs.ktor.negotiation)
     implementation(libs.ktor.logging)
+    implementation(libs.ktor.client.auth)
     //implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
 
     //datastore

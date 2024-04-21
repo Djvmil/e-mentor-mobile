@@ -8,26 +8,21 @@ import com.djvmil.core.di.AppDispatchers
 import com.djvmil.data.model.auth.AuthRequest
 import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
 import com.djvmil.data.source.datastore.IAppSettingsDataStoreSource
+import com.djvmil.domain.usecase.GetMovieUseCase
 import com.djvmil.domain.usecase.LoginUseCase
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val loginUseCase: LoginUseCase,
+    private val getMovieUseCase: GetMovieUseCase,
     private val dispatchers: AppDispatchers,
     private val dataStoreSource: IAppSettingsDataStoreSource
 ) : ViewModel()  {
 
 fun login() = viewModelScope.launch(dispatchers.io) {
 
-    loginUseCase.invoke(AuthRequest(username = "admin@em.com", password = "12384")).collect{
-
-        when(it){
-            is ResultEM.Success ->  Log.e("TAG", "login: "+ it.value.data)
-            is ResultEM.Failure ->  Log.e("TAG", "login: ", it.error.throwable)
-            is ResultEM.Loading ->  Log.e("TAG", "login: "+"Loading")
-        }
-
-    }
+    loginUseCase.invoke(AuthRequest(username = "admin@em.com", password = "1234")).collect{}
+    getMovieUseCase.invoke(1)
 }
     fun login1() = viewModelScope.launch(dispatchers.io) {
         dataStoreSource.isLogin().collect{
