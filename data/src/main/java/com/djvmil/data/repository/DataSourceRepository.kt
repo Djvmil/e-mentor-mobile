@@ -1,11 +1,11 @@
-package com.djvmil.data.source.datastore
+package com.djvmil.data.repository
 
 import com.djvmil.data.source.datastore.model.AppSettings
 import com.djvmil.data.source.datastore.model.AppTheme
 import com.djvmil.data.source.datastore.model.StepsStarting
 import kotlinx.coroutines.flow.Flow
 
-interface IAppSettingsDataStoreSource {
+interface DataSourceRepository {
     fun appSetting(): Flow<AppSettings?>
     suspend fun update(transform: suspend (current: AppSettings?) -> AppSettings?): AppSettings?
 
@@ -18,6 +18,5 @@ interface IAppSettingsDataStoreSource {
     suspend fun setAccessToken(accessToken: String)
     fun getAccessToken(): Flow<String?>
     suspend fun getAccessTokenForAuth(): String?
-
 
 }

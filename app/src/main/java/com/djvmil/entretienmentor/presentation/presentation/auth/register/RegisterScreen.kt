@@ -13,18 +13,24 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.outlined.ArrowForward
 import androidx.compose.material.icons.rounded.Face
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,31 +41,40 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.djvmil.entretienmentor.R
+import com.djvmil.entretienmentor.presentation.presentation.CustumTextField
+import com.djvmil.entretienmentor.presentation.presentation.CustumTextFieldPassword
 import com.djvmil.entretienmentor.presentation.presentation.HeaderComponent
+import com.djvmil.entretienmentor.presentation.presentation.TextFieldState
+import com.djvmil.entretienmentor.presentation.presentation.auth.login.LoginViewModel
 import com.djvmil.entretienmentor.presentation.shape.CurveType
 import com.djvmil.entretienmentor.presentation.shape.CurvedShape
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun RegisterScreen(openDashboard: () -> Unit) {
-    RegisterContent()
-
+fun RegisterScreen(
+    openDashboard: () -> Unit,
+    viewModel: RegisterViewModel = koinViewModel()
+) {
+    RegisterContent(openDashboard)
 }
 
-
 @Composable
-fun RegisterContent(){
+fun RegisterContent(openDashboard: () -> Unit) {
     Column(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.background)
             .padding(30.dp),
     ) {
         HeaderComponent(Modifier.padding(vertical = 10.dp)) {
-
+            openDashboard.invoke()
         }
 
         Text(
@@ -70,88 +85,111 @@ fun RegisterContent(){
         )
 
         Text(
-            modifier = Modifier.padding(vertical = 5.dp),
+            modifier = Modifier.padding(top = 5.dp),
             text = "Welcome",
             fontSize = 25.sp,
             color = MaterialTheme.colorScheme.primary,
             fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
         )
 
-
         Text(
-            modifier = Modifier.padding(top = 20.dp),
-            text = "Firstname",
+            modifier = Modifier,
+            text = "By Signing in you are agreeing our",
+            color = MaterialTheme.colorScheme.primary,
             fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
         )
-
-        var value = ""
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 14.dp),
-            shape = RoundedCornerShape(10.dp),
-            value = value,
-            placeholder = { "Enter your email" },
-            onValueChange = {})
 
         Text(
             modifier = Modifier,
-            text = "Lastname",
+            text = "Term and privacy policy",
+            color = MaterialTheme.colorScheme.primary,
             fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
         )
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp),
-            shape = RoundedCornerShape(10.dp),
-            placeholder = { "Enter your password" },
-            value = value,
-            onValueChange = {})
 
-        Text(
+        CustumTextField(
+            modifier = Modifier
+                .padding(top = 20.dp),
+            textFieldState = TextFieldState(
+                text = "Firstname"
+            ),
+            placeholder = "Enter your firstname"
+        ){ value ->
+
+        }
+
+        CustumTextField(
             modifier = Modifier,
-            text = "Phone Number",
-            fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-        )
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp),
-            shape = RoundedCornerShape(10.dp),
-            placeholder = { "Enter your password" },
-            value = value,
-            onValueChange = {})
+            textFieldState = TextFieldState(
+                text = "Lastname"
+            ),
+            placeholder = "Enter your lastname"
+        ){ value ->
 
-        Text(
+        }
+
+        CustumTextField(
             modifier = Modifier,
-            text = "Email",
-            fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-        )
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp),
-            shape = RoundedCornerShape(10.dp),
-            placeholder = { "Enter your password" },
-            value = value,
-            onValueChange = {})
+            textFieldState = TextFieldState(
+                text = "Phone Number"
+            ),
+            placeholder = "Enter your phone number"
+        ){ value ->
 
-        Text(
+        }
+
+        CustumTextField(
             modifier = Modifier,
-            text = "Password",
-            fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-        )
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp),
-            shape = RoundedCornerShape(10.dp),
-            placeholder = { "Enter your password" },
-            value = value,
-            onValueChange = {})
+            textFieldState = TextFieldState(
+                text = "Email"
+            ),
+            placeholder = "Enter your email"
+        ){ value ->
 
+        }
+
+        CustumTextFieldPassword(
+            modifier = Modifier,
+            textFieldState = TextFieldState(
+                text = "Password"
+            ),
+            placeholder = "Enter your password"
+        ){ value ->
+
+        }
+
+        CustumTextFieldPassword(
+            modifier = Modifier.padding(bottom = 30.dp),
+            textFieldState = TextFieldState(
+                text = "Password Confirmation"
+            ),
+            placeholder = "Confirm your password"
+        ){ value -> }
+
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp)
+            .graphicsLayer {
+                shape = RoundedCornerShape(10.dp)
+                clip = true
+            }
+            .background(MaterialTheme.colorScheme.primary),
+            contentAlignment = Alignment.Center){
+
+            Text(
+                modifier = Modifier,
+                text = "REGISTER",
+
+                style = TextStyle(
+                    fontSize = 24.sp,
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    fontWeight = FontWeight.W900,
+                    fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+                )
+            )
+        }
+        
         HorizontalDivider(
-            Modifier.padding(vertical = 20.dp)
+            Modifier.padding(vertical = 30.dp)
         )
 
         Row(modifier = Modifier.fillMaxWidth(),
@@ -198,10 +236,11 @@ fun RegisterContent(){
                     verticalAlignment = Alignment.CenterVertically) {
 
                     Text(
-                        text = "Don't have an account?  ",
+                        text = "Have an account?  ",
                         modifier = Modifier ,
                         style = TextStyle(
-                            textAlign = TextAlign.Center
+                            textAlign = TextAlign.Center,
+                            fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
                         )
                     )
                     Text(
@@ -210,141 +249,29 @@ fun RegisterContent(){
                         style = TextStyle(
                             color = MaterialTheme.colorScheme.primary,
                             fontWeight = FontWeight.SemiBold,
-                            textAlign = TextAlign.Center
+                            textAlign = TextAlign.Center,
+                            fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
                         )
                     )
 
                 }
 
-
-                Box(modifier = Modifier
-                    .fillMaxWidth()
-                    .height(70.dp)
-                    .graphicsLayer {
-                        shape = RoundedCornerShape(10.dp)
-                        clip = true
-                    }
-                    .background(MaterialTheme.colorScheme.primary),
-                    contentAlignment = Alignment.Center){
-
-                    Text(
-                        modifier = Modifier,
-                        text = "REGISTER",
-                        style = TextStyle(
-                            fontSize = 24.sp,
-                            color = MaterialTheme.colorScheme.onPrimary,
-                            fontWeight = FontWeight.W900
-                        )
-                    )
-                }
             }
         }
-    }
-}
 
-@Composable
-fun TopRegisterPage(modifier: Modifier) {
-    var text by remember {
-        mutableStateOf("")
-    }
-
-
-    Box(
-        modifier = modifier
-            .graphicsLayer {
-                shape = CurvedShape(CurveType.LTR)
-                clip = true
-            }
-            .background(MaterialTheme.colorScheme.background)
-    ) {
-        Column(
-            modifier = Modifier,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Box(modifier = Modifier.padding(10.dp)){
-                Image(painter = painterResource(id = R.drawable.head_auth), contentDescription ="Image Header" )
-            }
-
-            Text(
-                modifier = Modifier,
-                text = "Welcome",
-                fontSize = 24.sp,
-                fontFamily = FontFamily(Font(R.font.josefin_sans_semibold))
-            )
-
-            Text(
-                modifier = Modifier,
-                text = "By Signing in you are agreeing our",
-                fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-            )
-
-            Text(
-                modifier = Modifier,
-                text = "Term and privacy policy",
-                fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-            )
-
-
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 8.dp),
-                value = "Enter your firstname",
-                onValueChange = {})
-
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 8.dp),
-                value = "Enter your lastname",
-                onValueChange = {})
-
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 8.dp),
-                value = "Enter your email",
-                onValueChange = {})
-
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 8.dp),
-                value = "Enter your password",
-                onValueChange = {})
-
-            Box(
-                modifier = Modifier
-                    .padding(15.dp)
-                    .align(Alignment.End)
-                    .size(70.dp)
-                    .graphicsLayer {
-                        shape = RoundedCornerShape(45.dp)
-                        clip = true
-                    }
-                    .background(MaterialTheme.colorScheme.primary),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    modifier = Modifier,
-                    imageVector = Icons.Outlined.ArrowForward,
-                    tint = MaterialTheme.colorScheme.onPrimary,
-                    contentDescription = "Register Button")
-            }
-
-        }
     }
 }
 
 @Preview(
     uiMode = Configuration.UI_MODE_NIGHT_YES,
-    name = "DefaultPreviewDark"
+    name = "DefaultPreviewDark",
 )
 @Preview(
+
     uiMode = Configuration.UI_MODE_NIGHT_NO,
     name = "DefaultPreviewLight"
 )
 @Composable
 fun DefaultPreview() {
-    RegisterScreen(openDashboard = {})
+    RegisterContent({})
 }

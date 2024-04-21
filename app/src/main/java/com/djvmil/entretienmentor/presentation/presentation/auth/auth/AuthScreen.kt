@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -42,7 +44,7 @@ import com.djvmil.entretienmentor.ui.navigation.NavigationActions
 @Composable
 fun AuthScreen(navActions: NavigationActions) {
 
-    Column {
+    Column(Modifier.fillMaxSize()) {
         TopAuthPage()
         BottomAuthPage(navActions)
     }
@@ -55,14 +57,22 @@ fun TopAuthPage() {
         Box(
             modifier = Modifier
                 .padding(10.dp)
+                .padding(top = 30.dp)
+                .height(200.dp)
                 .fillMaxWidth()
                 .graphicsLayer {
                     shape = RoundedCornerShape(20.dp)
                     clip = true
-                },
+                }
+                .background(Color.White),
             contentAlignment = Alignment.Center
         ){
-            Image(painter = painterResource(id = R.drawable.header_auth), contentDescription ="Image Header" )
+            Image(
+                modifier = Modifier ,
+                contentScale = ContentScale.Fit,
+                painter = painterResource(id = R.drawable.header_auth),
+                contentDescription ="Image Header"
+            )
         }
 
     }
@@ -70,7 +80,6 @@ fun TopAuthPage() {
 
 @Composable
 fun BottomAuthPage(navActions: NavigationActions) {
-
     Box(
         modifier = Modifier
             .padding(10.dp)

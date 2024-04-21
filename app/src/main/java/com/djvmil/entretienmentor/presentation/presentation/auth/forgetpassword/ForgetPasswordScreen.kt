@@ -1,32 +1,23 @@
-package com.djvmil.entretienmentor.presentation.presentation.auth.login
+package com.djvmil.entretienmentor.presentation.presentation.auth.forgetpassword
 
 import android.content.res.Configuration
-import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Face
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -37,32 +28,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.djvmil.entretienmentor.R
 import com.djvmil.entretienmentor.presentation.presentation.CustumTextField
-import com.djvmil.entretienmentor.presentation.presentation.CustumTextFieldPassword
 import com.djvmil.entretienmentor.presentation.presentation.HeaderComponent
-import com.djvmil.entretienmentor.presentation.presentation.LoadingAnimation
-import com.djvmil.entretienmentor.presentation.presentation.ScreenUiState
 import com.djvmil.entretienmentor.presentation.presentation.TextFieldState
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun LoginScreen(
+fun ForgetPasswordScreen(
     openDashboard: () -> Unit,
-    viewModel: LoginViewModel = koinViewModel()
+    viewModel: ForgetPasswordViewModel = koinViewModel()
 ) {
-    val uiState by viewModel.uiState.collectAsState()
-    LoginContent(openDashboard) { viewModel.login()}
-    when(uiState){
-        is ScreenUiState.Loading -> { LoadingAnimation()}
-        is ScreenUiState.Success -> { /*LoginContent(openDashboard) */}
-        is ScreenUiState.Failure -> {
-            Log.e("LoginScreen", "ScreenUiState.Failure: ", (uiState as ScreenUiState.Failure).error)
-        }
-    }
+    ForgetPasswordContent(openDashboard)
 }
 
-
 @Composable
-fun LoginContent(openDashboard: () -> Unit, loginRequest: () -> Unit) {
+fun ForgetPasswordContent(openDashboard: () -> Unit) {
     Column(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.background)
@@ -92,81 +71,53 @@ fun LoginContent(openDashboard: () -> Unit, loginRequest: () -> Unit) {
             color = MaterialTheme.colorScheme.primary,
             fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
         )
-
-        CustumTextField(
-            modifier = Modifier
-                .padding(top = 30.dp),
-            textFieldState = TextFieldState(
-                text = "Username or Email"
-            ),
-            placeholder = "Enter your username or email"
-        ){ value ->
-
-        }
-
-        CustumTextFieldPassword(
-            modifier = Modifier.padding(bottom = 30.dp),
-            textFieldState = TextFieldState(
-                text = "Password"
-            ),
-            placeholder = "Enter your password"
-        ){ value ->
-
-        }
-
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .height(50.dp)
-            .clickable { loginRequest.invoke() }
-            .graphicsLayer {
-                shape = RoundedCornerShape(10.dp)
-                clip = true
-            }
-            .background(MaterialTheme.colorScheme.primary),
-            contentAlignment = Alignment.Center){
+        Column(
+            modifier = Modifier.padding(20.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
             Text(
-                modifier = Modifier,
-                text = "Login",
-                style = TextStyle(
-                    fontSize = 24.sp,
-                    color = MaterialTheme.colorScheme.onPrimary,
-                    fontWeight = FontWeight.W900,
-                    fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+                text = "Forgot Password",
+                style = TextStyle(fontSize = 40.sp, fontFamily = FontFamily.Cursive)
+            )
+
+            CustumTextField(
+                modifier = Modifier
+                    .padding(top = 30.dp),
+                textFieldState = TextFieldState(
+                    text = "Username or Email"
+                ),
+                placeholder = "Enter your username or email"
+            ){ value ->
+
+            }
+            Spacer(modifier = Modifier.height(15.dp))
+
+
+            Spacer(modifier = Modifier.height(15.dp))
+
+            Box(modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .graphicsLayer {
+                    shape = RoundedCornerShape(10.dp)
+                    clip = true
+                }
+                .background(MaterialTheme.colorScheme.primary),
+                contentAlignment = Alignment.Center){
+
+                Text(
+                    modifier = Modifier,
+                    text = "Forgot Password",
+                    style = TextStyle(
+                        fontSize = 24.sp,
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        fontWeight = FontWeight.W900,
+                        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+                    )
                 )
-            )
-        }
-        HorizontalDivider(
-            Modifier.padding(vertical = 20.dp)
-        )
-
-        Row(modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically) {
-            Icon(
-                modifier = Modifier
-                    .padding(5.dp)
-                    .size(40.dp),
-                imageVector = Icons.Rounded.Face,
-                contentDescription = stringResource(id = R.string.Message)
-            )
-
-            Icon(
-                modifier = Modifier
-                    .padding(5.dp)
-                    .size(40.dp),
-                imageVector = Icons.Rounded.Face,
-                contentDescription = stringResource(id = R.string.Message)
-            )
-
-            Icon(
-                modifier = Modifier
-                    .padding(5.dp)
-                    .size(40.dp),
-                imageVector = Icons.Rounded.Face,
-                contentDescription = stringResource(id = R.string.Message)
-            )
-
+            }
         }
 
         Box(
@@ -221,5 +172,5 @@ fun LoginContent(openDashboard: () -> Unit, loginRequest: () -> Unit) {
 )
 @Composable
 fun DefaultPreview() {
-    LoginContent({}) {}
+    ForgetPasswordContent({})
 }
