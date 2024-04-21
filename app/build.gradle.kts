@@ -54,7 +54,6 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
     implementation(project(":core"))
-    implementation(project(":di"))
     implementation(project(":common"))
 
     val composeBom = platform(libs.compose.bom)
