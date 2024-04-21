@@ -8,9 +8,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import com.djvmil.entretienmentor.presentation.util.ShimmerRectangleHeight
-import com.djvmil.entretienmentor.ui.theme.MovieItemHeight
-import com.djvmil.entretienmentor.ui.theme.MovieItemRound
-import com.djvmil.entretienmentor.ui.theme.MovieItemWidth
 import com.djvmil.entretienmentor.ui.theme.SmallPadding
 import com.djvmil.entretienmentor.ui.widget.shimmer.ShimmerRectangle
 
@@ -20,10 +17,10 @@ fun ShimmerMovieItem(
 ) {
     Column(
         modifier = Modifier
-            .width(MovieItemWidth)
-            .clip(RoundedCornerShape(size = MovieItemRound))
+           // .width(MovieItemWidth)
+            //.clip(RoundedCornerShape(size = MovieItemRound))
     ) {
-        ShimmerRectangle(
+        /*ShimmerRectangle(
             isEnableShimmer = isEnableShimmer,
             width = MovieItemWidth,
             height = MovieItemHeight,
@@ -37,7 +34,7 @@ fun ShimmerMovieItem(
             height = ShimmerRectangleHeight,
             round = MovieItemRound,
             padding = SmallPadding
-        )
+        )*/
     }
 }
 

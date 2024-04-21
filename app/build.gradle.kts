@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
@@ -12,8 +11,8 @@ android {
         applicationId = "com.djvmil.entretienmentor"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "0.0.1" // X.Y.Z; X = Major, Y = minor, Z = Patch level
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -55,7 +54,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
     implementation(project(":core"))
-    implementation(project(":di"))
+    implementation(project(":common"))
 
     val composeBom = platform(libs.compose.bom)
 
@@ -69,6 +68,7 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.kotlinx.collections.immutable)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
@@ -78,11 +78,15 @@ dependencies {
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
+    implementation(libs.accompanist.pager)
+    implementation(libs.androidx.graphics.shapes)
 
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.navigation)
     implementation(libs.koin.test.junit4)
+
+    implementation("androidx.compose.material:material-icons-extended:1.2.3")
 
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
@@ -90,4 +94,5 @@ dependencies {
     implementation(libs.koin.test.junit4)
 
     implementation(libs.compose.navigation)
+
 }

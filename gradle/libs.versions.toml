@@ -1,29 +1,42 @@
 [versions]
+gson = "2.10.1"
 kotlinCompilerExtensionVersion = "1.5.7"
 
-agp = "8.2.1"
+agp = "8.2.2"
+ktorClientAuth = "2.3.7"
+androidxCoreSplashscreen = "1.0.1"
 org-jetbrains-kotlin-android = "1.9.21"
-core-ktx = "1.12.0"
+core-ktx = "1.13.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 lifecycle-runtime-ktx = "2.7.0"
-activity-compose = "1.8.2"
-compose-bom = "2023.10.01"
-compose-navigation = "2.7.6"
+activity-compose = "1.9.0"
+compose-bom = "2024.04.01"
+compose-navigation = "2.7.7"
 compose-constraintlayout = "1.0.1"
 compose-coil = "2.5.0"
 appcompat = "1.6.1"
 material = "1.11.0"
-material3 = "1.1.2"
-kotlinx-immutable-collection = "0.3.5"
+material3 = "1.2.1"
+kotlinx-immutable-collection = "0.3.7"
 kotlinx-serialization = "1.6.2"
 ktor = "2.3.7"
 koin = "3.5.3"
 sqldelight = "2.0.1"
+androidxDataStore = "1.1.0"
+accompanist = "0.27.0"
+graphicsShapes = "1.0.0-alpha05"
+
+protobuf-kotlin-lite = "3.24.4"
+protobuf-plugin = "0.9.4"
+kotlinx-serialization-protobuf = "1.6.2"
+encryptedDatastore = "1.0.0-beta01"
+tinkAndroid = "1.8.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
@@ -33,6 +46,7 @@ compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = 
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
 compose-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "compose-constraintlayout" }
 compose-coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "compose-coil" }
+tink-android = { group = "com.google.crypto.tink", name = "tink-android", version.ref = "tinkAndroid" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
@@ -51,6 +65,7 @@ ktor-android = { group = "io.ktor", name = "ktor-client-android", version.ref = 
 ktor-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
+ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
 
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
@@ -60,6 +75,14 @@ koin-test-junit4 = { group = "io.insert-koin", name = "koin-test-junit4", versio
 sqldelight-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
 sqldelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqldelight" }
 
+androidx-datastore-proto = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
+accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref = "accompanist" }
+accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanist" }
+accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
+androidx-graphics-shapes = { group = "androidx.graphics", name = "graphics-shapes", version.ref = "graphicsShapes" }
+kotlinx-serialization-protobuf = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-protobuf", version.ref = "kotlinx-serialization-protobuf" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
+
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
 com-android-library = { id = "com.android.library", version.ref = "agp" }
@@ -68,4 +91,6 @@ org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.re
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "org-jetbrains-kotlin-android" }
 
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+protobuf = { id = "com.google.protobuf", version.ref = "protobuf-plugin"}
+
 [bundles]

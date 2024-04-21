@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
@@ -33,6 +32,7 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
 }
 
 sqldelight {
@@ -42,7 +42,6 @@ sqldelight {
         }
     }
 }
-
 dependencies {
 
     implementation(project(":core"))
@@ -60,7 +59,15 @@ dependencies {
     implementation(libs.ktor.serialization)
     implementation(libs.ktor.negotiation)
     implementation(libs.ktor.logging)
+    implementation(libs.ktor.client.auth)
+    //implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
 
+    //datastore
+    implementation(libs.androidx.datastore.proto)
+    implementation(libs.kotlinx.serialization.protobuf)
+    implementation (libs.tink.android)
+
+    implementation (libs.gson)
     implementation(libs.sqldelight.android)
     implementation(libs.sqldelight.coroutines)
 }

@@ -1,0 +1,24 @@
+CREATE TABLE interviews (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT,
+    requiredSkills TEXT,
+    company TEXT,
+    dateCreated TEXT,
+    dateUpdated TEXT
+);
+
+insert:
+INSERT OR IGNORE INTO interviews VALUES (:id,:title,:description,:requiredSkills,:company,:dateCreated,:dateUpdated);
+
+deleteAll:
+DELETE FROM interviews;
+
+getAll:
+SELECT * FROM interviews;
+
+getInterview:
+SELECT * FROM interviews WHERE id=:id;
+
+update:
+UPDATE OR ABORT interviews SET id = :id,title = :title,description = :description,requiredSkills = :requiredSkills,company = :company,dateCreated = :dateCreated ,dateUpdated = :dateUpdated WHERE id = :id;

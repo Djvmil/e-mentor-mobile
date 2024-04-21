@@ -1,38 +1,75 @@
 package com.djvmil.data.repository
 
-import android.net.http.HttpException
+import android.util.Log
+import com.djvmil.core.ErrorEM
 import com.djvmil.core.ResultEM
+import com.djvmil.data.model.auth.AuthRequest
+import com.djvmil.data.model.auth.RequestExceptionResult
+import com.djvmil.data.model.auth.RequestResult
+import com.djvmil.data.model.auth.ResponseAuthData
+import com.djvmil.data.model.onFailure
+import com.djvmil.data.model.onSuccess
 import com.djvmil.data.source.api.api.ApiService
-import java.io.IOException
-/*
+import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+
 class AuthRepositoryImpl(
     private val apiService: ApiService,
-    private val preferences: AuthPreferences
-
+    private val dataStoreSource: AppSettingsDataStoreSource,
 ) : AuthRepository{
-    override suspend fun login(loginRequest: AuthRequest): ResultEM<Unit> {
-       return try {
-           val response = apiService.loginUser(loginRequest)
-           preferences.saveAuthToken(response.token)
-           ResultEM.Success(Unit)
-       }catch (e: IOException){
-           ResultEM.Failure("${e.message}")
-       }catch (e: HttpException){
-           ResultEM.Failure("${e.message}")
-       }
-    }
 
-    override suspend fun register(registerRequest: AuthRequest): Resource<Unit> {
-        return try {
-           val response = apiService.registerUser(registerRequest)
-            preferences.saveAuthToken(response.token)
-            Resource.Success(Unit)
-        }catch (e: IOException){
-            Resource.Error("${e.message}")
-        }catch (e: HttpException){
-            Resource.Error("${e.message}")
+    override suspend fun login(loginRequest: AuthRequest): Flow<ResultEM<RequestResult<ResponseAuthData>, ErrorEM>> = flow{
+
+        emit(ResultEM.Loading)
+        Log.e("AuthRepositoryImpl", "login Loading")
+
+        apiService.login(loginRequest)
+            .onSuccess { response ->
+                dataStoreSource.setAccessToken(response.data?.accesToken!!)
+                emit(ResultEM.Success(response) )
+                Log.e("AuthRepositoryImpl", "login onSuccess: $response")
+
+            }.onFailure { error ->
+                Log.e("AuthRepositoryImpl ", "login onFailure START 0 ${error.message} \n")
+                emit(ResultEM.Failure(ErrorEM(throwable = error)))
+
+            }
+
+        apiService.getMovies().collect{
+
+            if (it is ResultEM.Failure){
+
+                Log.e("AuthRepositoryImpl ", "getMovies onFailure START 1 ${it.error.code}")
+
+                val result = it.error.throwable as? RequestExceptionResult
+                if (result != null){
+                    Log.e("AuthRepositoryImpl ", "getMovies onFailure START 2 ${result.error?.code}")
+                    Log.e("AuthRepositoryImpl ", "getMovies onFailure START 3 ${result.error?.message}")
+                    Log.e("AuthRepositoryImpl ", "getMovies onFailure START 4 ${result.error?.data}")
+
+                }
+            }
         }
+
+    }
+
+    override suspend fun register(registerRequest: AuthRequest): Flow<ResultEM<RequestResult<String>, ErrorEM>> = flow {
+
+        emit(ResultEM.Loading)
+        Log.e("AuthRepositoryImpl", "register Loading")
+        apiService.register(registerRequest)
+            .onSuccess { response ->
+                Log.e("AuthRepositoryImpl", "register onSuccess: $response")
+                emit(ResultEM.Success(response) )
+
+            }.onFailure { error ->
+                Log.e("AuthRepositoryImpl ", "register onFailure: $error")
+                emit(ResultEM.Failure(ErrorEM(throwable = error)))
+
+            }
+
     }
 
 
-}*/
+}

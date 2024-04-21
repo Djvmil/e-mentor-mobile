@@ -1,19 +1,15 @@
 package com.djvmil.data.model.auth
 
-import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class AuthRequest(
-    @SerialName("id")
     var id: Int? = null,
-    @SerialName("email")
-    var email: String? = null,
-    @SerialName("first_name")
-    var firstName: String? = null,
-    @SerialName("last_name")
-    var lastName: String? = null,
-    @SerialName("avatar")
+    var firstname: String? = null,
+    var lastname: String? = null,
     var avatar: String? = null,
-    @SerialName("password")
+    var phoneNumber: String? = null,
+    var email: String? = null,
+    var username: String? = null,
     var password: String? = null
-
 )

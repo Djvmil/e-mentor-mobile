@@ -15,14 +15,14 @@ val HighEvelation = 8.dp
 
 val HomeBannerHeight = 200.dp
 
-val MovieItemWidth = 200.dp
-val MovieItemHeight = 300.dp
+val ItemWidth = 200.dp
+val ItemHeight = 300.dp
 
-val EmptyMovieSize = 60.dp
+val EmptyItemSize = 60.dp
 
 val DetailIcon = 24.dp
 val DetailCardHeight = 70.dp
 
-val MovieItemRound = 20.dp
+val ItemRound = 20.dp
 
 const val DetailImageAspectRatio = 0.8f

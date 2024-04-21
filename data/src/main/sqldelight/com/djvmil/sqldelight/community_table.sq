@@ -1,0 +1,22 @@
+CREATE TABLE communities (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    name TEXT NOT NULL,
+    description TEXT,
+    dateCreated TEXT,
+    dateUpdated TEXT
+);
+
+insert:
+INSERT OR IGNORE INTO communities VALUES (:id,:name,:description,:dateCreated,:dateUpdated);
+
+deleteAll:
+DELETE FROM communities;
+
+getAll:
+SELECT * FROM communities;
+
+getCommunity:
+SELECT * FROM communities WHERE id=:id;
+
+update:
+UPDATE OR ABORT communities SET id = :id, name = :name, description = :description, dateCreated = :dateCreated, dateUpdated = :dateUpdated WHERE id = :id;

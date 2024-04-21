@@ -3,10 +3,8 @@ package com.djvmil.entretienmentor.presentation.presentation.home
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -30,19 +28,11 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.djvmil.entretienmentor.presentation.model.MovieUiModel
 import com.djvmil.entretienmentor.ui.theme.DetailIcon
-import com.djvmil.entretienmentor.ui.theme.GradientBlack
-import com.djvmil.entretienmentor.ui.theme.GradientDarkGray
-import com.djvmil.entretienmentor.ui.theme.GradientWhite
 import com.djvmil.entretienmentor.ui.theme.HighPadding
 import com.djvmil.entretienmentor.ui.theme.MovieDetailItemTextStyle
-import com.djvmil.entretienmentor.ui.theme.MovieItemHeight
-import com.djvmil.entretienmentor.ui.theme.MovieItemRound
-import com.djvmil.entretienmentor.ui.theme.MovieItemTitleStyle
-import com.djvmil.entretienmentor.ui.theme.MovieItemWidth
 import com.djvmil.entretienmentor.ui.theme.NormalPadding
 import com.djvmil.entretienmentor.ui.theme.SmallEvelation
 import com.djvmil.entretienmentor.ui.theme.SmallPadding
-import com.djvmil.entretienmentor.ui.widget.VerticalGradiant
 
 @Composable
 fun MovieItem(
@@ -55,8 +45,8 @@ fun MovieItem(
         modifier = Modifier
             .background(Color.White)
             .padding(all = SmallPadding)
-            .wrapContentSize()
-            .clip(RoundedCornerShape(size = MovieItemRound)),
+            .wrapContentSize(),
+            //.clip(RoundedCornerShape(size = MovieItemRound)),
         shadowElevation = SmallEvelation,
         tonalElevation = SmallEvelation
     ) {
@@ -77,7 +67,7 @@ fun MovieItem(
 
             Image(
                 modifier = Modifier
-                    .size(width = MovieItemWidth, height = MovieItemHeight)
+                    //.size(width = MovieItemWidth, height = MovieItemHeight)
                     .constrainAs(image) {
                         linkTo(
                             start = parent.start,
@@ -92,38 +82,6 @@ fun MovieItem(
                 contentScale = ContentScale.Crop,
                 contentDescription = null
             )
-            VerticalGradiant(
-                modifier = Modifier
-                    .width(MovieItemWidth)
-                    .constrainAs(gradiant) {
-                        linkTo(
-                            start = parent.start,
-                            end = parent.end,
-                            top = gradiant.top,
-                            bottom = image.bottom
-                        )
-                    },
-                listColors = listOf(
-                    GradientWhite,
-                    GradientDarkGray,
-                    GradientBlack
-                )
-            ) {
-                Text(
-                    text = movie.title,
-                    style = MovieItemTitleStyle,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(
-                            top = SmallPadding,
-                            bottom = SmallPadding,
-                            start = NormalPadding,
-                            end = NormalPadding
-                        ),
-                    overflow = TextOverflow.Ellipsis,
-                    maxLines = 1
-                )
-            }
 
             Icon(
                 modifier = Modifier
