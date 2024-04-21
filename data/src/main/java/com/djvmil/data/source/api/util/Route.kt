@@ -6,6 +6,7 @@ object Route {
     const val AUTH_URL = "auth"
     const val USER_URL = "users"
     const val LOGIN_URL = "login"
+    const val REFRESH_TOKEN_URL = "login"
     const val REGISTER_URL = "register"
     const val QUESTION_URL = "questions"
     const val RESPONSE_URL = "responses"

@@ -9,6 +9,7 @@ import com.djvmil.data.source.datastore.model.AppSettings
 import com.djvmil.data.source.datastore.model.AppTheme
 import com.djvmil.data.source.datastore.model.StepsStarting
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -19,7 +20,7 @@ class AppSettingsDataStoreSource (
     private val appDispatchers: IAppDispatchers
 ): IAppSettingsDataStoreSource {
     override fun appSetting() = appSettings.data
-        .onEach { Log.d("appSettings", "appSettings=$it") }
+        .onEach { Log.d("appSettings", "appSettings = $it") }
         .map { v -> v.takeIf { it != APP_SETTING_NULL } }
         .catch { cause: Throwable ->
             if (cause is IOException) {
@@ -110,6 +111,20 @@ class AppSettingsDataStoreSource (
             }
         }
         .flowOn(appDispatchers.io)
+
+    override suspend fun getAccessTokenForAuth(): String? = appSettings.data
+        .onEach {
+            Log.d("getTheme", "getTheme=${it.theme}")
+        }
+        .map { v -> v.accessToken }
+        .catch { cause: Throwable ->
+            if (cause is IOException) {
+                emit(null)
+            } else {
+                throw cause
+            }
+        }
+        .flowOn(appDispatchers.io).first()
 
     companion object {
         const val KEYSET_NAME = "master_keyset"

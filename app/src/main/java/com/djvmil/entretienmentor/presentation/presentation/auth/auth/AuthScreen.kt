@@ -16,7 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Face
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -62,7 +62,7 @@ fun TopAuthPage() {
                 },
             contentAlignment = Alignment.Center
         ){
-            Image(painter = painterResource(id = R.drawable.head_auth), contentDescription ="Image Header" )
+            Image(painter = painterResource(id = R.drawable.header_auth), contentDescription ="Image Header" )
         }
 
     }
@@ -79,7 +79,7 @@ fun BottomAuthPage(navActions: NavigationActions) {
                 shape = RoundedCornerShape(20.dp)
                 clip = true
             }
-            .background(MaterialTheme.colorScheme.secondary),
+            .background(MaterialTheme.colorScheme.onPrimary),
         contentAlignment = Alignment.Center
     ){
         Column(modifier = Modifier
@@ -142,7 +142,7 @@ fun BottomAuthPage(navActions: NavigationActions) {
                         clip = true
                     }
                     .clickable { navActions.navigateToRegister() }
-                    .background(MaterialTheme.colorScheme.primary),
+                    .background(MaterialTheme.colorScheme.secondary),
                 contentAlignment = Alignment.Center
             ) {
 
@@ -162,7 +162,7 @@ fun BottomAuthPage(navActions: NavigationActions) {
             Row(modifier = Modifier,
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically) {
-                Divider(modifier = Modifier.weight(1f), color = Color.Black, thickness = 2.dp)
+                HorizontalDivider(modifier = Modifier.weight(1f), color = Color.Black)
                 Text(
                     modifier = Modifier.weight(1.5f),
                     text = "Or via social media",
@@ -173,7 +173,7 @@ fun BottomAuthPage(navActions: NavigationActions) {
                     )
                 )
 
-                Divider(modifier = Modifier.weight(1f), color = Color.Black, thickness = 2.dp)
+                HorizontalDivider(modifier = Modifier.weight(1f), color = Color.Black)
             }
 
             Spacer(modifier = Modifier.height(8.dp))

@@ -17,6 +17,7 @@ interface IAppSettingsDataStoreSource {
     fun getStepsStarting(): Flow<StepsStarting?>
     suspend fun setAccessToken(accessToken: String)
     fun getAccessToken(): Flow<String?>
+    suspend fun getAccessTokenForAuth(): String?
 
 
 }
