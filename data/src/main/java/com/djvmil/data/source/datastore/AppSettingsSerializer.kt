@@ -2,7 +2,7 @@ package com.djvmil.data.source.datastore
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
-import com.djvmil.data.source.datastore.crypto.Crypto
+import com.djvmil.data.source.datastore.crypto.CryptoImpl
 import com.djvmil.data.source.datastore.model.APP_SETTING_NULL
 import com.djvmil.data.source.datastore.model.AppSettings
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -13,7 +13,7 @@ import java.io.InputStream
 import java.io.OutputStream
 
 @OptIn(ExperimentalSerializationApi::class)
-class AppSettingsSerializer(private val crypto: Crypto): Serializer<AppSettings> {
+class AppSettingsSerializer(private val crypto: CryptoImpl): Serializer<AppSettings> {
     override val defaultValue: AppSettings = APP_SETTING_NULL
 
     override suspend fun readFrom(input: InputStream): AppSettings {

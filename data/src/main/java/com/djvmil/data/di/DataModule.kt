@@ -13,6 +13,7 @@ import com.djvmil.data.model.auth.RequestResult
 import com.djvmil.data.model.auth.ResponseAuthData
 import com.djvmil.data.repository.AuthRepository
 import com.djvmil.data.repository.AuthRepositoryImpl
+import com.djvmil.data.repository.DataSourceRepositoryImpl
 import com.djvmil.data.repository.MovieRepository
 import com.djvmil.data.repository.MovieRepositoryImpl
 import com.djvmil.data.source.api.api.ApiService
@@ -20,14 +21,14 @@ import com.djvmil.data.source.api.api.ApiServiceImpl
 import com.djvmil.data.source.api.util.CustomHttpLogger
 import com.djvmil.data.source.api.util.Route
 import com.djvmil.data.source.api.util.Route.REFRESH_TOKEN_URL
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSource.Companion.DATASTORE_FILE
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSource.Companion.KEYSET_NAME
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSource.Companion.MASTER_KEY_URI
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSource.Companion.PREFERENCE_FILE
+import com.djvmil.data.source.datastore.AppSettingsDataStoreSourceImpl
+import com.djvmil.data.source.datastore.AppSettingsDataStoreSourceImpl.Companion.DATASTORE_FILE
+import com.djvmil.data.source.datastore.AppSettingsDataStoreSourceImpl.Companion.KEYSET_NAME
+import com.djvmil.data.source.datastore.AppSettingsDataStoreSourceImpl.Companion.MASTER_KEY_URI
+import com.djvmil.data.source.datastore.AppSettingsDataStoreSourceImpl.Companion.PREFERENCE_FILE
 import com.djvmil.data.source.datastore.AppSettingsSerializer
-import com.djvmil.data.source.datastore.IAppSettingsDataStoreSource
-import com.djvmil.data.source.datastore.crypto.Crypto
+import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
+import com.djvmil.data.source.datastore.crypto.CryptoImpl
 import com.djvmil.data.source.db.dao.CommentDao
 import com.djvmil.data.source.db.dao.CommentDaoImpl
 import com.djvmil.data.source.db.dao.MovieDao
@@ -87,7 +88,8 @@ val dataModule = module {
     single<AuthRepository> { AuthRepositoryImpl(get(), get()) }
 
     //single<ICrypto>{Crypto(get())}
-    singleOf(::Crypto)
+    singleOf(::CryptoImpl)
+    singleOf(::DataSourceRepositoryImpl)
 
     single { provideAead(get()) }
     //single { provideAead(androidContext()) }
@@ -100,7 +102,7 @@ val dataModule = module {
         )
     }
 
-    single<IAppSettingsDataStoreSource>{AppSettingsDataStoreSource(get(), get())}
+    single<AppSettingsDataStoreSource>{AppSettingsDataStoreSourceImpl(get(), get())}
 
     single {
         val driver: SqlDriver = AndroidSqliteDriver(
@@ -120,7 +122,7 @@ val dataModule = module {
 
 
 fun provideKtorClient(
-    dataStoreSource: IAppSettingsDataStoreSource
+    dataStoreSource: AppSettingsDataStoreSource
 ): HttpClient {
     return HttpClient(Android) {
         install(Logging) {

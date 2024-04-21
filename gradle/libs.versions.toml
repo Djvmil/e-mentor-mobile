@@ -4,6 +4,7 @@ kotlinCompilerExtensionVersion = "1.5.7"
 
 agp = "8.2.2"
 ktorClientAuth = "2.3.7"
+androidxCoreSplashscreen = "1.0.1"
 org-jetbrains-kotlin-android = "1.9.21"
 core-ktx = "1.13.0"
 junit = "4.13.2"
@@ -80,6 +81,7 @@ accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist
 accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
 androidx-graphics-shapes = { group = "androidx.graphics", name = "graphics-shapes", version.ref = "graphicsShapes" }
 kotlinx-serialization-protobuf = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-protobuf", version.ref = "kotlinx-serialization-protobuf" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }

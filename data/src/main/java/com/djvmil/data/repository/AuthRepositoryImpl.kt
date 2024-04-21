@@ -10,13 +10,13 @@ import com.djvmil.data.model.auth.ResponseAuthData
 import com.djvmil.data.model.onFailure
 import com.djvmil.data.model.onSuccess
 import com.djvmil.data.source.api.api.ApiService
-import com.djvmil.data.source.datastore.IAppSettingsDataStoreSource
+import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class AuthRepositoryImpl(
     private val apiService: ApiService,
-    private val dataStoreSource: IAppSettingsDataStoreSource,
+    private val dataStoreSource: AppSettingsDataStoreSource,
 ) : AuthRepository{
 
     override suspend fun login(loginRequest: AuthRequest): Flow<ResultEM<RequestResult<ResponseAuthData>, ErrorEM>> = flow{
@@ -26,8 +26,6 @@ class AuthRepositoryImpl(
 
         apiService.login(loginRequest)
             .onSuccess { response ->
-
-
                 dataStoreSource.setAccessToken(response.data?.accesToken!!)
                 emit(ResultEM.Success(response) )
                 Log.e("AuthRepositoryImpl", "login onSuccess: $response")

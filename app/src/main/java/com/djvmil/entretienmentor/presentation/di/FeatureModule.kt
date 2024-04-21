@@ -1,5 +1,6 @@
 package com.djvmil.entretienmentor.presentation.di
 
+import com.djvmil.entretienmentor.MainActivityViewModel
 import com.djvmil.entretienmentor.presentation.presentation.auth.login.LoginViewModel
 import com.djvmil.entretienmentor.presentation.presentation.auth.register.RegisterViewModel
 import com.djvmil.entretienmentor.presentation.presentation.detail.DetailViewModel
@@ -10,6 +11,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val featureModule = module {
+    viewModel { MainActivityViewModel(get()) }
     viewModel { HomeViewModel(get(), get()) }
     viewModel { HomeViewModel(get(), get()) }
     viewModel { DetailViewModel(get(), get()) }

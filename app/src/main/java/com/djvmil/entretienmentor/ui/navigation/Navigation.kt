@@ -1,6 +1,5 @@
 package com.djvmil.entretienmentor.ui.navigation
 
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import com.djvmil.entretienmentor.ui.navigation.DestinationsArgs.MOVIE_DETAIL_ID_ARG
 import com.djvmil.entretienmentor.ui.navigation.Screens.AUTH_SCREEN
@@ -61,7 +60,7 @@ class NavigationActions(private val navController: NavHostController) {
         navController.navigate(Destinations.PROFILE_ROUTE)
     }
 
-    fun navigateToComminity() {
+    fun navigateToCommunity() {
         navController.navigate(Destinations.COMMINITY_ROUTE)
     }
 
@@ -77,13 +76,17 @@ class NavigationActions(private val navController: NavHostController) {
         navController.navigate(Destinations.HOME_ROUTE)
     }
 
-    fun navigateToDashboard() {
+    fun navigateUp() {
+        navController.navigateUp()
+    }
+
+    /*fun navigateToDashboard() {
         navController.navigate(Destinations.DASHBOARD_ROUTE) {
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }
         }
-    }
+    }*/
 
     fun navigateToDetail(movieId: Int) {
         navController.navigate(

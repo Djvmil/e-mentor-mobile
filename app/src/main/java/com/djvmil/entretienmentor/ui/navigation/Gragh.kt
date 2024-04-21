@@ -14,7 +14,6 @@ import com.djvmil.entretienmentor.ui.navigation.graph.chat
 import com.djvmil.entretienmentor.ui.navigation.graph.comminity
 import com.djvmil.entretienmentor.ui.navigation.graph.detail
 import com.djvmil.entretienmentor.ui.navigation.graph.home
-import com.djvmil.entretienmentor.ui.navigation.graph.dashboard
 import com.djvmil.entretienmentor.ui.navigation.graph.login
 import com.djvmil.entretienmentor.ui.navigation.graph.profile
 import com.djvmil.entretienmentor.ui.navigation.graph.register
@@ -45,8 +44,6 @@ fun NavGraph(
             modifier = modifier,
             navActions = navActions
         )
-
-        dashboard()
 
         home(
             modifier = modifier,

@@ -54,7 +54,6 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
     implementation(project(":core"))
-    implementation(project(":di"))
     implementation(project(":common"))
 
     val composeBom = platform(libs.compose.bom)
@@ -69,6 +68,7 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.kotlinx.collections.immutable)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
@@ -86,10 +86,13 @@ dependencies {
     implementation(libs.koin.compose.navigation)
     implementation(libs.koin.test.junit4)
 
+    implementation("androidx.compose.material:material-icons-extended:1.2.3")
+
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.navigation)
     implementation(libs.koin.test.junit4)
 
     implementation(libs.compose.navigation)
+
 }
