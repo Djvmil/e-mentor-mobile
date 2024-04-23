@@ -26,9 +26,9 @@ import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
 
-    val networkMonitor: NetworkMonitor by inject()
+    private val networkMonitor: NetworkMonitor by inject()
 
-    val viewModel: MainActivityViewModel by viewModel()
+    private val viewModel: MainActivityViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
