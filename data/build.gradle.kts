@@ -42,12 +42,14 @@ sqldelight {
         }
     }
 }
+
 dependencies {
 
     implementation(project(":core"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    testImplementation("app.cash.sqldelight:sqlite-driver:2.0.2")
 
     implementation(libs.koin.android)
     implementation(libs.koin.test.junit4)
@@ -65,9 +67,13 @@ dependencies {
     //datastore
     implementation(libs.androidx.datastore.proto)
     implementation(libs.kotlinx.serialization.protobuf)
-    implementation (libs.tink.android)
 
-    implementation (libs.gson)
+    //database
     implementation(libs.sqldelight.android)
     implementation(libs.sqldelight.coroutines)
+    implementation(libs.primitive.adapters)
+    implementation(libs.androidx.paging3.extensions)
+    testImplementation(libs.sqldelight.sqlite.driver)
+
+
 }

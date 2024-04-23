@@ -31,7 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.djvmil.entretienmentor.R
-import com.djvmil.entretienmentor.presentation.model.MovieUiModel
+import com.djvmil.entretienmentor.presentation.model.CommunityUiModel
 import com.djvmil.entretienmentor.presentation.util.ShimmerMovieItemCount
 import kotlinx.collections.immutable.PersistentList
 import org.koin.androidx.compose.koinViewModel
@@ -61,7 +61,7 @@ fun HomeContent(
     LaunchedEffect(
         key1 = true,
     ) {
-        viewModel.getMovies()
+        viewModel.getCommunities()
     }
 
     Column(
@@ -143,9 +143,9 @@ fun TopBanner() {
 }
 
 @Composable
-fun ShowMovies(
-    movies: PersistentList<MovieUiModel>,
-    onShowDetail: (movieId: Int) -> Unit
+fun ShowCommunities(
+    communities: PersistentList<CommunityUiModel>,
+    onShowDetail: (communityId: Int) -> Unit
 ) {
     val scrollState = rememberScrollState()
 
@@ -154,11 +154,11 @@ fun ShowMovies(
             .verticalScroll(scrollState)
     ) {
         items(
-            items = movies,
-            key = { movie -> movie.id }
-        ) { movie ->
-            MovieItem(
-                movie = movie,
+            items = communities,
+            key = { community -> community.id }
+        ) { community ->
+            CommunityItem(
+                community = community,
                 onShowDetail = onShowDetail
             )
         }

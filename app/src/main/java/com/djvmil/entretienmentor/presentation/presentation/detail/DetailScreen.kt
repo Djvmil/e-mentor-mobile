@@ -11,16 +11,11 @@ import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.Card
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,8 +31,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.compose.rememberAsyncImagePainter
-import com.djvmil.core.ResultEM
-import com.djvmil.entretienmentor.presentation.model.MovieUiModel
+import com.djvmil.core.model.ResultEM
+import com.djvmil.entretienmentor.presentation.model.CommunityUiModel
 import com.djvmil.entretienmentor.ui.theme.DetailCardHeight
 import com.djvmil.entretienmentor.ui.theme.DetailIcon
 import com.djvmil.entretienmentor.ui.theme.DetailImageAspectRatio
@@ -51,7 +46,7 @@ import org.koin.androidx.compose.koinViewModel
 fun DetailScreen(
     modifier: Modifier,
     viewModel: DetailViewModel = koinViewModel(),
-    movieId: Int,
+    communityId: Int,
     onBackClicked: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -59,7 +54,7 @@ fun DetailScreen(
     LaunchedEffect(
         key1 = true,
     ) {
-        viewModel.getMovie(movieId)
+        viewModel.getCommunity(communityId)
     }
 
     when (uiState) {
@@ -72,7 +67,7 @@ fun DetailScreen(
         }
 
         is ResultEM.Success -> {
-            val movie = (uiState as ResultEM.Success<MovieUiModel>).value
+            val movie = (uiState as ResultEM.Success<CommunityUiModel>).value
             DetailContent(
                 modifier = modifier,
                 movie = movie,
@@ -85,7 +80,7 @@ fun DetailScreen(
 @Composable
 fun DetailContent(
     modifier: Modifier,
-    movie: MovieUiModel,
+    movie: CommunityUiModel,
     viewModel: DetailViewModel
 ) {
     val listState = rememberLazyListState()
@@ -102,7 +97,7 @@ fun DetailContent(
             }
             item {
                 Text(
-                    text = movie.title,
+                    text = movie.name ?: "",
                     style = MovieDetailTextStyle,
                     modifier = Modifier.padding(NormalPadding)
                 )
@@ -124,7 +119,7 @@ fun DetailScaffold(
 
 @Composable
 fun Header(
-    movie: MovieUiModel,
+    movie: CommunityUiModel,
     viewModel: DetailViewModel
 ) {
 
@@ -141,7 +136,7 @@ fun Header(
             = createRefs()
         Image(
             painter = rememberAsyncImagePainter(
-                model = movie.imageUrl
+                model = movie.name
             ),
             contentDescription = null,
             modifier = Modifier
@@ -186,7 +181,7 @@ fun Header(
             contentDescription = ""
         )
         Text(
-            text = movie.numComments.toString(),
+            text = movie.name.toString(),
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
             style = MovieDetailItemTextStyle,
@@ -212,7 +207,7 @@ fun Header(
                 },
         )
         Text(
-            text = movie.numLikes.toString(),
+            text = movie.description.toString(),
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
             style = MovieDetailItemTextStyle,
@@ -236,27 +231,7 @@ fun Header(
                     )
                 }
         ) {
-            FloatingActionButton(
-                onClick = {
-                    viewModel.updateMovie(
-                        movie.copy(
-                            isLiked = !movie.isLiked,
-                            numLikes = movie.numLikes + when (!movie.isLiked) {
-                                true -> 1
-                                false -> -1
-                            }
-                        )
-                    )
-                },
-                modifier = Modifier.padding(NormalPadding),
-                shape = CircleShape
-            ) {
-                Icon(
-                    if (movie.isLiked) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                    tint = Color.Red,
-                    contentDescription = null
-                )
-            }
+
         }
     }
 }
@@ -266,7 +241,7 @@ fun Header(
 private fun DetailScreenPreview() {
     DetailScreen(
         modifier = Modifier,
-        movieId = 0,
+        communityId = 0,
         onBackClicked = {}
     )
 }

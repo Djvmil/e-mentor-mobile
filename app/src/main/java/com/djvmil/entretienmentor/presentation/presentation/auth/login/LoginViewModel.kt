@@ -4,11 +4,11 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.djvmil.core.ResultEM
-import com.djvmil.core.di.AppDispatchers
+import com.djvmil.core.dispatcher.AppDispatchers
+import com.djvmil.core.model.ResultEM
 import com.djvmil.data.model.auth.AuthRequest
 import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
-import com.djvmil.domain.usecase.GetMovieUseCase
+import com.djvmil.domain.usecase.GetCommunityUseCase
 import com.djvmil.domain.usecase.LoginUseCase
 import com.djvmil.entretienmentor.presentation.presentation.ScreenUiState
 import com.djvmil.entretienmentor.presentation.presentation.TextFieldState
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val loginUseCase: LoginUseCase,
-    private val getMovieUseCase: GetMovieUseCase,
+    private val getMovieUseCase: GetCommunityUseCase,
     private val dispatchers: AppDispatchers,
     private val dataStoreSource: AppSettingsDataStoreSource
 ) : ViewModel()  {

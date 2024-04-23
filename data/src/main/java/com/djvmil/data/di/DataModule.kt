@@ -1,6 +1,5 @@
 package com.djvmil.data.di
 
-import android.content.Context
 import android.util.Log
 import androidx.datastore.core.DataStoreFactory
 import app.cash.sqldelight.db.SqlDriver
@@ -14,30 +13,18 @@ import com.djvmil.data.model.auth.ResponseAuthData
 import com.djvmil.data.repository.AuthRepository
 import com.djvmil.data.repository.AuthRepositoryImpl
 import com.djvmil.data.repository.DataSourceRepositoryImpl
-import com.djvmil.data.repository.MovieRepository
+import com.djvmil.data.repository.CommunityRepository
 import com.djvmil.data.repository.MovieRepositoryImpl
 import com.djvmil.data.source.api.api.ApiService
 import com.djvmil.data.source.api.api.ApiServiceImpl
 import com.djvmil.data.source.api.util.CustomHttpLogger
 import com.djvmil.data.source.api.util.Route
 import com.djvmil.data.source.api.util.Route.REFRESH_TOKEN_URL
+import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
 import com.djvmil.data.source.datastore.AppSettingsDataStoreSourceImpl
 import com.djvmil.data.source.datastore.AppSettingsDataStoreSourceImpl.Companion.DATASTORE_FILE
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSourceImpl.Companion.KEYSET_NAME
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSourceImpl.Companion.MASTER_KEY_URI
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSourceImpl.Companion.PREFERENCE_FILE
 import com.djvmil.data.source.datastore.AppSettingsSerializer
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
-import com.djvmil.data.source.datastore.crypto.CryptoImpl
-import com.djvmil.data.source.db.dao.CommentDao
-import com.djvmil.data.source.db.dao.CommentDaoImpl
-import com.djvmil.data.source.db.dao.MovieDao
-import com.djvmil.data.source.db.dao.MovieDaoImpl
 import com.djvmil.data.source.db.util.DATABASE_NAME
-import com.google.crypto.tink.Aead
-import com.google.crypto.tink.aead.AeadConfig
-import com.google.crypto.tink.aead.AesGcmKeyManager
-import com.google.crypto.tink.integration.android.AndroidKeysetManager
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.android.Android
@@ -66,32 +53,18 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import java.io.File
 
-private fun provideAead(context: Context): Aead {
-    AeadConfig.register()
-
-    return AndroidKeysetManager.Builder()
-        .withSharedPref(context, KEYSET_NAME, PREFERENCE_FILE)
-        .withKeyTemplate(AesGcmKeyManager.aes256GcmTemplate())
-        .withMasterKeyUri(MASTER_KEY_URI)
-        .build()
-        .keysetHandle
-        .getPrimitive(Aead::class.java)
-}
-
 
 val dataModule = module {
 
     includes(dispatchersKoinModule)
 
     single { Json { ignoreUnknownKeys = true } }
-    single<MovieRepository> { MovieRepositoryImpl(api = get(), dao = get(), dataStore = get()) }
+    single<CommunityRepository> { MovieRepositoryImpl(api = get(), dao = get(), dataStore = get()) }
     single<AuthRepository> { AuthRepositoryImpl(get(), get()) }
 
     //single<ICrypto>{Crypto(get())}
-    singleOf(::CryptoImpl)
     singleOf(::DataSourceRepositoryImpl)
 
-    single { provideAead(get()) }
     //single { provideAead(androidContext()) }
 
 
@@ -115,8 +88,7 @@ val dataModule = module {
 
     single { provideKtorClient(get()) }
 
-    single<MovieDao> { MovieDaoImpl(db = get()) }
-    single<CommentDao> { CommentDaoImpl(db = get()) }
+    //single<MovieDao> { MovieDaoImpl(db = get()) }
     single<ApiService> { ApiServiceImpl(httpClient = get()) }
 }
 
@@ -143,7 +115,6 @@ fun provideKtorClient(
 
         HttpResponseValidator {
             handleResponseExceptionWithRequest { exception, request ->
-
                 when(exception){
                     is JsonConvertException -> {
                         val body = request.call.response.body<RequestResult<String>>() as? RequestResult<String>
@@ -157,19 +128,6 @@ fun provideKtorClient(
                         throw RequestExceptionResult(body)
                     }
                 }
-
-/*
-                try {
-                    val body = request.call.response.body<RequestResult<String>>() as? RequestResult<String>
-                    throw RequestExceptionResult(body)
-                }catch (ex: Exception){
-                    val body = RequestResult<String>(
-                        code = 503,
-                        message = exception.message
-                    )
-                    throw RequestExceptionResult(body)
-                }*/
-
             }
 
 

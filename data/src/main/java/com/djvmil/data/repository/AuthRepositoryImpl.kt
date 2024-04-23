@@ -1,8 +1,8 @@
 package com.djvmil.data.repository
 
 import android.util.Log
-import com.djvmil.core.ErrorEM
-import com.djvmil.core.ResultEM
+import com.djvmil.core.model.ErrorEM
+import com.djvmil.core.model.ResultEM
 import com.djvmil.data.model.auth.AuthRequest
 import com.djvmil.data.model.auth.RequestExceptionResult
 import com.djvmil.data.model.auth.RequestResult
@@ -36,17 +36,17 @@ class AuthRepositoryImpl(
 
             }
 
-        apiService.getMovies().collect{
+        apiService.getCommunities().collect{
 
             if (it is ResultEM.Failure){
 
-                Log.e("AuthRepositoryImpl ", "getMovies onFailure START 1 ${it.error.code}")
+                Log.e("AuthRepositoryImpl ", "getCommunities onFailure START 1 ${it.error.code}")
 
                 val result = it.error.throwable as? RequestExceptionResult
                 if (result != null){
-                    Log.e("AuthRepositoryImpl ", "getMovies onFailure START 2 ${result.error?.code}")
-                    Log.e("AuthRepositoryImpl ", "getMovies onFailure START 3 ${result.error?.message}")
-                    Log.e("AuthRepositoryImpl ", "getMovies onFailure START 4 ${result.error?.data}")
+                    Log.e("AuthRepositoryImpl ", "getCommunities onFailure START 2 ${result.error?.code}")
+                    Log.e("AuthRepositoryImpl ", "getCommunities onFailure START 3 ${result.error?.message}")
+                    Log.e("AuthRepositoryImpl ", "getCommunities onFailure START 4 ${result.error?.data}")
 
                 }
             }

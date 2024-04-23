@@ -1,4 +1,4 @@
-CREATE TABLE blogs (
+CREATE TABLE blogTable (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     title TEXT NOT NULL,
     content TEXT,
@@ -7,16 +7,16 @@ CREATE TABLE blogs (
 );
 
 insert:
-INSERT OR IGNORE INTO blogs VALUES (:id,:title,:content,:dateCreated,:dateUpdated);
+INSERT OR IGNORE INTO blogTable VALUES (:id, :title, :content, :dateCreated, :dateUpdated);
 
 deleteAll:
-DELETE FROM blogs;
+DELETE FROM blogTable;
 
 getAll:
-SELECT * FROM blogs;
+SELECT * FROM blogTable;
 
-getBlog:
-SELECT * FROM blogs WHERE id=:id;
+getById:
+SELECT * FROM blogTable WHERE id=:id;
 
 update:
-UPDATE OR ABORT blogs SET id = :id,title = :title,content = :content,dateCreated = :dateCreated,dateUpdated = :dateUpdated WHERE id = :id;
+UPDATE OR ABORT blogTable SET id = :id, title = :title, content = :content, dateCreated = :dateCreated, dateUpdated = :dateUpdated WHERE id = :id;

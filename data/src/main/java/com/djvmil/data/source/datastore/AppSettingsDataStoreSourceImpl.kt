@@ -3,7 +3,7 @@ package com.djvmil.data.source.datastore
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.IOException
-import com.djvmil.core.di.IAppDispatchers
+import com.djvmil.core.dispatcher.IAppDispatchers
 import com.djvmil.data.source.datastore.model.APP_SETTING_NULL
 import com.djvmil.data.source.datastore.model.AppSettings
 import com.djvmil.data.source.datastore.model.AppTheme
@@ -127,10 +127,6 @@ class AppSettingsDataStoreSourceImpl (
         .flowOn(appDispatchers.io).first()
 
     companion object {
-        const val KEYSET_NAME = "master_keyset"
-        const val PREFERENCE_FILE = "master_key_preference"
-        const val MASTER_KEY_URI = "android-keystore://master_key"
-
         const val DATASTORE_FILE = "app_settings.pb"
     }
 }

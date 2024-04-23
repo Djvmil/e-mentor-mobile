@@ -2,7 +2,7 @@ package com.djvmil.data.source.datastore
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
-import com.djvmil.data.source.datastore.crypto.CryptoImpl
+import com.djvmil.core.crypto.CryptoImpl
 import com.djvmil.data.source.datastore.model.APP_SETTING_NULL
 import com.djvmil.data.source.datastore.model.AppSettings
 import kotlinx.serialization.ExperimentalSerializationApi

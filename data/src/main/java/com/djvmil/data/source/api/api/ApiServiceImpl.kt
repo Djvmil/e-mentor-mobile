@@ -1,17 +1,15 @@
 package com.djvmil.data.source.api.api
 
-import com.djvmil.core.ErrorEM
-import com.djvmil.core.ResultEM
+import com.djvmil.core.model.ErrorEM
+import com.djvmil.core.model.ResultEM
 import com.djvmil.data.model.ApiOperation
 import com.djvmil.data.model.auth.AuthRequest
 import com.djvmil.data.model.auth.RequestResult
 import com.djvmil.data.model.auth.ResponseAuthData
 import com.djvmil.data.model.safeApiCall
-import com.djvmil.data.source.api.model.CommentApiModel
-import com.djvmil.data.source.api.model.MovieApiModel
-import com.djvmil.data.source.api.util.Route.COMMENTS_URL
+import com.djvmil.data.source.api.model.CommunityApiModel
+import com.djvmil.data.source.api.util.Route.COMMUNITY_URL
 import com.djvmil.data.source.api.util.Route.LOGIN_URL
-import com.djvmil.data.source.api.util.Route.MOVIES_URL
 import com.djvmil.data.source.api.util.Route.REGISTER_URL
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -41,33 +39,18 @@ class ApiServiceImpl(val httpClient: HttpClient) : ApiService {
         }
     }
 
-    override fun getMovies(): Flow<ResultEM<List<MovieApiModel>, ErrorEM>> = flow {
+    override fun getCommunities(): Flow<ResultEM<List<CommunityApiModel>, ErrorEM>> = flow {
         emit(ResultEM.Loading)
         try {
             emit(
                 ResultEM.Success(
-                    httpClient.get(MOVIES_URL).body()
+                    httpClient.get(COMMUNITY_URL).body()
                 )
             )
-        } catch (exception: Exception) {
-            exception.printStackTrace()
+        } catch (ex: Exception) {
+            ex.printStackTrace()
             emit(
-                ResultEM.Failure(ErrorEM(message = exception.message ?: "", throwable = exception))
-            )
-        }
-    }
-
-    override fun getComments(): Flow<ResultEM<List<CommentApiModel>, ErrorEM>> = flow {
-        emit(ResultEM.Loading)
-        try {
-            emit(
-                ResultEM.Success(
-                    httpClient.get(COMMENTS_URL).body()
-                )
-            )
-        } catch (exception: Exception) {
-            emit(
-                ResultEM.Failure(ErrorEM(message = exception.message ?: "", throwable = exception))
+                ResultEM.Failure(ErrorEM(message = ex.message ?: "", throwable = ex))
             )
         }
     }

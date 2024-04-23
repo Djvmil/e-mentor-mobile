@@ -1,9 +1,7 @@
 [versions]
-gson = "2.10.1"
 kotlinCompilerExtensionVersion = "1.5.7"
 
 agp = "8.2.2"
-ktorClientAuth = "2.3.7"
 androidxCoreSplashscreen = "1.0.1"
 org-jetbrains-kotlin-android = "1.9.21"
 core-ktx = "1.13.0"
@@ -23,20 +21,16 @@ kotlinx-immutable-collection = "0.3.7"
 kotlinx-serialization = "1.6.2"
 ktor = "2.3.7"
 koin = "3.5.3"
-sqldelight = "2.0.1"
+sqldelight = "2.0.2"
 androidxDataStore = "1.1.0"
 accompanist = "0.27.0"
 graphicsShapes = "1.0.0-alpha05"
 
-protobuf-kotlin-lite = "3.24.4"
-protobuf-plugin = "0.9.4"
 kotlinx-serialization-protobuf = "1.6.2"
-encryptedDatastore = "1.0.0-beta01"
 tinkAndroid = "1.8.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
-gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
@@ -46,7 +40,6 @@ compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = 
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
 compose-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "compose-constraintlayout" }
 compose-coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "compose-coil" }
-tink-android = { group = "com.google.crypto.tink", name = "tink-android", version.ref = "tinkAndroid" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
@@ -74,11 +67,15 @@ koin-test-junit4 = { group = "io.insert-koin", name = "koin-test-junit4", versio
 
 sqldelight-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
 sqldelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqldelight" }
+primitive-adapters = { module = "app.cash.sqldelight:primitive-adapters", version.ref = "sqldelight" }
+androidx-paging3-extensions = { module = "app.cash.sqldelight:androidx-paging3-extensions", version.ref = "sqldelight" }
+sqldelight-sqlite-driver = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqldelight" }
 
 androidx-datastore-proto = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
+tink-android = { group = "com.google.crypto.tink", name = "tink-android", version.ref = "tinkAndroid" }
 accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref = "accompanist" }
-accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanist" }
-accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
+#accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanist" }
+#accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
 androidx-graphics-shapes = { group = "androidx.graphics", name = "graphics-shapes", version.ref = "graphicsShapes" }
 kotlinx-serialization-protobuf = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-protobuf", version.ref = "kotlinx-serialization-protobuf" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
@@ -91,6 +88,5 @@ org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.re
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "org-jetbrains-kotlin-android" }
 
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
-protobuf = { id = "com.google.protobuf", version.ref = "protobuf-plugin"}
 
 [bundles]

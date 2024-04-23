@@ -6,13 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.djvmil.core.di.AppDispatchers
 import com.djvmil.data.model.auth.AuthRequest
 import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
-import com.djvmil.domain.usecase.GetMovieUseCase
+import com.djvmil.domain.usecase.GetCommunityUseCase
 import com.djvmil.domain.usecase.LoginUseCase
 import kotlinx.coroutines.launch
 
 class ForgetPasswordViewModel(
     private val loginUseCase: LoginUseCase,
-    private val getMovieUseCase: GetMovieUseCase,
+    private val getMovieUseCase: GetCommunityUseCase,
     private val dispatchers: AppDispatchers,
     private val dataStoreSource: AppSettingsDataStoreSource
 ) : ViewModel()  {

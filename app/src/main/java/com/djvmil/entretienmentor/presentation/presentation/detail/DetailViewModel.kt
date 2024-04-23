@@ -2,12 +2,12 @@ package com.djvmil.entretienmentor.presentation.presentation.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.djvmil.core.ErrorEM
-import com.djvmil.core.ResultEM
-import com.djvmil.core.map
-import com.djvmil.domain.usecase.GetMovieUseCase
-import com.djvmil.domain.usecase.UpdateMovieUseCase
-import com.djvmil.entretienmentor.presentation.model.MovieUiModel
+import com.djvmil.core.model.ErrorEM
+import com.djvmil.core.model.ResultEM
+import com.djvmil.core.model.map
+import com.djvmil.domain.usecase.GetCommunityUseCase
+import com.djvmil.domain.usecase.UpdateCommunityUseCase
+import com.djvmil.entretienmentor.presentation.model.CommunityUiModel
 import com.djvmil.entretienmentor.presentation.model.toDomain
 import com.djvmil.entretienmentor.presentation.model.toUi
 import kotlinx.coroutines.Dispatchers
@@ -19,16 +19,16 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
-    val getMovieUseCase: GetMovieUseCase,
-    val updateMovieUseCase: UpdateMovieUseCase
+    val getMovieUseCase: GetCommunityUseCase,
+    val updateMovieUseCase: UpdateCommunityUseCase
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<ResultEM<MovieUiModel, ErrorEM>>(ResultEM.Loading)
+    private val _uiState = MutableStateFlow<ResultEM<CommunityUiModel, ErrorEM>>(ResultEM.Loading)
     val uiState = _uiState.asStateFlow()
 
-    fun getMovie(movieId: Int) {
+    fun getCommunity(communityId: Int) {
         viewModelScope.launch {
-            getMovieUseCase(movieId)
+            getMovieUseCase(communityId)
                 .flowOn(Dispatchers.IO)
                 .catch { throwable ->
                     updateError(throwable)
@@ -40,7 +40,7 @@ class DetailViewModel(
         }
     }
 
-    fun updateMovie(movie: MovieUiModel) {
+    fun updateMovie(movie: CommunityUiModel) {
         viewModelScope.launch {
             updateMovieUseCase(movie.toDomain())
         }

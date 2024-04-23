@@ -6,10 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.Icon
@@ -17,7 +14,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -26,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.djvmil.entretienmentor.presentation.model.MovieUiModel
+import com.djvmil.entretienmentor.presentation.model.CommunityUiModel
 import com.djvmil.entretienmentor.ui.theme.DetailIcon
 import com.djvmil.entretienmentor.ui.theme.HighPadding
 import com.djvmil.entretienmentor.ui.theme.MovieDetailItemTextStyle
@@ -35,8 +31,8 @@ import com.djvmil.entretienmentor.ui.theme.SmallEvelation
 import com.djvmil.entretienmentor.ui.theme.SmallPadding
 
 @Composable
-fun MovieItem(
-    movie: MovieUiModel,
+fun CommunityItem(
+    community: CommunityUiModel,
     onShowDetail: (movieId: Int) -> Unit
 ) {
     val context = LocalContext.current
@@ -53,7 +49,7 @@ fun MovieItem(
         ConstraintLayout(
             modifier = Modifier
                 .wrapContentSize()
-                .clickable { onShowDetail(movie.id) }
+                .clickable { onShowDetail(community.id) }
         ) {
             val (
                 image,
@@ -77,7 +73,7 @@ fun MovieItem(
                         )
                     },
                 painter = rememberAsyncImagePainter(
-                    model = ImageRequest.Builder(context).data(movie.imageUrl).build()
+                    model = ImageRequest.Builder(context).data(community.name).build()
                 ),
                 contentScale = ContentScale.Crop,
                 contentDescription = null
@@ -96,7 +92,7 @@ fun MovieItem(
                 contentDescription = ""
             )
             Text(
-                text = movie.numComments.toString(),
+                text = community.name.toString(),
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
                 style = MovieDetailItemTextStyle,
@@ -122,7 +118,7 @@ fun MovieItem(
                     },
             )
             Text(
-                text = movie.numLikes.toString(),
+                text = community.description.toString(),
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
                 style = MovieDetailItemTextStyle,
@@ -135,17 +131,7 @@ fun MovieItem(
                         bottom.linkTo(iconLike.bottom)
                     }
             )
-            Icon(
-                if (movie.isLiked) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                tint = Color.Red,
-                modifier = Modifier
-                    .padding(NormalPadding)
-                    .constrainAs(isLiked) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                    },
-                contentDescription = null
-            )
+
 
         }
     }
@@ -154,14 +140,13 @@ fun MovieItem(
 @Preview
 @Composable
 private fun MovieItemPreview() {
-    MovieItem(
-        movie = MovieUiModel(
+    CommunityItem(
+        community = CommunityUiModel(
             id = 0,
-            imageUrl = "",
-            title = "Title",
-            numComments = 0,
-            numLikes = 0,
-            isLiked = false
+            name = "Title",
+            description  = "description",
+            dateCreated = "dateCreated",
+            dateUpdated = "dateUpdated"
         ),
         onShowDetail = {}
     )

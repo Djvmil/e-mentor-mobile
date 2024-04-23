@@ -1,4 +1,4 @@
-package com.djvmil.core
+package com.djvmil.core.model
 
 /*
  V = Value

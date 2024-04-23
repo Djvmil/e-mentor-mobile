@@ -37,6 +37,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.koin.android)
+    implementation (libs.tink.android)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

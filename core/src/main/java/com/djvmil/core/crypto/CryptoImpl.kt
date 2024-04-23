@@ -1,4 +1,4 @@
-package com.djvmil.data.source.datastore.crypto
+package com.djvmil.core.crypto
 
 import com.google.crypto.tink.Aead
 

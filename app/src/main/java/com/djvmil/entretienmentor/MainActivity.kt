@@ -14,7 +14,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.djvmil.core.utli.NetworkMonitor
+import com.djvmil.core.network.NetworkMonitor
 import com.djvmil.data.source.datastore.model.AppSettings
 import com.djvmil.data.source.datastore.model.AppTheme
 import com.djvmil.entretienmentor.presentation.presentation.ScreenUiState

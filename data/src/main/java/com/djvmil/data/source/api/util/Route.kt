@@ -11,6 +11,6 @@ object Route {
     const val QUESTION_URL = "questions"
     const val RESPONSE_URL = "responses"
     const val INTERVIEW_URL = "interviews"
-    const val MOVIES_URL = "movies"
-    const val COMMENTS_URL = "comments"
+    const val COMMUNITY_URL = "communities"
+    const val BLOG_URL = "blogs"
 }

@@ -1,4 +1,4 @@
-package com.djvmil.core.utli
+package com.djvmil.core.network
 
 import kotlinx.coroutines.flow.Flow
 

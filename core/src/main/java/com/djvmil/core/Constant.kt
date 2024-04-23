@@ -1,4 +1,4 @@
-package com.djvmil.data.source.db.util
+package com.djvmil.core
 
 internal const val DATABASE_NAME = "app_database"
 
