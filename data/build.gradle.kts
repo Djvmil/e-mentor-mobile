@@ -47,7 +47,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    testImplementation("app.cash.sqldelight:sqlite-driver:2.0.2")
+    testImplementation(libs.sqldelight.sqlite.driver)
 
     implementation(libs.koin.android)
     implementation(libs.koin.test.junit4)
