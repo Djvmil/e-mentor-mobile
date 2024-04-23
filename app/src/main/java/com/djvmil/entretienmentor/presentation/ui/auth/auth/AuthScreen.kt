@@ -16,11 +16,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Face
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,20 +44,22 @@ import com.djvmil.entretienmentor.R
 import com.djvmil.entretienmentor.designsystem.navigation.NavigationHelpers
 import com.djvmil.entretienmentor.presentation.ui.auth.login.navigation.navigateToLogin
 import com.djvmil.entretienmentor.presentation.ui.auth.register.navigation.navigateToRegister
+import com.djvmil.entretienmentor.presentation.ui.home.navigation.navigateToHome
 
 @Composable
 fun AuthScreen(navActions: NavigationHelpers) {
-
     Column(Modifier.fillMaxSize()) {
-        TopAuthPage()
+        TopAuthPage(navActions)
         BottomAuthPage(navActions)
     }
-
 }
 
 @Composable
-fun TopAuthPage() {
+fun TopAuthPage(navActions: NavigationHelpers) {
     Column {
+
+
+
         Box(
             modifier = Modifier
                 .padding(10.dp)
@@ -75,6 +79,18 @@ fun TopAuthPage() {
                 painter = painterResource(id = R.drawable.header_auth),
                 contentDescription ="Image Header"
             )
+            TextButton(
+                modifier = Modifier.align(Alignment.TopEnd),
+                onClick = { navActions.navigateToHome()}) {
+                Icon(
+                    modifier = Modifier.size(15.dp),
+                    imageVector = Icons.Rounded.Close,
+                    contentDescription = "skip authentification")
+
+                Text(
+                    modifier = Modifier,
+                    text = "Skip")
+            }
         }
 
     }

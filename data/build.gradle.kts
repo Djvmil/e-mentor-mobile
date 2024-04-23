@@ -32,7 +32,6 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-
 }
 
 sqldelight {
@@ -44,7 +43,6 @@ sqldelight {
 }
 
 dependencies {
-
     implementation(project(":core"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
@@ -74,6 +72,4 @@ dependencies {
     implementation(libs.primitive.adapters)
     implementation(libs.androidx.paging3.extensions)
     testImplementation(libs.sqldelight.sqlite.driver)
-
-
 }

@@ -51,9 +51,10 @@ fun LoginScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
     LoginContent(openDashboard) { viewModel.login()}
+
     when(uiState){
         is ScreenUiState.Loading -> { LoadingAnimation()}
-        is ScreenUiState.Success -> { /*LoginContent(openDashboard) */}
+        is ScreenUiState.Success -> { openDashboard.invoke() }
         is ScreenUiState.Failure -> {
             Log.e("LoginScreen", "ScreenUiState.Failure: ", (uiState as ScreenUiState.Failure).error)
         }
