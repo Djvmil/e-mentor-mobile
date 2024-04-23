@@ -1,8 +1,9 @@
 [versions]
-kotlinCompilerExtensionVersion = "1.5.7"
+kotlinCompilerExtensionVersion = "1.5.12"
 
 agp = "8.2.2"
 androidxCoreSplashscreen = "1.0.1"
+materialIconsExtended = "1.6.6"
 org-jetbrains-kotlin-android = "1.9.21"
 core-ktx = "1.13.0"
 junit = "4.13.2"
@@ -47,8 +48,9 @@ ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 
 kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinx-immutable-collection" }
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }

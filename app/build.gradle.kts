@@ -50,7 +50,6 @@ android {
 }
 
 dependencies {
-
     implementation(project(":domain"))
     implementation(project(":data"))
     implementation(project(":core"))
@@ -86,7 +85,7 @@ dependencies {
     implementation(libs.koin.compose.navigation)
     implementation(libs.koin.test.junit4)
 
-    implementation("androidx.compose.material:material-icons-extended:1.2.3")
+    implementation(libs.androidx.material.icons.extended)
 
     implementation(libs.koin.android)
     implementation(libs.koin.compose)

@@ -17,8 +17,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.djvmil.core.network.NetworkMonitor
 import com.djvmil.data.source.datastore.model.AppSettings
 import com.djvmil.data.source.datastore.model.AppTheme
-import com.djvmil.entretienmentor.presentation.presentation.ScreenUiState
-import com.djvmil.entretienmentor.presentation.presentation.dashboard.DashboardScreen
+import com.djvmil.entretienmentor.presentation.ui.ScreenUiState
+import com.djvmil.entretienmentor.presentation.ui.dashboard.DashboardScreen
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -55,6 +55,10 @@ class MainActivity : ComponentActivity() {
                 is ScreenUiState.Success -> false
                 else -> true
             }
+        }
+
+        networkMonitor.isOnline.onEach {
+
         }
 
         // Turn off the decor fitting system windows, which allows us to handle insets,

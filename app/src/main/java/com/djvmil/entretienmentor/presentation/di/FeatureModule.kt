@@ -1,33 +1,21 @@
 package com.djvmil.entretienmentor.presentation.di
 
 import com.djvmil.entretienmentor.MainActivityViewModel
-import com.djvmil.entretienmentor.presentation.presentation.auth.login.LoginViewModel
-import com.djvmil.entretienmentor.presentation.presentation.auth.register.RegisterViewModel
-import com.djvmil.entretienmentor.presentation.presentation.detail.DetailViewModel
-import com.djvmil.entretienmentor.presentation.presentation.home.HomeViewModel
-import kotlinx.coroutines.Dispatchers
+import com.djvmil.entretienmentor.presentation.ui.auth.forgetpassword.ForgetPasswordViewModel
+import com.djvmil.entretienmentor.presentation.ui.auth.login.LoginViewModel
+import com.djvmil.entretienmentor.presentation.ui.auth.register.RegisterViewModel
+import com.djvmil.entretienmentor.presentation.ui.detail.DetailViewModel
+import com.djvmil.entretienmentor.presentation.ui.home.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val featureModule = module {
     viewModel { MainActivityViewModel(get()) }
-    viewModel { HomeViewModel(get(), get()) }
-    viewModel { HomeViewModel(get(), get()) }
+    viewModel { HomeViewModel(get()) }
     viewModel { DetailViewModel(get(), get()) }
     viewModel { RegisterViewModel(get(), get(named("IODispatcher"))) }
     viewModel { LoginViewModel(get(), get(), get(), get()) }
-
-    single(named("IODispatcher")) {
-        Dispatchers.IO
-    }
-
-    single(named("MainDispatcher")) {
-        Dispatchers.Main
-    }
-
-    single(named("DefaultDispatcher")) {
-        Dispatchers.Default
-    }
+    viewModel { ForgetPasswordViewModel(get(), get(), get(), get()) }
 
 }
