@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
@@ -15,7 +16,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "EntretienMentor"
 include(":app")
-include(":domain")
-include(":data")
-include(":core")
-include(":common")
+include(":core:common")
+include(":core:domain")
+include(":core:data")
+include(":feature")

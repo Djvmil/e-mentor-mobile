@@ -14,6 +14,12 @@
       <entry key="core">
         <State />
       </entry>
+      <entry key="core.common">
+        <State />
+      </entry>
+      <entry key="feature">
+        <State />
+      </entry>
     </value>
   </component>
 </project>

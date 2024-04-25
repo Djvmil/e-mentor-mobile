@@ -25,5 +25,6 @@
 
     <string name="onBoardingTitle3">Play the beat</string>
     <string name="onBoardingText3">Most beginner producers learn make \n creating by simple beats</string>
+      <string name="title_dynamicfeature">convention</string>
 
 </resources>

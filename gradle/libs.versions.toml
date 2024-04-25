@@ -3,6 +3,9 @@ kotlinCompilerExtensionVersion = "1.5.12"
 
 agp = "8.2.2"
 androidxCoreSplashscreen = "1.0.1"
+
+androidGradlePlugin = "8.3.2"
+
 materialIconsExtended = "1.6.6"
 org-jetbrains-kotlin-android = "1.9.21"
 core-ktx = "1.13.0"
@@ -81,6 +84,10 @@ accompanist-pager = { group = "com.google.accompanist", name = "accompanist-page
 androidx-graphics-shapes = { group = "androidx.graphics", name = "graphics-shapes", version.ref = "graphicsShapes" }
 kotlinx-serialization-protobuf = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-protobuf", version.ref = "kotlinx-serialization-protobuf" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
+
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "org-jetbrains-kotlin-android" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
