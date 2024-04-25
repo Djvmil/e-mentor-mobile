@@ -1,15 +1,15 @@
-package com.djvmil.common.di
+package com.djvmil.entretienmentor.core.common.di
 
 import android.content.Context
 import android.util.Log
-import com.djvmil.common.KEYSET_NAME
-import com.djvmil.common.MASTER_KEY_URI
-import com.djvmil.common.PREFERENCE_FILE
-import com.djvmil.common.crypto.CryptoImpl
-import com.djvmil.common.dispatcher.AppDispatchers
-import com.djvmil.common.dispatcher.IAppDispatchers
-import com.djvmil.common.network.ConnectivityManagerNetworkMonitor
-import com.djvmil.common.network.NetworkMonitor
+import com.djvmil.entretienmentor.core.common.KEYSET_NAME
+import com.djvmil.entretienmentor.core.common.MASTER_KEY_URI
+import com.djvmil.entretienmentor.core.common.PREFERENCE_FILE
+import com.djvmil.entretienmentor.core.common.crypto.CryptoImpl
+import com.djvmil.entretienmentor.core.common.dispatcher.AppDispatchers
+import com.djvmil.entretienmentor.core.common.dispatcher.IAppDispatchers
+import com.djvmil.entretienmentor.core.common.network.ConnectivityManagerNetworkMonitor
+import com.djvmil.entretienmentor.core.common.network.NetworkMonitor
 import com.google.crypto.tink.Aead
 import com.google.crypto.tink.aead.AeadConfig
 import com.google.crypto.tink.aead.AesGcmKeyManager
@@ -39,9 +39,12 @@ private fun provideAead(context: Context): Aead {
         AeadConfig.register()
 
         return AndroidKeysetManager.Builder()
-            .withSharedPref(context, KEYSET_NAME, PREFERENCE_FILE)
+            .withSharedPref(context,
+                com.djvmil.entretienmentor.core.common.KEYSET_NAME,
+                com.djvmil.entretienmentor.core.common.PREFERENCE_FILE
+            )
             .withKeyTemplate(AesGcmKeyManager.aes256GcmTemplate())
-            .withMasterKeyUri(MASTER_KEY_URI)
+            .withMasterKeyUri(com.djvmil.entretienmentor.core.common.MASTER_KEY_URI)
             .build()
             .keysetHandle
             .getPrimitive(Aead::class.java)

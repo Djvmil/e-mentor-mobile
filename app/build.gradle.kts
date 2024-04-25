@@ -58,8 +58,6 @@ dependencies {
     val composeBom = platform(libs.compose.bom)
 
     implementation(libs.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.activity.compose)
     implementation(composeBom)
     implementation(libs.compose.constraintlayout)
     implementation(libs.compose.coil)

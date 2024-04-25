@@ -1,4 +1,4 @@
-package com.djvmil.common.model
+package com.djvmil.entretienmentor.core.common.model
 
 /*
  V = Value

@@ -1,4 +1,8 @@
+import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
+import com.djvmil.entretienmentor.configureFlavors
+import com.djvmil.entretienmentor.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -6,45 +10,18 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 
-class EMentorApplicationConventionPlugin : Plugin<Project> {
+class EMentorAppConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            pluginManager.apply {
-               // apply("nowinandroid.android.library")
-//                apply("nowinandroid.android.hilt")
-            }
-            extensions.configure<LibraryExtension> {
-                defaultConfig {
-                  //  testInstrumentationRunner = "com.google.samples.apps.nowinandroid.core.testing.NiaTestRunner"
-                }
+            with(pluginManager) {
+                apply("com.android.application")
+                apply("org.jetbrains.kotlin.android")
             }
 
-            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
-
-            dependencies {
-                /*add("implementation", project(":core:model"))
-                add("implementation", project(":core:ui"))
-                add("implementation", project(":core:designsystem"))
-                add("implementation", project(":core:data"))
-                add("implementation", project(":core:common"))
-                add("implementation", project(":core:domain"))
-
-                add("testImplementation", kotlin("test"))
-                add("testImplementation", project(":core:testing"))
-                add("androidTestImplementation", kotlin("test"))
-                add("androidTestImplementation", project(":core:testing"))
-
-                add("implementation", libs.findLibrary("koin.android").get())
-                add("implementation", libs.findLibrary("koin.compose").get())
-
-                add("implementation", libs.findLibrary("coil.kt").get())
-                add("implementation", libs.findLibrary("coil.kt.compose").get())
-
-                add("implementation", libs.findLibrary("koin.compose").get())
-                add("implementation", libs.findLibrary("androidx.lifecycle.runtimeCompose").get())
-                add("implementation", libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
-
-                add("implementation", libs.findLibrary("kotlinx.coroutines.android").get())*/
+            extensions.configure<ApplicationExtension> {
+                configureKotlinAndroid(this)
+                defaultConfig.targetSdk = 33
+                configureFlavors(this)
             }
         }
     }

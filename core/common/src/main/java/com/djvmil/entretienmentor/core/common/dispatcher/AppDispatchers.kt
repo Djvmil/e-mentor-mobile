@@ -1,4 +1,4 @@
-package com.djvmil.common.dispatcher
+package com.djvmil.entretienmentor.core.common.dispatcher
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

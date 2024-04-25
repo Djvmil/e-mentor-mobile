@@ -12,7 +12,7 @@ android {
 sqldelight {
     databases {
         create("DatabaseSource") {
-            packageName.set("com.djvmil")
+            packageName.set("com.djvmil.entretienmentor")
         }
     }
 }

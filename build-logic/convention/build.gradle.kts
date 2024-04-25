@@ -16,9 +16,25 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        register("androidFeature") {
-            id = "com.djvmil.entretienmentor.feature"
-            implementationClass = "AndroidFeatureConventionPlugin"
+        register("androidApplication") {
+            id = "djvmil.e-mentor.app"
+            implementationClass = "EMentorAppConventionPlugin"
+        }
+        register("androidLibrary") {
+            id = "djvmil.e-mentor.library"
+            implementationClass = "EMentorLibraryConventionPlugin"
+        }
+        register("androidAppCompose") {
+            id = "djvmil.e-mentor.app.compose"
+            implementationClass = "EMentorAppComposeConventionPlugin"
+        }
+        register("androidLibraryCompose") {
+            id = "djvmil.e-mentor.library.compose"
+            implementationClass = "EMentorLibraryComposeConventionPlugin"
+        }
+        register("androidCore") {
+            id = "djvmil.e-mentor.core"
+            implementationClass = "EMentorCoreConventionPlugin"
         }
     }
 }

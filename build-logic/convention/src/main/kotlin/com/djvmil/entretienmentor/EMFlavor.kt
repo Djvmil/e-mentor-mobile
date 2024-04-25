@@ -1,4 +1,4 @@
-package com.google.samples.apps.nowinandroid
+package com.djvmil.entretienmentor
 
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.ApplicationProductFlavor
@@ -15,19 +15,19 @@ enum class FlavorDimension {
 // purposes, or from a production backend server which supplies up-to-date, real content.
 // These two product flavors reflect this behaviour.
 @Suppress("EnumEntryName")
-enum class NiaFlavor(val dimension: FlavorDimension, val applicationIdSuffix: String? = null) {
+enum class EMFlavor(val dimension: FlavorDimension, val applicationIdSuffix: String? = null) {
     demo(FlavorDimension.contentType),
     prod(FlavorDimension.contentType, ".prod")
 }
 
 fun Project.configureFlavors(
-    commonExtension: CommonExtension<*, *, *, *>,
-    flavorConfigurationBlock: ProductFlavor.(flavor: NiaFlavor) -> Unit = {}
+    commonExtension: CommonExtension<*, *, *, *, *, *>,
+    flavorConfigurationBlock: ProductFlavor.(flavor: EMFlavor) -> Unit = {}
 ) {
     commonExtension.apply {
         flavorDimensions += FlavorDimension.contentType.name
         productFlavors {
-            NiaFlavor.values().forEach {
+            EMFlavor.values().forEach {
                 create(it.name) {
                     dimension = it.dimension.name
                     flavorConfigurationBlock(this, it)

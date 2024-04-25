@@ -1,4 +1,4 @@
-package com.djvmil.common.network
+package com.djvmil.entretienmentor.core.common.network
 
 import android.content.Context
 import android.net.ConnectivityManager

@@ -1,4 +1,4 @@
-package com.djvmil.common
+package com.djvmil.entretienmentor.core.common
 
 internal const val DATABASE_NAME = "app_database"
 

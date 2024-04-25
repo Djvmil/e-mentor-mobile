@@ -1,4 +1,4 @@
-package com.djvmil.common.crypto
+package com.djvmil.entretienmentor.core.common.crypto
 
 interface Crypto {
     fun encrypt(text: ByteArray): ByteArray
