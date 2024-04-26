@@ -1,4 +1,4 @@
-package com.djvmil.data.source.api.model
+package com.djvmil.entretienmentor.core.data.source.api.model
 
 import kotlinx.serialization.Serializable
 

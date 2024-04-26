@@ -2,8 +2,8 @@ package com.djvmil.entretienmentor.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
-import com.djvmil.data.source.datastore.model.AppSettings
+import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSource
+import com.djvmil.entretienmentor.core.data.source.datastore.model.AppSettings
 import com.djvmil.feature.features.ScreenUiState
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

@@ -1,6 +1,6 @@
-package com.djvmil.data.model
+package com.djvmil.entretienmentor.core.data.model
 
-import com.djvmil.data.model.auth.RequestExceptionResult
+import com.djvmil.entretienmentor.core.data.model.auth.RequestExceptionResult
 import kotlinx.serialization.Serializable
 
 @Serializable

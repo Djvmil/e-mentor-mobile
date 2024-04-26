@@ -1,12 +1,12 @@
-package com.djvmil.domain.usecase
+package com.djvmil.entretienmentor.core.domain.usecase
 
-import com.djvmil.common.model.ErrorEM
-import com.djvmil.common.model.ResultEM
-import com.djvmil.common.model.map
-import com.djvmil.data.repository.CommunityRepository
-import com.djvmil.domain.model.CommunityDomainModel
-import com.djvmil.domain.model.toDomain
-import com.djvmil.domain.util.UseCaseNoInput
+import com.djvmil.entretienmentor.core.data.repository.CommunityRepository
+import com.djvmil.entretienmentor.core.domain.model.CommunityDomainModel
+import com.djvmil.entretienmentor.core.domain.model.toDomain
+import com.djvmil.entretienmentor.core.domain.util.UseCaseNoInput
+import com.djvmil.entretienmentor.core.common.model.ErrorEM
+import com.djvmil.entretienmentor.core.common.model.ResultEM
+import com.djvmil.entretienmentor.core.common.model.map
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

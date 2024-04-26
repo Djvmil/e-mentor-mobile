@@ -1,4 +1,4 @@
-package com.djvmil.entretienmentor.presentation.util
+package com.djvmil.entretienmentor.feature.util
 
 import androidx.compose.ui.unit.dp
 

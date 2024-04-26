@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    namespace = "com.djvmil.entretienmentor.ui"
+    namespace = "com.djvmil.entretienmentor.core.ui"
 }
 
 dependencies {
     val composeBom = platform(libs.compose.bom)
 
     implementation(libs.core.ktx)
-    implementation(libs.androidx.lifecycle.runtimeCompose)
+    implementation(libs.androidx.compose.runtime)
 
     api(composeBom)
     api(libs.androidx.compose.foundation)
@@ -26,6 +26,5 @@ dependencies {
     api(libs.androidx.graphics.shapes)
     api(libs.androidx.material.icons.extended)
     debugApi(libs.ui.tooling)
-    debugApi(libs.ui.test.manifest)
 
 }

@@ -1,14 +1,9 @@
 import com.android.build.api.dsl.ApplicationExtension
-import com.android.build.api.variant.ApplicationAndroidComponentsExtension
-import com.android.build.gradle.LibraryExtension
 import com.djvmil.entretienmentor.configureFlavors
 import com.djvmil.entretienmentor.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.getByType
 
 class EMentorAppConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -20,7 +15,7 @@ class EMentorAppConventionPlugin : Plugin<Project> {
 
             extensions.configure<ApplicationExtension> {
                 configureKotlinAndroid(this)
-                defaultConfig.targetSdk = 33
+                defaultConfig.targetSdk = 34
                 configureFlavors(this)
             }
         }

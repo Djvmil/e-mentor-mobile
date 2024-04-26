@@ -8,16 +8,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.djvmil.entretienmentor.presentation.ui.auth.auth.navigation.auth
-import com.djvmil.feature.features.auth.forgetpassword.navigation.forgetPassword
-import com.djvmil.entretienmentor.presentation.ui.blog.navigation.blog
-import com.djvmil.entretienmentor.presentation.ui.chat.navigation.chat
-import com.djvmil.entretienmentor.presentation.ui.community.navigation.comminity
-import com.djvmil.entretienmentor.presentation.ui.detail.navigation.detail
-import com.djvmil.entretienmentor.presentation.ui.home.navigation.home
-import com.djvmil.entretienmentor.presentation.ui.auth.login.navigation.login
-import com.djvmil.feature.features.profile.navigation.profile
-import com.djvmil.entretienmentor.presentation.ui.auth.register.navigation.register
+import com.djvmil.entretienmentor.feature.ui.auth.auth.navigation.auth
+import com.djvmil.entretienmentor.feature.ui.auth.forgetpassword.navigation.forgetPassword
+import com.djvmil.entretienmentor.feature.ui.blog.navigation.blog
+import com.djvmil.entretienmentor.feature.ui.chat.navigation.chat
+import com.djvmil.entretienmentor.feature.ui.community.navigation.community
+import com.djvmil.entretienmentor.feature.ui.detail.navigation.detail
+import com.djvmil.entretienmentor.feature.ui.home.navigation.home
+import com.djvmil.entretienmentor.feature.ui.auth.login.navigation.login
+import com.djvmil.entretienmentor.feature.ui.profile.navigation.profile
+import com.djvmil.entretienmentor.feature.ui.auth.register.navigation.register
 
 @Composable
 fun NavGraph(
@@ -62,7 +62,7 @@ fun NavGraph(
             navActions = navActions
         )
 
-        comminity(
+        community(
             navActions = navActions
         )
 

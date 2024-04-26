@@ -1,10 +1,10 @@
-package com.djvmil.data.source.datastore
+package com.djvmil.entretienmentor.core.data.source.datastore
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
-import com.djvmil.core.crypto.CryptoImpl
-import com.djvmil.data.source.datastore.model.APP_SETTING_NULL
-import com.djvmil.data.source.datastore.model.AppSettings
+import com.djvmil.entretienmentor.core.common.crypto.CryptoImpl
+import com.djvmil.entretienmentor.core.data.source.datastore.model.APP_SETTING_NULL
+import com.djvmil.entretienmentor.core.data.source.datastore.model.AppSettings
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.protobuf.ProtoBuf

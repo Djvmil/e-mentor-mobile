@@ -1,13 +1,13 @@
-package com.djvmil.data.repository
+package com.djvmil.entretienmentor.core.data.repository
 
-import com.djvmil.core.model.ErrorEM
-import com.djvmil.core.model.ResultEM
-import com.djvmil.data.model.CommunityDataModel
-import com.djvmil.data.model.toData
-import com.djvmil.data.model.toDatabase
-import com.djvmil.data.source.api.api.ApiService
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
+import com.djvmil.entretienmentor.core.data.model.CommunityDataModel
+import com.djvmil.entretienmentor.core.data.model.toData
+import com.djvmil.entretienmentor.core.data.model.toDatabase
+import com.djvmil.entretienmentor.core.data.source.api.api.ApiService
+import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSource
 import com.djvmil.data.source.db.dao.CommunityDao
+import com.djvmil.entretienmentor.core.common.model.ErrorEM
+import com.djvmil.entretienmentor.core.common.model.ResultEM
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map

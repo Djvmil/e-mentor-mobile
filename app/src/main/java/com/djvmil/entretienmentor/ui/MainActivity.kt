@@ -14,8 +14,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.djvmil.common.network.NetworkMonitor
-import com.djvmil.data.source.datastore.model.AppSettings
-import com.djvmil.data.source.datastore.model.AppTheme
+import com.djvmil.entretienmentor.core.data.source.datastore.model.AppSettings
+import com.djvmil.entretienmentor.core.data.source.datastore.model.AppTheme
 import com.djvmil.feature.features.ScreenUiState
 import com.djvmil.entretienmentor.presentation.ui.dashboard.DashboardScreen
 import kotlinx.coroutines.flow.collect

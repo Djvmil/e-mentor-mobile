@@ -1,23 +1,23 @@
-package com.djvmil.data.repository
+package com.djvmil.entretienmentor.core.data.repository
 
 import android.util.Log
-import com.djvmil.core.model.ErrorEM
-import com.djvmil.core.model.ResultEM
-import com.djvmil.data.model.auth.AuthRequest
-import com.djvmil.data.model.auth.RequestExceptionResult
-import com.djvmil.data.model.auth.RequestResult
-import com.djvmil.data.model.auth.ResponseAuthData
-import com.djvmil.data.model.onFailure
-import com.djvmil.data.model.onSuccess
-import com.djvmil.data.source.api.api.ApiService
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
+import com.djvmil.entretienmentor.core.data.model.auth.AuthRequest
+import com.djvmil.entretienmentor.core.data.model.auth.RequestExceptionResult
+import com.djvmil.entretienmentor.core.data.model.auth.RequestResult
+import com.djvmil.entretienmentor.core.data.model.auth.ResponseAuthData
+import com.djvmil.entretienmentor.core.data.model.onFailure
+import com.djvmil.entretienmentor.core.data.model.onSuccess
+import com.djvmil.entretienmentor.core.data.source.api.api.ApiService
+import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSource
+import com.djvmil.entretienmentor.core.common.model.ErrorEM
+import com.djvmil.entretienmentor.core.common.model.ResultEM
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class AuthRepositoryImpl(
     private val apiService: ApiService,
     private val dataStoreSource: AppSettingsDataStoreSource,
-) : AuthRepository{
+) : AuthRepository {
 
     override suspend fun login(loginRequest: AuthRequest): Flow<ResultEM<RequestResult<ResponseAuthData>, ErrorEM>> = flow{
 

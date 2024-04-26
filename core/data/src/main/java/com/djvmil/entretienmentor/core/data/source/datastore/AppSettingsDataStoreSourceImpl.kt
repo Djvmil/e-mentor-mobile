@@ -1,13 +1,13 @@
-package com.djvmil.data.source.datastore
+package com.djvmil.entretienmentor.core.data.source.datastore
 
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.IOException
-import com.djvmil.core.dispatcher.IAppDispatchers
-import com.djvmil.data.source.datastore.model.APP_SETTING_NULL
-import com.djvmil.data.source.datastore.model.AppSettings
-import com.djvmil.data.source.datastore.model.AppTheme
-import com.djvmil.data.source.datastore.model.StepsStarting
+import com.djvmil.entretienmentor.core.common.dispatcher.AppDispatchers
+import com.djvmil.entretienmentor.core.data.source.datastore.model.APP_SETTING_NULL
+import com.djvmil.entretienmentor.core.data.source.datastore.model.AppSettings
+import com.djvmil.entretienmentor.core.data.source.datastore.model.AppTheme
+import com.djvmil.entretienmentor.core.data.source.datastore.model.StepsStarting
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOn
@@ -17,7 +17,7 @@ import kotlinx.coroutines.withContext
 
 class AppSettingsDataStoreSourceImpl (
     private val appSettings: DataStore<AppSettings>,
-    private val appDispatchers: IAppDispatchers
+    private val appDispatchers: AppDispatchers
 ): AppSettingsDataStoreSource {
     override fun appSetting() = appSettings.data
         .onEach { Log.d("appSettings", "appSettings = $it") }

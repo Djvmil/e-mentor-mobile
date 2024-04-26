@@ -1,9 +1,9 @@
-package com.djvmil.data.repository
+package com.djvmil.entretienmentor.core.data.repository
 
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
-import com.djvmil.data.source.datastore.model.AppSettings
-import com.djvmil.data.source.datastore.model.AppTheme
-import com.djvmil.data.source.datastore.model.StepsStarting
+import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSource
+import com.djvmil.entretienmentor.core.data.source.datastore.model.AppSettings
+import com.djvmil.entretienmentor.core.data.source.datastore.model.AppTheme
+import com.djvmil.entretienmentor.core.data.source.datastore.model.StepsStarting
 
 class DataSourceRepositoryImpl(
     private val dataStoreSource: AppSettingsDataStoreSource

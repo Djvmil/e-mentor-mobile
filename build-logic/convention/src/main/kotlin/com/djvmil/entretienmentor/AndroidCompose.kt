@@ -23,10 +23,6 @@ internal fun Project.configureAndroidCompose(
             kotlinCompilerExtensionVersion = libs.findVersion("kotlinCompilerExtensionVersion").get().toString()
         }
 
-        kotlinOptions {
-            //freeCompilerArgs = freeCompilerArgs + buildComposeMetricsParameters()
-        }
-
         dependencies {
             val bom = libs.findLibrary("compose-bom").get()
             add("implementation", platform(bom))

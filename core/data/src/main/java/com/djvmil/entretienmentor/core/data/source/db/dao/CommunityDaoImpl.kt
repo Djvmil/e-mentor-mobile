@@ -1,10 +1,11 @@
-package com.djvmil.data.source.db.dao
+package com.djvmil.entretienmentor.core.data.source.db.dao
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import app.cash.sqldelight.coroutines.mapToOne
-import com.djvmil.DatabaseSource
+import com.djvmil.data.source.db.dao.CommunityDao
 import com.djvmil.data.source.db.util.THROW_QUERY_INSERT_MOVIE_EXCEPTION
+import com.djvmil.entretienmentor.DatabaseSource
 import com.djvmil.sqldelight.CommunityTable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

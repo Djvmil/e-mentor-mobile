@@ -1,4 +1,4 @@
-package com.djvmil.data.model.auth
+package com.djvmil.entretienmentor.core.data.model.auth
 
 import kotlinx.serialization.Serializable
 

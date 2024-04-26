@@ -2,12 +2,9 @@ package com.djvmil.entretienmentor.core.common.di
 
 import android.content.Context
 import android.util.Log
-import com.djvmil.entretienmentor.core.common.KEYSET_NAME
-import com.djvmil.entretienmentor.core.common.MASTER_KEY_URI
-import com.djvmil.entretienmentor.core.common.PREFERENCE_FILE
 import com.djvmil.entretienmentor.core.common.crypto.CryptoImpl
+import com.djvmil.entretienmentor.core.common.dispatcher.AppDispatchersImpl
 import com.djvmil.entretienmentor.core.common.dispatcher.AppDispatchers
-import com.djvmil.entretienmentor.core.common.dispatcher.IAppDispatchers
 import com.djvmil.entretienmentor.core.common.network.ConnectivityManagerNetworkMonitor
 import com.djvmil.entretienmentor.core.common.network.NetworkMonitor
 import com.google.crypto.tink.Aead
@@ -23,10 +20,10 @@ import org.koin.dsl.module
 
 val dispatchersKoinModule = module {
     singleOf(::ConnectivityManagerNetworkMonitor) { bind<NetworkMonitor>() }
-    singleOf(::AppDispatchers){ bind<IAppDispatchers>() }
+    singleOf(::AppDispatchersImpl){ bind<AppDispatchers>() }
 
     single<CoroutineScope>( named("AppCoroutineScope") ) {
-        CoroutineScope(get<AppDispatchers>().io + SupervisorJob())
+        CoroutineScope(get<AppDispatchersImpl>().io + SupervisorJob())
     }
 
     singleOf(::CryptoImpl)

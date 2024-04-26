@@ -1,6 +1,6 @@
-package com.djvmil.domain.model
+package com.djvmil.entretienmentor.core.domain.model
 
-import com.djvmil.data.model.CommunityDataModel
+import com.djvmil.entretienmentor.core.data.model.CommunityDataModel
 
 
 data class CommunityDomainModel(

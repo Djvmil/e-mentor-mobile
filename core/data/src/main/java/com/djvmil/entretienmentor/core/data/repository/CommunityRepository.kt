@@ -1,8 +1,8 @@
-package com.djvmil.data.repository
+package com.djvmil.entretienmentor.core.data.repository
 
-import com.djvmil.common.model.ErrorEM
-import com.djvmil.common.model.ResultEM
-import com.djvmil.data.model.CommunityDataModel
+import com.djvmil.entretienmentor.core.common.model.ErrorEM
+import com.djvmil.entretienmentor.core.common.model.ResultEM
+import com.djvmil.entretienmentor.core.data.model.CommunityDataModel
 import kotlinx.coroutines.flow.Flow
 
 interface CommunityRepository {

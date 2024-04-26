@@ -1,12 +1,12 @@
-package com.djvmil.data.source.api.api
+package com.djvmil.entretienmentor.core.data.source.api.api
 
-import com.djvmil.core.model.ErrorEM
-import com.djvmil.core.model.ResultEM
-import com.djvmil.data.model.ApiOperation
-import com.djvmil.data.model.auth.AuthRequest
-import com.djvmil.data.model.auth.RequestResult
-import com.djvmil.data.model.auth.ResponseAuthData
-import com.djvmil.data.source.api.model.CommunityApiModel
+import com.djvmil.entretienmentor.core.data.model.ApiOperation
+import com.djvmil.entretienmentor.core.data.model.auth.AuthRequest
+import com.djvmil.entretienmentor.core.data.model.auth.RequestResult
+import com.djvmil.entretienmentor.core.data.model.auth.ResponseAuthData
+import com.djvmil.entretienmentor.core.data.source.api.model.CommunityApiModel
+import com.djvmil.entretienmentor.core.common.model.ErrorEM
+import com.djvmil.entretienmentor.core.common.model.ResultEM
 import kotlinx.coroutines.flow.Flow
 
 interface ApiService {

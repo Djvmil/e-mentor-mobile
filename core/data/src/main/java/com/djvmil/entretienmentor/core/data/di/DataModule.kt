@@ -1,30 +1,30 @@
-package com.djvmil.data.di
+package com.djvmil.entretienmentor.core.data.di
 
 import android.util.Log
 import androidx.datastore.core.DataStoreFactory
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
-import com.djvmil.DatabaseSource
-import com.djvmil.core.di.dispatchersKoinModule
-import com.djvmil.data.model.auth.AuthRequest
-import com.djvmil.data.model.auth.RequestExceptionResult
-import com.djvmil.data.model.auth.RequestResult
-import com.djvmil.data.model.auth.ResponseAuthData
-import com.djvmil.data.repository.AuthRepository
-import com.djvmil.data.repository.AuthRepositoryImpl
-import com.djvmil.data.repository.DataSourceRepositoryImpl
-import com.djvmil.data.repository.CommunityRepository
-import com.djvmil.data.repository.MovieRepositoryImpl
-import com.djvmil.data.source.api.api.ApiService
-import com.djvmil.data.source.api.api.ApiServiceImpl
-import com.djvmil.data.source.api.util.CustomHttpLogger
-import com.djvmil.data.source.api.util.Route
-import com.djvmil.data.source.api.util.Route.REFRESH_TOKEN_URL
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSource
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSourceImpl
-import com.djvmil.data.source.datastore.AppSettingsDataStoreSourceImpl.Companion.DATASTORE_FILE
-import com.djvmil.data.source.datastore.AppSettingsSerializer
+import com.djvmil.entretienmentor.core.data.model.auth.AuthRequest
+import com.djvmil.entretienmentor.core.data.model.auth.RequestExceptionResult
+import com.djvmil.entretienmentor.core.data.model.auth.RequestResult
+import com.djvmil.entretienmentor.core.data.model.auth.ResponseAuthData
+import com.djvmil.entretienmentor.core.data.repository.AuthRepository
+import com.djvmil.entretienmentor.core.data.repository.AuthRepositoryImpl
+import com.djvmil.entretienmentor.core.data.repository.DataSourceRepositoryImpl
+import com.djvmil.entretienmentor.core.data.repository.CommunityRepository
+import com.djvmil.entretienmentor.core.data.repository.MovieRepositoryImpl
+import com.djvmil.entretienmentor.core.data.source.api.api.ApiService
+import com.djvmil.entretienmentor.core.data.source.api.api.ApiServiceImpl
+import com.djvmil.entretienmentor.core.data.source.api.util.CustomHttpLogger
+import com.djvmil.entretienmentor.core.data.source.api.util.Route
+import com.djvmil.entretienmentor.core.data.source.api.util.Route.REFRESH_TOKEN_URL
+import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSource
+import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSourceImpl
+import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSourceImpl.Companion.DATASTORE_FILE
+import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsSerializer
 import com.djvmil.data.source.db.util.DATABASE_NAME
+import com.djvmil.entretienmentor.DatabaseSource
+import com.djvmil.entretienmentor.core.common.di.dispatchersKoinModule
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.android.Android
@@ -75,7 +75,7 @@ val dataModule = module {
         )
     }
 
-    single<AppSettingsDataStoreSource>{AppSettingsDataStoreSourceImpl(get(), get())}
+    single<AppSettingsDataStoreSource>{ AppSettingsDataStoreSourceImpl(get(), get()) }
 
     single {
         val driver: SqlDriver = AndroidSqliteDriver(

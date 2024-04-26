@@ -1,4 +1,4 @@
-package com.djvmil.data.repository
+package com.djvmil.entretienmentor.core.data.repository
 
 sealed class Ressource<out T> {
     object Loading : Ressource<Nothing>()

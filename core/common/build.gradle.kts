@@ -7,7 +7,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.core.ktx)
     implementation(libs.koin.android)
     implementation(libs.tink.android)
 }

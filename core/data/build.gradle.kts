@@ -1,12 +1,15 @@
 plugins {
-    alias(libs.plugins.com.android.library)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
+    id("djvmil.e-mentor.library")
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.sqldelight)
 }
 
 android {
     namespace = "com.djvmil.entretienmentor.core.data"
+
+    defaultConfig {
+        consumerProguardFiles("consumer-proguard-rules.pro")
+    }
 }
 
 sqldelight {
@@ -18,15 +21,14 @@ sqldelight {
 }
 
 dependencies {
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-    testImplementation(libs.sqldelight.sqlite.driver)
+
+    implementation(project(":core:common"))
+
+    implementation(libs.kotlinx.serialization)
 
     implementation(libs.koin.android)
     implementation(libs.koin.test.junit4)
 
-    implementation(libs.kotlinx.serialization)
 
     implementation(libs.ktor.core)
     implementation(libs.ktor.android)
@@ -34,7 +36,6 @@ dependencies {
     implementation(libs.ktor.negotiation)
     implementation(libs.ktor.logging)
     implementation(libs.ktor.client.auth)
-    //implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
 
     //datastore
     implementation(libs.androidx.datastore.proto)
@@ -45,5 +46,9 @@ dependencies {
     implementation(libs.sqldelight.coroutines)
     implementation(libs.primitive.adapters)
     implementation(libs.androidx.paging3.extensions)
+    testImplementation(project(":core:testing"))
+
+    //test
+    testImplementation(libs.sqldelight.sqlite.driver)
     testImplementation(libs.sqldelight.sqlite.driver)
 }
