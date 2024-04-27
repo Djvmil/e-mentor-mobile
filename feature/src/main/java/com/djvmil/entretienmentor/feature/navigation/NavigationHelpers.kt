@@ -1,4 +1,4 @@
-package com.djvmil.feature.navigation
+package com.djvmil.entretienmentor.feature.navigation
 
 import androidx.navigation.NavHostController
 
@@ -13,7 +13,7 @@ internal object Destinations {
     const val FORGET_PASSWORD_ROUTE = "forget_password"
     const val PROFILE_ROUTE = "profile"
     const val BLOG_ROUTE = "blog"
-    const val COMMINITY_ROUTE = "comminity"
+    const val COMMUNITY_ROUTE = "comminity"
     const val CHAT_ROUTE = "chat"
     const val DASHBOARD_ROUTE = "dashboard"
     const val HOME_ROUTE = "home"

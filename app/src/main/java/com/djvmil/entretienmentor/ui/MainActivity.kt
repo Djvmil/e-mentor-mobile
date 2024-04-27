@@ -13,11 +13,11 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.djvmil.common.network.NetworkMonitor
+import com.djvmil.entretienmentor.core.common.network.NetworkMonitor
 import com.djvmil.entretienmentor.core.data.source.datastore.model.AppSettings
 import com.djvmil.entretienmentor.core.data.source.datastore.model.AppTheme
-import com.djvmil.feature.features.ScreenUiState
-import com.djvmil.entretienmentor.presentation.ui.dashboard.DashboardScreen
+import com.djvmil.entretienmentor.feature.ui.ScreenUiState
+import com.djvmil.entretienmentor.feature.ui.dashboard.DashboardScreen
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch

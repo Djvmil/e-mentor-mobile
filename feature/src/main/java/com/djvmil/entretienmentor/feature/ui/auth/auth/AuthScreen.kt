@@ -44,7 +44,7 @@ import com.djvmil.entretienmentor.feature.R
 import com.djvmil.entretienmentor.feature.ui.auth.login.navigation.navigateToLogin
 import com.djvmil.entretienmentor.feature.ui.auth.register.navigation.navigateToRegister
 import com.djvmil.entretienmentor.feature.ui.home.navigation.navigateToHome
-import com.djvmil.feature.navigation.NavigationHelpers
+import com.djvmil.entretienmentor.feature.navigation.NavigationHelpers
 
 @Composable
 fun AuthScreen(navActions: NavigationHelpers) {

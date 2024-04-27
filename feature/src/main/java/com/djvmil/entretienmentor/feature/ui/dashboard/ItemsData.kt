@@ -83,7 +83,7 @@ val colorButtons = listOf(
         )
     ),
     Item(
-        icon = R.drawable.gear,
+        icon = R.drawable.quadrangle_background,
         isSelected = false,
         description = R.string.Settings,
         animationType = GearColorButton(
@@ -92,7 +92,7 @@ val colorButtons = listOf(
                 stiffness = Spring.StiffnessVeryLow
             ),
             background = ButtonBackground(
-                icon = R.drawable.gear_background,
+                icon = R.drawable.quadrangle_background,
                 offset = DpOffset(2.5.dp, 3.dp)
             ),
         )

@@ -12,10 +12,9 @@ dependencies {
 
     implementation(project(":core:common"))
     implementation(project(":core:data"))
+    testImplementation(project(":core:testing"))
 
     implementation(libs.koin.android)
     implementation(libs.koin.test.junit4)
-
-    testImplementation(project(":core:testing"))
 
 }

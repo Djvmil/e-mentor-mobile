@@ -32,6 +32,13 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.compose.rememberAsyncImagePainter
 import com.djvmil.entretienmentor.core.common.model.ResultEM
+import com.djvmil.entretienmentor.core.ui.designsystem.theme.DetailCardHeight
+import com.djvmil.entretienmentor.core.ui.designsystem.theme.DetailIcon
+import com.djvmil.entretienmentor.core.ui.designsystem.theme.DetailImageAspectRatio
+import com.djvmil.entretienmentor.core.ui.designsystem.theme.MovieDetailItemTextStyle
+import com.djvmil.entretienmentor.core.ui.designsystem.theme.MovieDetailTextStyle
+import com.djvmil.entretienmentor.core.ui.designsystem.theme.NormalPadding
+import com.djvmil.entretienmentor.core.ui.designsystem.theme.SmallPadding
 import com.djvmil.entretienmentor.feature.ui.community.model.CommunityUiModel
 import org.koin.androidx.compose.koinViewModel
 

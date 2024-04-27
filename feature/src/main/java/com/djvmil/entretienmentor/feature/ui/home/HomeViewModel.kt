@@ -5,9 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.djvmil.entretienmentor.core.domain.usecase.GetAndStoreAllCommunityUseCase
 import com.djvmil.entretienmentor.core.common.model.ErrorEM
 import com.djvmil.entretienmentor.core.common.model.ResultEM
+import com.djvmil.entretienmentor.core.common.model.map
 import com.djvmil.entretienmentor.feature.ui.community.model.CommunityUiModel
 import com.djvmil.entretienmentor.feature.ui.community.model.toUi
 import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -6,6 +6,7 @@ import com.djvmil.entretienmentor.core.domain.usecase.GetCommunityUseCase
 import com.djvmil.entretienmentor.core.domain.usecase.UpdateCommunityUseCase
 import com.djvmil.entretienmentor.core.common.model.ErrorEM
 import com.djvmil.entretienmentor.core.common.model.ResultEM
+import com.djvmil.entretienmentor.core.common.model.map
 import com.djvmil.entretienmentor.feature.ui.community.model.CommunityUiModel
 import com.djvmil.entretienmentor.feature.ui.community.model.toDomain
 import com.djvmil.entretienmentor.feature.ui.community.model.toUi

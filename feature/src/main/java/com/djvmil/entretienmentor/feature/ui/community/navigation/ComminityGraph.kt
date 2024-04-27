@@ -6,13 +6,13 @@ import androidx.compose.animation.fadeIn
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.djvmil.entretienmentor.feature.ui.chat.ChatScreen
-import com.djvmil.feature.navigation.Destinations
-import com.djvmil.feature.navigation.NavigationHelpers
+import com.djvmil.entretienmentor.feature.navigation.Destinations
+import com.djvmil.entretienmentor.feature.navigation.NavigationHelpers
 
 fun NavGraphBuilder.community(
     navActions: NavigationHelpers
 ) {
-    composable(Destinations.COMMINITY_ROUTE, enterTransition = {
+    composable(Destinations.COMMUNITY_ROUTE, enterTransition = {
         return@composable fadeIn(tween(1000))
     }, exitTransition = {
         return@composable slideOutOfContainer(
@@ -33,5 +33,5 @@ fun NavGraphBuilder.community(
 
 
 fun NavigationHelpers.navigateToCommunity() {
-    navController.navigate(Destinations.COMMINITY_ROUTE)
+    navController.navigate(Destinations.COMMUNITY_ROUTE)
 }

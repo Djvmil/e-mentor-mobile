@@ -4,8 +4,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.djvmil.core.dispatcher.AppDispatchers
-import com.djvmil.core.model.ResultEM
+import com.djvmil.entretienmentor.core.common.dispatcher.AppDispatchers
+import com.djvmil.entretienmentor.core.common.model.ResultEM
 import com.djvmil.entretienmentor.core.data.model.auth.AuthRequest
 import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSource
 import com.djvmil.entretienmentor.core.domain.usecase.GetCommunityUseCase
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-    private val loginUseCase: LoginUseCase<Any?>,
+    private val loginUseCase: LoginUseCase,
     private val getMovieUseCase: GetCommunityUseCase,
     private val dispatchers: AppDispatchers,
     private val dataStoreSource: AppSettingsDataStoreSource

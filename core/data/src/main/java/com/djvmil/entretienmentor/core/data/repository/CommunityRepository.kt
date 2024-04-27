@@ -10,7 +10,7 @@ interface CommunityRepository {
     fun getAll(): Flow<ResultEM<List<CommunityDataModel>, ErrorEM>>
     fun get(id: Int): Flow<ResultEM<CommunityDataModel, ErrorEM>>
 
-    suspend fun update(communities: CommunityDataModel)
+    suspend fun update(community: CommunityDataModel)
     suspend fun insertAll(communities: List<CommunityDataModel>)
     suspend fun deleteAll()
 }

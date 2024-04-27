@@ -1,6 +1,6 @@
 plugins {
     id("djvmil.e-mentor.core")
-    id("djvmil.e-mentor.library")
+    id("djvmil.e-mentor.library.compose")
 }
 
 android {

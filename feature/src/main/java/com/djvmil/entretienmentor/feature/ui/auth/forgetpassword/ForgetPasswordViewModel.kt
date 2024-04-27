@@ -11,7 +11,7 @@ import com.djvmil.entretienmentor.core.common.dispatcher.AppDispatchersImpl
 import kotlinx.coroutines.launch
 
 class ForgetPasswordViewModel(
-    private val loginUseCase: LoginUseCase<Any?>,
+    private val loginUseCase: LoginUseCase,
     private val getMovieUseCase: GetCommunityUseCase,
     private val dispatchers: AppDispatchersImpl,
     private val dataStoreSource: AppSettingsDataStoreSource

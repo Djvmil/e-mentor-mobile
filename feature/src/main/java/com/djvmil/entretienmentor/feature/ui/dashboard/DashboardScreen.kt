@@ -20,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.djvmil.entretienmentor.core.ui.designsystem.theme.EntretienMentorTheme
 import com.djvmil.entretienmentor.feature.ui.dashboard.colorButtons.ColorButton
 import com.djvmil.entretienmentor.feature.ui.blog.navigation.navigateToBlog
 import com.djvmil.entretienmentor.feature.ui.chat.navigation.navigateToChat
@@ -30,7 +31,8 @@ import com.djvmil.entretienmentor.core.ui.widget.bottombar.AnimatedNavigationBar
 import com.djvmil.entretienmentor.core.ui.widget.bottombar.animation.balltrajectory.Straight
 import com.djvmil.entretienmentor.core.ui.widget.bottombar.animation.indendshape.StraightIndent
 import com.djvmil.entretienmentor.core.ui.widget.bottombar.animation.indendshape.shapeCornerRadius
-import com.djvmil.feature.navigation.NavigationHelpers
+import com.djvmil.entretienmentor.feature.navigation.NavGraph
+import com.djvmil.entretienmentor.feature.navigation.NavigationHelpers
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable

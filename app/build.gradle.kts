@@ -54,6 +54,7 @@ android {
 
 dependencies {
     implementation(project(":feature"))
+    implementation(project(":core:ui"))
     implementation(project(":core:domain"))
     implementation(project(":core:data"))
     implementation(project(":core:common"))
@@ -62,21 +63,12 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.navigation)
+ 
 
-    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.core.splashscreen)
 
-    implementation(libs.compose.coil)
-    implementation(libs.coil.kt.svg)
-
-    implementation(libs.activity.compose)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.core.ktx)
-    implementation(libs.androidx.compose.runtime)
-    implementation(libs.androidx.lifecycle.runtimeCompose)
-    implementation(libs.compose.navigation)
-
+    //androidTestImplementation(kotlin("test"))
     androidTestImplementation(project(":core:testing"))
-    androidTestImplementation(kotlin("test"))
     androidTestImplementation(libs.androidx.navigation.testing)
 }
 

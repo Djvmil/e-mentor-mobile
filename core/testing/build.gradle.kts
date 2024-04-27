@@ -11,7 +11,6 @@ android {
 }
 
 dependencies {
-
     implementation(project(":core:common"))
     implementation(project(":core:data"))
 
@@ -21,7 +20,6 @@ dependencies {
     api(libs.androidx.test.espresso.core)
     api(libs.androidx.test.runner)
     api(libs.androidx.test.rules)
-    api(libs.ui.test.compose.junit4)
     api(libs.androidx.test.ext.junit)
 
     debugApi(libs.ui.test.manifest)

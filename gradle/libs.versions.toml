@@ -23,6 +23,7 @@ graphicsShapes = "1.0.0-alpha05"
 kotlinx-serialization-protobuf = "1.6.2"
 tinkAndroid = "1.8.0"
 androidDesugarJdkLibs = "2.0.4"
+androidxCoreSplashscreen = "1.0.1"
 
 androidxAppCompat = "1.6.1"
 androidxTestCore = "1.5.0"
@@ -93,6 +94,8 @@ androidx-datastore-proto = { group = "androidx.datastore", name = "datastore", v
 tink-android = { group = "com.google.crypto.tink", name = "tink-android", version.ref = "tinkAndroid" }
 androidx-graphics-shapes = { group = "androidx.graphics", name = "graphics-shapes", version.ref = "graphicsShapes" }
 kotlinx-serialization-protobuf = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-protobuf", version.ref = "kotlinx-serialization-protobuf" }
+
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }

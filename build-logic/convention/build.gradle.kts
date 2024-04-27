@@ -20,13 +20,14 @@ gradlePlugin {
             id = "djvmil.e-mentor.app"
             implementationClass = "EMentorAppConventionPlugin"
         }
-        register("androidLibrary") {
-            id = "djvmil.e-mentor.library"
-            implementationClass = "EMentorLibraryConventionPlugin"
-        }
         register("androidAppCompose") {
             id = "djvmil.e-mentor.app.compose"
             implementationClass = "EMentorAppComposeConventionPlugin"
+        }
+
+        register("androidLibrary") {
+            id = "djvmil.e-mentor.library"
+            implementationClass = "EMentorLibraryConventionPlugin"
         }
         register("androidLibraryCompose") {
             id = "djvmil.e-mentor.library.compose"

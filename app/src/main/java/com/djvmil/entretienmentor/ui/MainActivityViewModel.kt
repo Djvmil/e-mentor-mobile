@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSource
 import com.djvmil.entretienmentor.core.data.source.datastore.model.AppSettings
-import com.djvmil.feature.features.ScreenUiState
+import com.djvmil.entretienmentor.feature.ui.ScreenUiState
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map

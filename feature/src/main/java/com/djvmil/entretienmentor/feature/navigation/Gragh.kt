@@ -1,4 +1,4 @@
-package com.djvmil.feature.navigation
+package com.djvmil.entretienmentor.feature.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -21,11 +21,8 @@ import com.djvmil.entretienmentor.feature.ui.auth.register.navigation.register
 
 @Composable
 fun NavGraph(
-    modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
-    navActions: NavigationHelpers = remember(navController) {
-        NavigationHelpers(navController)
-    },
+    navController: NavHostController,
+    navActions: NavigationHelpers,
     isAuth: Boolean,
 ) {
     val startDestination: String = if(isAuth) Destinations.HOME_ROUTE else Destinations.AUTH_ROUTE
@@ -33,8 +30,7 @@ fun NavGraph(
     val currentRoute = currentNavBackStackEntry?.destination?.route ?: startDestination
     NavHost(
         navController = navController,
-        startDestination = startDestination,
-        modifier = modifier
+        startDestination = startDestination
     ) {
         auth(
             navActions = navActions

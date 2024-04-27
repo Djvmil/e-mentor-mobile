@@ -6,8 +6,8 @@ import androidx.compose.animation.fadeIn
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.djvmil.entretienmentor.feature.ui.chat.ChatScreen
-import com.djvmil.feature.navigation.Destinations
-import com.djvmil.feature.navigation.NavigationHelpers
+import com.djvmil.entretienmentor.feature.navigation.Destinations
+import com.djvmil.entretienmentor.feature.navigation.NavigationHelpers
 
 fun NavGraphBuilder.blog(
     navActions: NavigationHelpers

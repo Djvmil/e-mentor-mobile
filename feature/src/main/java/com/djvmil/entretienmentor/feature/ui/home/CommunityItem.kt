@@ -22,6 +22,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.djvmil.entretienmentor.core.ui.designsystem.theme.DetailIcon
+import com.djvmil.entretienmentor.core.ui.designsystem.theme.HighPadding
+import com.djvmil.entretienmentor.core.ui.designsystem.theme.MovieDetailItemTextStyle
+import com.djvmil.entretienmentor.core.ui.designsystem.theme.NormalPadding
+import com.djvmil.entretienmentor.core.ui.designsystem.theme.SmallEvelation
+import com.djvmil.entretienmentor.core.ui.designsystem.theme.SmallPadding
 import com.djvmil.entretienmentor.feature.ui.community.model.CommunityUiModel
 
 @Composable

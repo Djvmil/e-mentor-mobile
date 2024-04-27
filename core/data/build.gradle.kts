@@ -21,14 +21,9 @@ sqldelight {
 }
 
 dependencies {
-
     implementation(project(":core:common"))
 
     implementation(libs.kotlinx.serialization)
-
-    implementation(libs.koin.android)
-    implementation(libs.koin.test.junit4)
-
 
     implementation(libs.ktor.core)
     implementation(libs.ktor.android)
@@ -36,6 +31,7 @@ dependencies {
     implementation(libs.ktor.negotiation)
     implementation(libs.ktor.logging)
     implementation(libs.ktor.client.auth)
+    implementation(libs.koin.android)
 
     //datastore
     implementation(libs.androidx.datastore.proto)
@@ -46,6 +42,7 @@ dependencies {
     implementation(libs.sqldelight.coroutines)
     implementation(libs.primitive.adapters)
     implementation(libs.androidx.paging3.extensions)
+
     testImplementation(project(":core:testing"))
 
     //test

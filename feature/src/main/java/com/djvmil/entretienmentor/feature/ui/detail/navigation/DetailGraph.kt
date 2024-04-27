@@ -9,9 +9,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.djvmil.entretienmentor.feature.ui.detail.DetailScreen
 import com.djvmil.entretienmentor.feature.ui.home.navigation.navigateToHome
-import com.djvmil.feature.navigation.Destinations
-import com.djvmil.feature.navigation.DestinationsArgs
-import com.djvmil.feature.navigation.NavigationHelpers
+import com.djvmil.entretienmentor.feature.navigation.Destinations
+import com.djvmil.entretienmentor.feature.navigation.DestinationsArgs
+import com.djvmil.entretienmentor.feature.navigation.NavigationHelpers
 
 fun NavGraphBuilder.detail(
     navActions: NavigationHelpers
