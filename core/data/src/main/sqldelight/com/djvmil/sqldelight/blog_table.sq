@@ -1,0 +1,22 @@
+CREATE TABLE blogTable (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    title TEXT NOT NULL,
+    content TEXT,
+    dateCreated TEXT,
+    dateUpdated TEXT
+);
+
+insert:
+INSERT OR IGNORE INTO blogTable VALUES (:id, :title, :content, :dateCreated, :dateUpdated);
+
+deleteAll:
+DELETE FROM blogTable;
+
+getAll:
+SELECT * FROM blogTable;
+
+getById:
+SELECT * FROM blogTable WHERE id=:id;
+
+update:
+UPDATE OR ABORT blogTable SET id = :id, title = :title, content = :content, dateCreated = :dateCreated, dateUpdated = :dateUpdated WHERE id = :id;

@@ -1,0 +1,12 @@
+package com.djvmil.entretienmentor.core.data.source.datastore.model
+
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class AppSettings(
+    val isLogin: Boolean = false,
+    val accessToken: String? = null,
+    val stepsStarting: StepsStarting? = StepsStarting.NONE,
+    val theme: AppTheme = AppTheme.default()
+)
+internal val APP_SETTING_NULL: AppSettings = AppSettings()

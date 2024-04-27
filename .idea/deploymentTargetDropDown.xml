@@ -2,10 +2,22 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="AuthScreenPreview - DefaultPreviewDark">
+        <State />
+      </entry>
       <entry key="app">
         <State />
       </entry>
       <entry key="common">
+        <State />
+      </entry>
+      <entry key="core">
+        <State />
+      </entry>
+      <entry key="core.common">
+        <State />
+      </entry>
+      <entry key="feature">
         <State />
       </entry>
     </value>

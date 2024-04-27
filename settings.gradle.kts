@@ -1,10 +1,12 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -15,7 +17,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "EntretienMentor"
 include(":app")
-include(":domain")
-include(":data")
-include(":core")
-include(":common")
+include(":core:common")
+include(":core:domain")
+include(":core:data")
+include(":feature")
+include(":core:ui")
+include(":core:testing")
