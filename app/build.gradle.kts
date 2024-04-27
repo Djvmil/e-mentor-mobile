@@ -13,7 +13,7 @@ android {
         versionCode = 2
         versionName = "0.0.1" // X.Y.Z; X = Major, Y = minor, Z = Patch level
 
-        //testInstrumentationRunner = "com.google.samples.apps.nowinandroid.core.testing.NiaTestRunner"
+        //testInstrumentationRunner = "com.djvmil.entretienmentor.core.testing.EMTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
