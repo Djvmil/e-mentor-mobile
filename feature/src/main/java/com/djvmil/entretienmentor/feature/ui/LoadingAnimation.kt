@@ -24,7 +24,8 @@ fun LoadingAnimation(
     circleSize: Dp = 25.dp,
     circleColor: Color = MaterialTheme.colorScheme.primary,
     spaceBetween: Dp = 10.dp,
-    travelDistance: Dp = 20.dp
+    travelDistance: Dp = 20.dp,
+    isLoading: Boolean
 ) {
     val circles = listOf(
         remember { Animatable(initialValue = 0f) },
@@ -54,34 +55,36 @@ fun LoadingAnimation(
     val circleValues = circles.map { it.value }
     val distance = with(LocalDensity.current) { travelDistance.toPx() }
 
-    Box(
-        modifier = modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center,
-    ) {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(spaceBetween)
+    if (isLoading){
+        Box(
+            modifier = modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center,
         ) {
-            circleValues.forEach { value ->
-                Box(
-                    modifier = Modifier
-                        .size(circleSize)
-                        .graphicsLayer {
-                            translationY = -value * distance
-                        }
-                        .background(
-                            color = circleColor,
-                            shape = CircleShape
-                        )
-                )
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(spaceBetween)
+            ) {
+                circleValues.forEach { value ->
+                    Box(
+                        modifier = Modifier
+                            .size(circleSize)
+                            .graphicsLayer {
+                                translationY = -value * distance
+                            }
+                            .background(
+                                color = circleColor,
+                                shape = CircleShape
+                            )
+                    )
+                }
             }
         }
-    }
 
+    }
 }
 
 @Preview
 @Composable
 fun LoadingAnimationPreview(){
-    LoadingAnimation()
+    LoadingAnimation(isLoading = true)
 }

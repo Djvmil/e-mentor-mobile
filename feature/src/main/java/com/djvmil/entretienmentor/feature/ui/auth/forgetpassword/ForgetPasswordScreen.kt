@@ -27,9 +27,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.djvmil.entretienmentor.feature.R
-import com.djvmil.entretienmentor.feature.ui.CustumTextField
+import com.djvmil.entretienmentor.feature.ui.CustomTextField
 import com.djvmil.entretienmentor.feature.ui.HeaderComponent
-import com.djvmil.entretienmentor.feature.ui.TextFieldState
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -82,12 +81,9 @@ fun ForgetPasswordContent(openDashboard: () -> Unit) {
                 style = TextStyle(fontSize = 40.sp, fontFamily = FontFamily.Cursive)
             )
 
-            CustumTextField(
+            CustomTextField(
                 modifier = Modifier
                     .padding(top = 30.dp),
-                textFieldState = TextFieldState(
-                    text = "Username or Email"
-                ),
                 placeholder = "Enter your username or email"
             ){ value ->
 

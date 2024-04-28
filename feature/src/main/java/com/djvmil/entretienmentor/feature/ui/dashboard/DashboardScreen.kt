@@ -90,19 +90,24 @@ fun DashboardScreen(
                 snackbarHost = {},
                 floatingActionButton = {},
                 content = {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            //.background(Color.LightGray)
-                            .verticalScroll(rememberScrollState())
-                            .padding(bottom = 40.dp)
-
+                    Surface(
+                        modifier = Modifier.fillMaxSize()
                     ) {
-                        NavGraph(
-                            navController = navController,
-                            navActions = navActions,
-                            isAuth = isAuth
-                        )
+                        Box(
+                            modifier = Modifier // fill the entire window
+                                .imePadding() // padding for the bottom for the IME
+                                //.imeNestedScroll()
+                                .fillMaxSize()
+                                .verticalScroll(rememberScrollState())
+                                .padding(bottom = 40.dp)
+
+                        ) {
+                            NavGraph(
+                                navController = navController,
+                                navActions = navActions,
+                                isAuth = isAuth
+                            )
+                        }
                     }
                 }
             )

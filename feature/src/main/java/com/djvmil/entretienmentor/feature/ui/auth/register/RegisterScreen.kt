@@ -29,13 +29,13 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.djvmil.entretienmentor.feature.R
-import com.djvmil.entretienmentor.feature.ui.CustumTextField
-import com.djvmil.entretienmentor.feature.ui.CustumTextFieldPassword
+import com.djvmil.entretienmentor.feature.ui.CustomTextField
+import com.djvmil.entretienmentor.feature.ui.CustomTextFieldPassword
 import com.djvmil.entretienmentor.feature.ui.HeaderComponent
-import com.djvmil.entretienmentor.feature.ui.TextFieldState
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -86,64 +86,48 @@ fun RegisterContent(openDashboard: () -> Unit) {
             fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
         )
 
-        CustumTextField(
+        CustomTextField(
             modifier = Modifier
                 .padding(top = 20.dp),
-            textFieldState = TextFieldState(
-                text = "Firstname"
-            ),
+            title = "Firstname",
             placeholder = "Enter your firstname"
         ){ value ->
 
         }
 
-        CustumTextField(
+        CustomTextField(
             modifier = Modifier,
-            textFieldState = TextFieldState(
-                text = "Lastname"
-            ),
+            title = "Lastname",
             placeholder = "Enter your lastname"
         ){ value ->
 
         }
 
-        CustumTextField(
+        CustomTextField(
             modifier = Modifier,
-            textFieldState = TextFieldState(
-                text = "Phone Number"
-            ),
+            title = "Lastname",
             placeholder = "Enter your phone number"
         ){ value ->
 
         }
 
-        CustumTextField(
+        CustomTextField(
             modifier = Modifier,
-            textFieldState = TextFieldState(
-                text = "Email"
-            ),
+            title = "Email",
             placeholder = "Enter your email"
-        ){ value ->
+        ){}
 
-        }
-
-        CustumTextFieldPassword(
+        CustomTextFieldPassword(
             modifier = Modifier,
-            textFieldState = TextFieldState(
-                text = "Password"
-            ),
+            title =  "Password",
             placeholder = "Enter your password"
-        ){ value ->
+        ){}
 
-        }
-
-        CustumTextFieldPassword(
+        CustomTextFieldPassword(
             modifier = Modifier.padding(bottom = 30.dp),
-            textFieldState = TextFieldState(
-                text = "Password Confirmation"
-            ),
+            title = "Password Confirmation",
             placeholder = "Confirm your password"
-        ){ value -> }
+        ){}
 
         Box(modifier = Modifier
             .fillMaxWidth()
@@ -242,15 +226,7 @@ fun RegisterContent(openDashboard: () -> Unit) {
     }
 }
 
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    name = "DefaultPreviewDark",
-)
-@Preview(
-
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-    name = "DefaultPreviewLight"
-)
+@PreviewLightDark
 @Composable
 fun DefaultPreview() {
     RegisterContent({})
