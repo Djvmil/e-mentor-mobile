@@ -25,6 +25,8 @@ import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsSerializ
 import com.djvmil.data.source.db.util.DATABASE_NAME
 import com.djvmil.entretienmentor.DatabaseSource
 import com.djvmil.entretienmentor.core.common.di.dispatchersKoinModule
+import com.djvmil.entretienmentor.core.data.source.db.dao.CommunityDao
+import com.djvmil.entretienmentor.core.data.source.db.dao.CommunityDaoImpl
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.android.Android
@@ -61,6 +63,7 @@ val dataModule = module {
     single { Json { ignoreUnknownKeys = true } }
     single<CommunityRepository> { MovieRepositoryImpl(api = get(), dao = get(), dataStore = get()) }
     single<AuthRepository> { AuthRepositoryImpl(get(), get()) }
+    single<CommunityDao> { CommunityDaoImpl(get()) }
 
     //single<ICrypto>{Crypto(get())}
     singleOf(::DataSourceRepositoryImpl)

@@ -5,7 +5,7 @@ import com.djvmil.entretienmentor.core.data.model.toData
 import com.djvmil.entretienmentor.core.data.model.toDatabase
 import com.djvmil.entretienmentor.core.data.source.api.api.ApiService
 import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSource
-import com.djvmil.data.source.db.dao.CommunityDao
+import com.djvmil.entretienmentor.core.data.source.db.dao.CommunityDao
 import com.djvmil.entretienmentor.core.common.model.ErrorEM
 import com.djvmil.entretienmentor.core.common.model.ResultEM
 import kotlinx.coroutines.flow.Flow

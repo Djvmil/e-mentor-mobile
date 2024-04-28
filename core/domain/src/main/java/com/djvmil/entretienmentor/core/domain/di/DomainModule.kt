@@ -11,6 +11,12 @@ import com.djvmil.entretienmentor.core.domain.usecase.UpdateCommunityUseCase
 import com.djvmil.entretienmentor.core.domain.util.UseCase
 import com.djvmil.entretienmentor.core.common.model.ErrorEM
 import com.djvmil.entretienmentor.core.common.model.ResultEM
+import com.djvmil.entretienmentor.core.domain.model.InputLogin
+import com.djvmil.entretienmentor.core.domain.model.InputRegister
+import com.djvmil.entretienmentor.core.domain.model.LoginInputValidationType
+import com.djvmil.entretienmentor.core.domain.model.RegisterInputValidationType
+import com.djvmil.entretienmentor.core.domain.usecase.ValidateLoginInputUseCase
+import com.djvmil.entretienmentor.core.domain.usecase.ValidateRegisterInputUseCase
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
@@ -21,4 +27,6 @@ val domainModule = module {
     singleOf(::RegisterUseCase) { bind<UseCase<AuthRequest, Flow<ResultEM<RequestResult<String>, ErrorEM>>>>() }
     singleOf(::GetCommunityUseCase) { bind<UseCase<Int, Flow<ResultEM<CommunityDomainModel, ErrorEM>>>>() }
     singleOf(::UpdateCommunityUseCase) { bind<UseCase<CommunityDomainModel, Unit>>() }
+    singleOf(::ValidateLoginInputUseCase) { bind<UseCase<InputLogin, LoginInputValidationType>>() }
+    singleOf(::ValidateRegisterInputUseCase) { bind<UseCase<InputRegister, RegisterInputValidationType>>() }
 }

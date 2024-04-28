@@ -1,5 +1,6 @@
 package com.djvmil.entretienmentor.feature.ui
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -9,9 +10,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -20,22 +21,41 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.djvmil.entretienmentor.feature.R
 
 @Composable
-fun CustumTextField(modifier: Modifier = Modifier, textFieldState: TextFieldState? = null, placeholder: String? = null, shape: RoundedCornerShape = RoundedCornerShape(10.dp), onValueChange: (String) -> Unit) {
+fun CustomTextField(
+    modifier: Modifier = Modifier,
+    placeholder: String? = null,
+    shape: RoundedCornerShape = RoundedCornerShape(10.dp),
+    errorText: String? = null,
+    title: String? = null,
+    readOnly: Boolean = false,
+    @DrawableRes leadingIconId: Int? = null,
+    @DrawableRes trailingIconId: Int? = null,
+    onValueChange: (String) -> Unit
+) {
     var value by rememberSaveable { mutableStateOf("") }
-    Column(modifier.padding(vertical = 5.dp).fillMaxWidth()) {
-        if (textFieldState?.text != null){
+
+    Column(
+        modifier
+            .padding(vertical = 5.dp)
+            .fillMaxWidth()) {
+        if (title != null){
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = textFieldState.text,
+                text = title,
                 fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
             )
         }
 
-        val trailingIcon: (@Composable () -> Unit)? = if (textFieldState?.icon != null) {
-            { Icon(painter = painterResource(id = textFieldState.icon), "Icon") }
+        val leadingIcon: (@Composable () -> Unit)? = if (leadingIconId != null) {
+            { Icon(painter = painterResource(id = leadingIconId), "Icon") }
+        } else null
+
+        val trailingIcon: (@Composable () -> Unit)? = if (trailingIconId != null) {
+            { Icon(painter = painterResource(id = trailingIconId), "Icon") }
         } else null
 
         OutlinedTextField(
@@ -47,16 +67,21 @@ fun CustumTextField(modifier: Modifier = Modifier, textFieldState: TextFieldStat
                 value = it
                 onValueChange(it)
             },
-            isError = !textFieldState?.error.isNullOrBlank(),
-            trailingIcon = trailingIcon
+            readOnly = readOnly,
+            singleLine = true,
+            isError = !errorText.isNullOrBlank(),
+            trailingIcon = trailingIcon,
+            leadingIcon = leadingIcon
         )
-        if (!textFieldState?.error.isNullOrBlank()) {
+
+        if (!errorText.isNullOrBlank()) {
             Text(
-                text = textFieldState?.error ?: "",
+                modifier = Modifier.fillMaxWidth().padding(start = 5.dp),
+                text = errorText,
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.error,
-                textAlign = TextAlign.Start,
-                modifier = Modifier.fillMaxWidth()
+                fontSize = 12.sp,
+                textAlign = TextAlign.Start
             )
         }
     }
@@ -66,16 +91,19 @@ fun CustumTextField(modifier: Modifier = Modifier, textFieldState: TextFieldStat
 @Preview
 @Composable
 fun CustumTextFieldPreview(){
-
+/*
     Column {
         CustumTextField(
             modifier = Modifier,
+            value = ""
         ){}
         CustumTextField(
             modifier = Modifier,
+            value = ""
         ){}
         CustumTextField(
             modifier = Modifier,
+            value = ""
         ){}
-    }
+    }*/
 }
