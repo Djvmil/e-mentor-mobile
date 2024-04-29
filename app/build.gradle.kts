@@ -33,7 +33,8 @@ android {
             // TODO: Abstract the signing configuration to a separate file to avoid hardcoding this.
             signingConfig = signingConfigs.getByName("debug")
         }
-/*        val demo by creating {
+
+        /*val demo by creating {
             // Enable all the optimizations from release build through initWith(release).
             initWith(release)
             matchingFallbacks.add("release")
@@ -55,8 +56,8 @@ android {
 dependencies {
     implementation(project(":feature"))
     implementation(project(":core:ui"))
-    implementation(project(":core:domain"))
     implementation(project(":core:data"))
+    implementation(project(":core:domain"))
     implementation(project(":core:common"))
 
     implementation(libs.core.ktx)

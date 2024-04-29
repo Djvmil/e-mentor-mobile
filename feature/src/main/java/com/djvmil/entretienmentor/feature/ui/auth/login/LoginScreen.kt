@@ -1,5 +1,6 @@
 package com.djvmil.entretienmentor.feature.ui.auth.login
 
+import android.widget.Button
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -52,14 +54,13 @@ fun LoginScreen(
         onLoginButtonClick = viewModel::onLoginClick,
         errorHint = { viewModel.loginState.errorMessageLoginProcess },
         errorUsernameHint = { viewModel.loginState.errorUsernameInput },
-        isLoading = true
+        isLoading = viewModel.loginState.isLoading
     ){
         openDashboard.invoke()
     }
 }
+typealias ClickHandler = (Button, String) -> Unit
 
-
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun LoginContent(
     buttonEnabled: () -> Boolean,
@@ -69,9 +70,11 @@ fun LoginContent(
     errorHint: () -> String?,
     errorUsernameHint: () -> String?,
     isLoading: Boolean = false,
-    openDashboard: () -> Unit
+    openDashboard: () -> Unit,
 ) {
-    Box(modifier = Modifier.fillMaxSize()){
+    Box(
+        modifier = Modifier.fillMaxSize(),
+    ){
         Column(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.background)
@@ -83,6 +86,7 @@ fun LoginContent(
                 modifier = Modifier.padding(vertical = 5.dp),
                 text = "Let's Sign you in",
                 fontSize = 30.sp,
+                lineHeight = 30.sp,
                 fontFamily = FontFamily(Font(R.font.josefin_sans_semibold))
             )
 
@@ -90,6 +94,7 @@ fun LoginContent(
                 modifier = Modifier.padding(vertical = 5.dp),
                 text = "Welcome back",
                 fontSize = 25.sp,
+                lineHeight = 25.sp,
                 color = MaterialTheme.colorScheme.primary,
                 fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
             )
@@ -98,6 +103,7 @@ fun LoginContent(
                 modifier = Modifier.padding(vertical = 5.dp),
                 text = "You've been missed!",
                 fontSize = 25.sp,
+                lineHeight = 25.sp,
                 color = MaterialTheme.colorScheme.primary,
                 fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
             )
@@ -107,7 +113,7 @@ fun LoginContent(
                     .padding(top = 30.dp),
                 title = "Username or Email",
                 placeholder = "Enter your username or email",
-                errorText = errorUsernameHint.invoke(),
+                errorText1 = errorUsernameHint.invoke(),
                 onValueChange = onUsernameInputChanged
             )
 
@@ -208,7 +214,7 @@ fun LoginContent(
                         verticalAlignment = Alignment.CenterVertically) {
 
                         Text(
-                            text = "Don't have an account?  ",
+                            text = stringResource(R.string.dont_have_an_account_text),
                             modifier = Modifier ,
                             style = TextStyle(
                                 textAlign = TextAlign.Center,
@@ -240,13 +246,14 @@ fun LoginContent(
                         .primary
                         .copy(0.5f)
                 )
-                .fillMaxSize(),
+                .fillMaxSize()
+                .align(Alignment.Center),
             isLoading = isLoading
         )
     }
 }
 
-@PreviewLightDark
+@PreviewLightDark()
 @Composable
 fun DefaultPreview() {
     LoginContent(
