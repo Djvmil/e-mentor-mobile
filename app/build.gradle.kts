@@ -1,8 +1,9 @@
 import com.djvmil.entretienmentor.EMBuildType
 
 plugins {
-    id("djvmil.e-mentor.app")
-    id("djvmil.e-mentor.app.compose")
+    alias(libs.plugins.djvmil.ementor.app)
+    alias(libs.plugins.djvmil.ementor.app.compose)
+    alias(libs.plugins.djvmil.ementor.app.flavors)
 }
 
 android {
@@ -20,10 +21,10 @@ android {
     }
 
     buildTypes {
-        val debug by getting {
+        debug {
             applicationIdSuffix = EMBuildType.DEBUG.applicationIdSuffix
         }
-        val release by getting {
+        release {
             isMinifyEnabled = true
             applicationIdSuffix = EMBuildType.RELEASE.applicationIdSuffix
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -31,24 +32,20 @@ android {
             // To publish on the Play store a private signing key is required, but to allow anyone
             // who clones the code to sign and run the release variant, use the debug signing key.
             // TODO: Abstract the signing configuration to a separate file to avoid hardcoding this.
-            signingConfig = signingConfigs.getByName("debug")
-        }
+            signingConfig = signingConfigs.named("debug").get()
 
-        /*val demo by creating {
-            // Enable all the optimizations from release build through initWith(release).
-            initWith(release)
-            matchingFallbacks.add("release")
-            // Debug key signing is available to everyone.
-            signingConfig = signingConfigs.getByName("debug")
-            // Only use benchmark proguard rules
-            proguardFiles("benchmark-rules.pro")
-            isMinifyEnabled = true
-            applicationIdSuffix = EMBuildType.DEBUG.applicationIdSuffix
-        }*/
+        }
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
         }
     }
 }
@@ -59,15 +56,16 @@ dependencies {
     implementation(projects.core.data)
     implementation(projects.core.domain)
     implementation(projects.core.common)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.navigation)
- 
 
     implementation(libs.androidx.core.splashscreen)
 
-    //androidTestImplementation(kotlin("test"))
+    implementation(libs.koin.workmanager)
+    testImplementation(libs.koin.test.junit4)
     androidTestImplementation(projects.core.testing)
     androidTestImplementation(libs.androidx.navigation.testing)
 }
@@ -80,3 +78,16 @@ configurations.configureEach {
         force("org.objenesis:objenesis:2.6")
     }
 }
+
+dependencyGuard {
+    configuration("prodReleaseRuntimeClasspath")
+}
+
+/*
+moduleGraphAssert {
+    maxHeight = 2
+    allowed = [":app -> .*", ".* -> [\\S:]*-api"]
+    restricted = ["[\\S:]*-api -X> [\\S:]*-api"]
+    assertOnAnyBuild = true
+}
+*/

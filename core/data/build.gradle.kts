@@ -1,5 +1,5 @@
 plugins {
-    id("djvmil.e-mentor.library")
+    alias(libs.plugins.djvmil.ementor.library)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.sqldelight)
 }
@@ -43,9 +43,11 @@ dependencies {
     implementation(libs.primitive.adapters)
     implementation(libs.androidx.paging3.extensions)
 
-    testImplementation(projects.core.testing)
 
     //test
+    testImplementation(projects.core.testing)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.kotlinx.serialization.json)
     testImplementation(libs.sqldelight.sqlite.driver)
     testImplementation(libs.sqldelight.sqlite.driver)
 }

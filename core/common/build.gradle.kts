@@ -1,5 +1,5 @@
 plugins {
-    id("djvmil.e-mentor.library")
+    alias(libs.plugins.djvmil.ementor.library)
 }
 
 android {

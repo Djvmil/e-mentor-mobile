@@ -1,6 +1,6 @@
 plugins {
-    id("djvmil.e-mentor.library")
-    id("djvmil.e-mentor.library.compose")
+    alias(libs.plugins.djvmil.ementor.library)
+    alias(libs.plugins.djvmil.ementor.library.compose)
 }
 
 android {
@@ -11,16 +11,15 @@ android {
 }
 
 dependencies {
+    api(kotlin("test"))
     implementation(projects.core.common)
     implementation(projects.core.data)
 
-    api(libs.junit4)
-    api(libs.turbine)
-    api(libs.androidx.test.core)
-    api(libs.androidx.test.espresso.core)
-    api(libs.androidx.test.runner)
-    api(libs.androidx.test.rules)
-    api(libs.androidx.test.ext.junit)
+    api(libs.androidx.compose.ui.test)
 
     debugApi(libs.androidx.compose.ui.test.manifest)
+
+    implementation(libs.androidx.test.rules)
+    implementation(libs.kotlinx.coroutines.test)
+    implementation(libs.kotlinx.datetime)
 }

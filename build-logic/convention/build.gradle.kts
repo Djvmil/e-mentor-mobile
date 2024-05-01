@@ -54,5 +54,13 @@ gradlePlugin {
             id = "djvmil.e-mentor.core"
             implementationClass = "EMentorCoreConventionPlugin"
         }
+        register("androidTest") {
+            id = "djvmil.e-mentor.test"
+            implementationClass = "EMentorTestConventionPlugin"
+        }
+        register("androidFlavors") {
+            id = "djvmil.e-mentor.app.flavors"
+            implementationClass = "EMentorAppFlavorsConventionPlugin"
+        }
     }
 }
