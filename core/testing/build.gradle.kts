@@ -11,8 +11,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:common"))
-    implementation(project(":core:data"))
+    implementation(projects.core.common)
+    implementation(projects.core.data)
 
     api(libs.junit4)
     api(libs.turbine)
@@ -22,5 +22,5 @@ dependencies {
     api(libs.androidx.test.rules)
     api(libs.androidx.test.ext.junit)
 
-    debugApi(libs.ui.test.manifest)
+    debugApi(libs.androidx.compose.ui.test.manifest)
 }

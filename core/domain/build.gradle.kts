@@ -8,11 +8,11 @@ android {
 }
 
 dependencies {
-    implementation(libs.core.ktx)
+    implementation(libs.androidx.core.ktx)
 
-    implementation(project(":core:common"))
-    implementation(project(":core:data"))
-    testImplementation(project(":core:testing"))
+    implementation(projects.core.common)
+    implementation(projects.core.data)
+    testImplementation(projects.core.testing)
 
     implementation(libs.koin.android)
     implementation(libs.koin.test.junit4)

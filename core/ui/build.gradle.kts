@@ -8,18 +8,18 @@ android {
 }
 
 dependencies {
-    implementation(libs.core.ktx)
+    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.compose.runtime)
     api(libs.androidx.compose.foundation)
     api(libs.androidx.compose.foundation.layout)
-    api(libs.compose.constraintlayout)
-    api(libs.ui)
+    api(libs.androidx.compose.constraintlayout)
+    api(libs.compose.ui)
     api(libs.material)
-    api(libs.material3)
-    api(libs.ui.graphics)
+    api(libs.androidx.compose.material3)
+    api(libs.compose.ui.graphics)
     api(libs.compose.coil)
-    api(libs.ui.tooling.preview)
     api(libs.androidx.graphics.shapes)
+    api(libs.compose.ui.tooling.preview)
     api(libs.androidx.material.icons.extended)
-    debugApi(libs.ui.tooling)
+    debugApi(libs.compose.ui.tooling)
 }

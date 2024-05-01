@@ -54,13 +54,12 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature"))
-    implementation(project(":core:ui"))
-    implementation(project(":core:data"))
-    implementation(project(":core:domain"))
-    implementation(project(":core:common"))
-
-    implementation(libs.core.ktx)
+    implementation(projects.feature)
+    implementation(projects.core.ui)
+    implementation(projects.core.data)
+    implementation(projects.core.domain)
+    implementation(projects.core.common)
+    implementation(libs.androidx.core.ktx)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.navigation)
@@ -69,7 +68,7 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
 
     //androidTestImplementation(kotlin("test"))
-    androidTestImplementation(project(":core:testing"))
+    androidTestImplementation(projects.core.testing)
     androidTestImplementation(libs.androidx.navigation.testing)
 }
 

@@ -9,5 +9,5 @@ android {
 dependencies {
     implementation(libs.koin.android)
     implementation(libs.tink.android)
-    testImplementation(project(":core:testing"))
+    testImplementation(projects.core.testing)
 }

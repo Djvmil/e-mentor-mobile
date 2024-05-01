@@ -30,7 +30,7 @@ class EMentorCoreConventionPlugin : Plugin<Project> {
                 //add("implementation", libs.findLibrary("androidx.lifecycle.runtimeCompose").get())
                 //add("implementation", libs.findLibrary("androidx.compose.runtime").get())
                 add("implementation", libs.findLibrary("kotlinx.collections.immutable").get())
-                add("implementation", libs.findLibrary("compose.navigation").get())
+                add("implementation", libs.findLibrary("androidx.navigation.compose").get())
 
                 add("implementation", libs.findLibrary("koin.android").get())
                 add("implementation", libs.findLibrary("koin.compose").get())

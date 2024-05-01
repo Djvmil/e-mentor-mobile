@@ -9,28 +9,28 @@ import com.djvmil.entretienmentor.core.domain.util.containsUpperCase
 
 class ValidateRegisterInputUseCase: UseCase<InputRegister, RegisterInputValidationType> {
 
-    override suspend operator fun invoke(inputRegister: InputRegister): RegisterInputValidationType {
+    override suspend operator fun invoke(input: InputRegister): RegisterInputValidationType {
 
 
-        if (inputRegister.emailInput.isEmpty() || inputRegister.passwordInput.isEmpty() || inputRegister.passwordRepeatedInput.isEmpty()) {
+        if (input.emailInput.isEmpty() || input.passwordInput.isEmpty() || input.passwordRepeatedInput.isEmpty()) {
             return RegisterInputValidationType.EmptyField
         }
-        if ("@" !in inputRegister.emailInput) {
+        if ("@" !in input.emailInput) {
             return RegisterInputValidationType.NoEmail
         }
-        if (inputRegister.passwordInput != inputRegister.passwordRepeatedInput) {
+        if (input.passwordInput != input.passwordRepeatedInput) {
             return RegisterInputValidationType.PasswordDoNotMatch
         }
-        if (inputRegister.passwordInput.count() < 8) {
+        if (input.passwordInput.count() < 8) {
             return RegisterInputValidationType.PasswordTooShort
         }
-        if (!inputRegister.passwordInput.containsNumber()) {
+        if (!input.passwordInput.containsNumber()) {
             return RegisterInputValidationType.PasswordNumberMissing
         }
-        if (!inputRegister.passwordInput.containsUpperCase()){
+        if (!input.passwordInput.containsUpperCase()){
             return RegisterInputValidationType.PasswordUpperCaseMissing
         }
-        if (!inputRegister.passwordInput.containsSpecialChar()){
+        if (!input.passwordInput.containsSpecialChar()){
             return RegisterInputValidationType.PasswordSpecialCharMissing
         }
         return RegisterInputValidationType.Valid

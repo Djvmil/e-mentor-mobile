@@ -21,9 +21,9 @@ sqldelight {
 }
 
 dependencies {
-    implementation(project(":core:common"))
+    implementation(projects.core.common)
 
-    implementation(libs.kotlinx.serialization)
+    implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.ktor.core)
     implementation(libs.ktor.android)
@@ -43,7 +43,7 @@ dependencies {
     implementation(libs.primitive.adapters)
     implementation(libs.androidx.paging3.extensions)
 
-    testImplementation(project(":core:testing"))
+    testImplementation(projects.core.testing)
 
     //test
     testImplementation(libs.sqldelight.sqlite.driver)

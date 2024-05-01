@@ -8,6 +8,6 @@ import com.djvmil.entretienmentor.core.domain.util.UseCase
 class UpdateCommunityUseCase internal constructor(
     private val repository: CommunityRepository
 ) : UseCase<CommunityDomainModel, Unit> {
-    override suspend fun invoke(community: CommunityDomainModel) =
-        repository.update(community.toData())
+    override suspend fun invoke(input: CommunityDomainModel) =
+        repository.update(input.toData())
 }
