@@ -15,7 +15,6 @@ compose-bom = "2024.05.00"
 compose-constraintlayout = "1.0.1"
 coil = "2.6.0"
 material = "1.11.0"
-material3 = "1.2.1"
 kotlinx-immutable-collection = "0.3.7"
 ktor = "2.3.7"
 

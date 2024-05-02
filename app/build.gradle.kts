@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.djvmil.ementor.app)
     alias(libs.plugins.djvmil.ementor.app.compose)
     alias(libs.plugins.djvmil.ementor.app.flavors)
+    alias(libs.plugins.module.graph) apply true // Plugin applied to allow module graph generation
 }
 
 android {
@@ -84,11 +85,15 @@ dependencyGuard {
     //configuration("prodReleaseRuntimeClasspath")
 }
 
-/*
 moduleGraphAssert {
-    maxHeight = 2
-    allowed = [":app -> .*", ".* -> [\\S:]*-api"]
-    restricted = ["[\\S:]*-api -X> [\\S:]*-api"]
-    assertOnAnyBuild = true
+    maxHeight = 4
+    allowed = arrayOf(
+       // ":.* -> :domain:.*",
+       // ":.* -> :core:.*",
+    )
+    restricted = arrayOf(
+       // ":core:.* -X> :feature",
+        ":feature:.* -X> :feature:.*"
+    )
+    assertOnAnyBuild = false
 }
-*/
