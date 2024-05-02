@@ -80,7 +80,8 @@ configurations.configureEach {
 }
 
 dependencyGuard {
-    configuration("prodReleaseRuntimeClasspath")
+    configuration("releaseRuntimeClasspath")
+    //configuration("prodReleaseRuntimeClasspath")
 }
 
 /*
