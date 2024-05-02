@@ -1,5 +1,5 @@
 plugins {
-    id("djvmil.e-mentor.library")
+    alias(libs.plugins.djvmil.ementor.library)
 }
 
 
@@ -8,11 +8,10 @@ android {
 }
 
 dependencies {
-    implementation(libs.core.ktx)
+    implementation(projects.core.common)
+    implementation(projects.core.data)
 
-    implementation(project(":core:common"))
-    implementation(project(":core:data"))
-    testImplementation(project(":core:testing"))
+    testImplementation(projects.core.testing)
 
     implementation(libs.koin.android)
     implementation(libs.koin.test.junit4)

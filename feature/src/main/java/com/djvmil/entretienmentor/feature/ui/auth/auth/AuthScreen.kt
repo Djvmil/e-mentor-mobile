@@ -238,11 +238,13 @@ fun BottomAuthPage(navActions: NavigationHelpers) {
 
 @Preview(
     uiMode = Configuration.UI_MODE_NIGHT_YES,
-    name = "DefaultPreviewDark"
+    name = "DefaultPreviewDark",
+    showSystemUi = true
 )
 @Preview(
     uiMode = Configuration.UI_MODE_NIGHT_NO,
-    name = "DefaultPreviewLight"
+    name = "DefaultPreviewLight",
+    showSystemUi = true
 )
 @Composable
 fun AuthScreenPreview(){

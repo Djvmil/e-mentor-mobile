@@ -29,7 +29,7 @@ fun CustomTextField(
     modifier: Modifier = Modifier,
     placeholder: String? = null,
     shape: RoundedCornerShape = RoundedCornerShape(10.dp),
-    errorText: String? = null,
+    errorText1: String? = null,
     title: String? = null,
     readOnly: Boolean = false,
     @DrawableRes leadingIconId: Int? = null,
@@ -37,6 +37,7 @@ fun CustomTextField(
     onValueChange: (String) -> Unit
 ) {
     var value by rememberSaveable { mutableStateOf("") }
+    var errorText by rememberSaveable { mutableStateOf(errorText1) }
 
     Column(
         modifier
@@ -63,6 +64,7 @@ fun CustomTextField(
             shape = shape,
             placeholder = { placeholder?.let { Text(text = it) } },
             value = value,
+            supportingText = { placeholder?.let { Text(text = it) } },
             onValueChange = {
                 value = it
                 onValueChange(it)
@@ -77,7 +79,7 @@ fun CustomTextField(
         if (!errorText.isNullOrBlank()) {
             Text(
                 modifier = Modifier.fillMaxWidth().padding(start = 5.dp),
-                text = errorText,
+                text = errorText!!,
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.error,
                 fontSize = 12.sp,

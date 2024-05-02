@@ -1,5 +1,5 @@
 plugins {
-    id("djvmil.e-mentor.library")
+    alias(libs.plugins.djvmil.ementor.library)
 }
 
 android {
@@ -9,5 +9,5 @@ android {
 dependencies {
     implementation(libs.koin.android)
     implementation(libs.tink.android)
-    testImplementation(project(":core:testing"))
+    testImplementation(projects.core.testing)
 }

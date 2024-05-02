@@ -1,0 +1,20 @@
+digraph G {
+":app" -> ":feature" [color=red style=bold]
+":app" -> ":core:ui"
+":app" -> ":core:data"
+":app" -> ":core:domain"
+":app" -> ":core:common"
+
+":feature" -> ":core:ui"
+":feature" -> ":core:data"
+":feature" -> ":core:common"
+":feature" -> ":core:domain" [color=red style=bold]
+
+":core:data" -> ":core:common" [color=red style=bold]
+
+":core:domain" -> ":core:common"
+":core:domain" -> ":core:data" [color=red style=bold]
+
+":core:testing" -> ":core:common"
+":core:testing" -> ":core:data"
+}

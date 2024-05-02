@@ -1,8 +1,10 @@
 import com.djvmil.entretienmentor.EMBuildType
 
 plugins {
-    id("djvmil.e-mentor.app")
-    id("djvmil.e-mentor.app.compose")
+    alias(libs.plugins.djvmil.ementor.app)
+    alias(libs.plugins.djvmil.ementor.app.compose)
+    alias(libs.plugins.djvmil.ementor.app.flavors)
+    alias(libs.plugins.module.graph) apply true // Plugin applied to allow module graph generation
 }
 
 android {
@@ -20,10 +22,10 @@ android {
     }
 
     buildTypes {
-        val debug by getting {
+        debug {
             applicationIdSuffix = EMBuildType.DEBUG.applicationIdSuffix
         }
-        val release by getting {
+        release {
             isMinifyEnabled = true
             applicationIdSuffix = EMBuildType.RELEASE.applicationIdSuffix
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -31,44 +33,41 @@ android {
             // To publish on the Play store a private signing key is required, but to allow anyone
             // who clones the code to sign and run the release variant, use the debug signing key.
             // TODO: Abstract the signing configuration to a separate file to avoid hardcoding this.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.named("debug").get()
+
         }
-/*        val demo by creating {
-            // Enable all the optimizations from release build through initWith(release).
-            initWith(release)
-            matchingFallbacks.add("release")
-            // Debug key signing is available to everyone.
-            signingConfig = signingConfigs.getByName("debug")
-            // Only use benchmark proguard rules
-            proguardFiles("benchmark-rules.pro")
-            isMinifyEnabled = true
-            applicationIdSuffix = EMBuildType.DEBUG.applicationIdSuffix
-        }*/
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
-    implementation(project(":feature"))
-    implementation(project(":core:ui"))
-    implementation(project(":core:domain"))
-    implementation(project(":core:data"))
-    implementation(project(":core:common"))
+    implementation(projects.feature)
+    implementation(projects.core.ui)
+    implementation(projects.core.data)
+    implementation(projects.core.domain)
+    implementation(projects.core.common)
 
-    implementation(libs.core.ktx)
+    implementation(libs.androidx.core.ktx)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.navigation)
- 
 
     implementation(libs.androidx.core.splashscreen)
 
-    //androidTestImplementation(kotlin("test"))
-    androidTestImplementation(project(":core:testing"))
+    implementation(libs.koin.workmanager)
+    testImplementation(libs.koin.test.junit4)
+    androidTestImplementation(projects.core.testing)
     androidTestImplementation(libs.androidx.navigation.testing)
 }
 
@@ -79,4 +78,22 @@ configurations.configureEach {
         // Temporary workaround for https://issuetracker.google.com/174733673
         force("org.objenesis:objenesis:2.6")
     }
+}
+
+dependencyGuard {
+    configuration("releaseRuntimeClasspath")
+    //configuration("prodReleaseRuntimeClasspath")
+}
+
+moduleGraphAssert {
+    maxHeight = 4
+    allowed = arrayOf(
+       // ":.* -> :domain:.*",
+       // ":.* -> :core:.*",
+    )
+    restricted = arrayOf(
+       // ":core:.* -X> :feature",
+        ":feature:.* -X> :feature:.*"
+    )
+    assertOnAnyBuild = false
 }

@@ -20,7 +20,7 @@ enum class EMFlavor(val dimension: FlavorDimension, val applicationIdSuffix: Str
     prod(FlavorDimension.contentType, ".prod")
 }
 
-fun Project.configureFlavors(
+fun configureFlavors(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
     flavorConfigurationBlock: ProductFlavor.(flavor: EMFlavor) -> Unit = {}
 ) {
@@ -33,7 +33,7 @@ fun Project.configureFlavors(
                     flavorConfigurationBlock(this, it)
                     if (this@apply is ApplicationExtension && this is ApplicationProductFlavor) {
                         if (it.applicationIdSuffix != null) {
-                            this.applicationIdSuffix = it.applicationIdSuffix
+                            applicationIdSuffix = it.applicationIdSuffix
                         }
                     }
                 }
