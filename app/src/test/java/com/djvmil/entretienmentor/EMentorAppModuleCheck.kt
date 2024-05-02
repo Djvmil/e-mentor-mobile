@@ -6,6 +6,7 @@ import androidx.work.WorkerParameters
 import com.djvmil.entretienmentor.di.ProvideAppModules.getAppModules
 import org.junit.Test
 import org.koin.core.annotation.KoinExperimentalAPI
+import org.koin.dsl.koinApplication
 import org.koin.test.verify.verify
 
 class EMentorAppModuleCheck {
@@ -21,5 +22,9 @@ class EMentorAppModuleCheck {
                 WorkerParameters::class
             )
         )
+
+        /*koinApplication {
+            getAppModules()
+        }*/
     }
 }
