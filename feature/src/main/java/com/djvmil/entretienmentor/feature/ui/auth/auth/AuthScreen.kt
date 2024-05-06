@@ -57,9 +57,6 @@ fun AuthScreen(navActions: NavigationHelpers) {
 @Composable
 fun TopAuthPage(navActions: NavigationHelpers) {
     Column {
-
-
-
         Box(
             modifier = Modifier
                 .padding(10.dp)

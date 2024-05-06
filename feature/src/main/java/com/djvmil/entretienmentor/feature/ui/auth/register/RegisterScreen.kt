@@ -1,6 +1,5 @@
 package com.djvmil.entretienmentor.feature.ui.auth.register
 
-import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,6 +11,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Face
 import androidx.compose.material3.HorizontalDivider
@@ -19,6 +20,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -27,8 +32,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,6 +42,12 @@ import com.djvmil.entretienmentor.feature.R
 import com.djvmil.entretienmentor.feature.ui.CustomTextField
 import com.djvmil.entretienmentor.feature.ui.CustomTextFieldPassword
 import com.djvmil.entretienmentor.feature.ui.HeaderComponent
+import com.djvmil.entretienmentor.feature.ui.auth.login.model.ConfirmPasswordState
+import com.djvmil.entretienmentor.feature.ui.auth.login.model.PasswordState
+import com.djvmil.entretienmentor.feature.ui.auth.login.model.TextFieldNotEmptyState
+import com.djvmil.entretienmentor.feature.ui.auth.login.model.TextFieldState
+import com.djvmil.entretienmentor.feature.ui.auth.login.model.UsernameState
+import com.djvmil.entretienmentor.feature.ui.auth.login.model.UsernameStateSaver
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -53,6 +65,15 @@ fun RegisterContent(openDashboard: () -> Unit) {
             .background(MaterialTheme.colorScheme.background)
             .padding(30.dp),
     ) {
+        val firstnameState = remember { TextFieldNotEmptyState(label = "Firstname") }
+        val lastnameState = remember { TextFieldState(label = "Lastname") }
+        val phoneNumberState = remember { TextFieldState(label = "Phone Number") }
+        val emailState by rememberSaveable(stateSaver = UsernameStateSaver) {
+            mutableStateOf(UsernameState(label = "Username or Email"))
+        }
+        val passwordState = remember { PasswordState(label = "Password") }
+        val confirmPasswordState = remember { ConfirmPasswordState(label = "Password Confirmation", passwordState = passwordState) }
+
         HeaderComponent(Modifier.padding(vertical = 10.dp)) {
             openDashboard.invoke()
         }
@@ -85,49 +106,41 @@ fun RegisterContent(openDashboard: () -> Unit) {
             color = MaterialTheme.colorScheme.primary,
             fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
         )
-
         CustomTextField(
             modifier = Modifier
                 .padding(top = 20.dp),
-            title = "Firstname",
-            placeholder = "Enter your firstname"
-        ){ value ->
-
-        }
-
+            textFieldState = firstnameState
+        )
         CustomTextField(
             modifier = Modifier,
-            title = "Lastname",
-            placeholder = "Enter your lastname"
-        ){ value ->
-
-        }
-
+            textFieldState = lastnameState
+        )
         CustomTextField(
             modifier = Modifier,
-            title = "Lastname",
-            placeholder = "Enter your phone number"
-        ){ value ->
-
-        }
-
+            textFieldState = phoneNumberState
+        )
         CustomTextField(
             modifier = Modifier,
-            title = "Email",
-            placeholder = "Enter your email"
-        ){}
+            textFieldState = emailState
+        )
+        CustomTextFieldPassword(
+            modifier = Modifier,
+            passwordState = passwordState,
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Next,
+                keyboardType = KeyboardType.Password
+            ),
+        )
 
         CustomTextFieldPassword(
             modifier = Modifier,
-            title =  "Password",
-            placeholder = "Enter your password"
-        ){}
-
-        CustomTextFieldPassword(
-            modifier = Modifier.padding(bottom = 30.dp),
-            title = "Password Confirmation",
-            placeholder = "Confirm your password"
-        ){}
+            passwordState = confirmPasswordState,
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    //onSubmit.invoke()
+                }
+            ),
+        )
 
         Box(modifier = Modifier
             .fillMaxWidth()

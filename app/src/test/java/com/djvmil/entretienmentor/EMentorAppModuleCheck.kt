@@ -23,7 +23,11 @@ class EMentorAppModuleCheck {
             )
         )
 
-        /*koinApplication {
+        /*
+        //Arrange //Act //Assert
+        //Given //When //Then
+
+        koinApplication {
             getAppModules()
         }*/
     }

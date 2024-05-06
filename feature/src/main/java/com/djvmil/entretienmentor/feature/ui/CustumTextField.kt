@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -15,78 +17,66 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.djvmil.entretienmentor.feature.R
+import com.djvmil.entretienmentor.feature.ui.auth.login.model.TextFieldState
 
 @Composable
 fun CustomTextField(
     modifier: Modifier = Modifier,
-    placeholder: String? = null,
+    textFieldState: TextFieldState,
     shape: RoundedCornerShape = RoundedCornerShape(10.dp),
-    errorText1: String? = null,
-    title: String? = null,
     readOnly: Boolean = false,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    keyboardOptions: KeyboardOptions = KeyboardOptions(
+        imeAction = ImeAction.Next,
+        keyboardType = KeyboardType.Text
+    ),
     @DrawableRes leadingIconId: Int? = null,
     @DrawableRes trailingIconId: Int? = null,
-    onValueChange: (String) -> Unit
 ) {
-    var value by rememberSaveable { mutableStateOf("") }
-    var errorText by rememberSaveable { mutableStateOf(errorText1) }
+    val leadingIcon: (@Composable () -> Unit)? = if (leadingIconId != null) {
+        { Icon(painter = painterResource(id = leadingIconId), "Icon") }
+    } else null
 
-    Column(
-        modifier
-            .padding(vertical = 5.dp)
-            .fillMaxWidth()) {
-        if (title != null){
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = title,
-                fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-            )
-        }
+    val trailingIcon: (@Composable () -> Unit)? = if (trailingIconId != null) {
+        { Icon(painter = painterResource(id = trailingIconId), "Icon") }
+    } else null
 
-        val leadingIcon: (@Composable () -> Unit)? = if (leadingIconId != null) {
-            { Icon(painter = painterResource(id = leadingIconId), "Icon") }
-        } else null
-
-        val trailingIcon: (@Composable () -> Unit)? = if (trailingIconId != null) {
-            { Icon(painter = painterResource(id = trailingIconId), "Icon") }
-        } else null
-
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            shape = shape,
-            placeholder = { placeholder?.let { Text(text = it) } },
-            value = value,
-            supportingText = { placeholder?.let { Text(text = it) } },
-            onValueChange = {
-                value = it
-                onValueChange(it)
+    OutlinedTextField(
+        modifier = modifier
+            .padding(vertical = 2.dp)
+            .fillMaxWidth()
+            .onFocusChanged { focusState ->
+                textFieldState.onFocusChange(focusState.isFocused)
+                if (!focusState.isFocused) {
+                    textFieldState.enableShowErrors()
+                }
             },
-            readOnly = readOnly,
-            singleLine = true,
-            isError = !errorText.isNullOrBlank(),
-            trailingIcon = trailingIcon,
-            leadingIcon = leadingIcon
-        )
-
-        if (!errorText.isNullOrBlank()) {
-            Text(
-                modifier = Modifier.fillMaxWidth().padding(start = 5.dp),
-                text = errorText!!,
-                style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.error,
-                fontSize = 12.sp,
-                textAlign = TextAlign.Start
-            )
-        }
-    }
+        shape = shape,
+        label = { textFieldState.label?.let { Text(text = it) } },
+        value = textFieldState.text,
+        supportingText = { textFieldState.getError()?.let { Text(text = it) } },
+        onValueChange = {
+            textFieldState.text = it
+        },
+        readOnly = readOnly,
+        singleLine = true,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        isError = textFieldState.showErrors(),
+        trailingIcon = trailingIcon,
+        leadingIcon = leadingIcon,
+    )
 }
 
 

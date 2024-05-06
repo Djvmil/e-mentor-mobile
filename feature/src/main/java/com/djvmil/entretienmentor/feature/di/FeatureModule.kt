@@ -11,8 +11,8 @@ import org.koin.dsl.module
 val featureModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { DetailViewModel(get(), get()) }
-    viewModel { RegisterViewModel(get(), get(), get()) }
-    viewModel { LoginViewModel(get(), get(), get(), get()) }
+    viewModel { RegisterViewModel(get(), get()) }
+    viewModel { LoginViewModel(get(), get(), get()) }
     viewModel { ForgetPasswordViewModel(get(), get(), get(), get()) }
 
 }

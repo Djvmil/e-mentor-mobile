@@ -194,5 +194,4 @@ private fun ShowShimmerMoviesPreview() {
     ShowShimmerMovies(
         isEnableShimmer = true,
         count = ShimmerMovieItemCount
-    )
-}
+    ) }

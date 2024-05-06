@@ -91,17 +91,14 @@ val dataModule = module {
     }
 
     single<ApiService> { ApiServiceImpl(httpClient = get()) }
-    single<HttpClientEngine> { OkHttp.create() }
-    //single<HttpClientConfig<OkHttpConfig>> { HttpClientConfig() }
-    single { provideKtorClient(get(), get()) }
+    single { provideKtorClient(get()) }
 
 }
 
 fun provideKtorClient(
-    dataStoreSource: AppSettingsDataStoreSource,
-    okHttpEngine: OkHttp
+    dataStoreSource: AppSettingsDataStoreSource
 ): HttpClient {
-    return HttpClient(okHttpEngine) {
+    return HttpClient(Android) {
 
         install(Logging) {
             logger = CustomHttpLogger()
@@ -110,11 +107,6 @@ fun provideKtorClient(
                 override fun log(message: String) {
                     Log.i("HttpClient", message)
                 }
-            }
-        }
-        engine {
-            config {
-                //addInterceptor( CustomInterceptor() )
             }
         }
         install(ResponseObserver) {
