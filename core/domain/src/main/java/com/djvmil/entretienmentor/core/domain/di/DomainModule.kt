@@ -11,6 +11,8 @@ import com.djvmil.entretienmentor.core.domain.usecase.UpdateCommunityUseCase
 import com.djvmil.entretienmentor.core.domain.util.UseCase
 import com.djvmil.entretienmentor.core.common.model.ErrorEM
 import com.djvmil.entretienmentor.core.common.model.ResultEM
+import com.djvmil.entretienmentor.core.domain.usecase.GetAndStoreAllCommunityUseCase
+import com.djvmil.entretienmentor.core.domain.util.UseCaseNoInput
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
@@ -21,4 +23,5 @@ val domainModule = module {
     singleOf(::RegisterUseCase) { bind<UseCase<AuthRequest, Flow<ResultEM<RequestResult<String>, ErrorEM>>>>() }
     singleOf(::GetCommunityUseCase) { bind<UseCase<Int, Flow<ResultEM<CommunityDomainModel, ErrorEM>>>>() }
     singleOf(::UpdateCommunityUseCase) { bind<UseCase<CommunityDomainModel, Unit>>() }
+    singleOf(::GetAndStoreAllCommunityUseCase) { bind<UseCaseNoInput<Flow<ResultEM<List<CommunityDomainModel>, ErrorEM>>>>() }
 }

@@ -9,11 +9,16 @@ import com.djvmil.entretienmentor.feature.ui.detail.navigation.navigateToDetail
 import com.djvmil.entretienmentor.feature.ui.home.HomeScreen
 import com.djvmil.entretienmentor.feature.navigation.Destinations
 import com.djvmil.entretienmentor.feature.navigation.NavigationHelpers
+import com.djvmil.entretienmentor.feature.ui.home.HomeGuestScreen
 
 fun NavGraphBuilder.home(
-    navActions: NavigationHelpers
+    navActions: NavigationHelpers,
+    isGuest: Boolean = false
 ) {
-    composable(Destinations.HOME_ROUTE, enterTransition = {
+    val route = if(isGuest) Destinations.HOME_GUEST_ROUTE else Destinations.HOME_ROUTE
+
+    composable( route,
+        enterTransition = {
         return@composable fadeIn(tween(1000))
     }, exitTransition = {
         return@composable slideOutOfContainer(
@@ -24,15 +29,28 @@ fun NavGraphBuilder.home(
             AnimatedContentTransitionScope.SlideDirection.End, tween(700)
         )
     }) {
-        HomeScreen(
-            onShowDetail = { movieId ->
-                navActions.navigateToDetail(movieId)
-            }
-        )
+        if (isGuest){
+            HomeScreen(
+                onShowDetail = { movieId ->
+                    navActions.navigateToDetail(movieId)
+                }
+            )
+        }else{
+            HomeGuestScreen(
+                onShowDetail = { movieId ->
+                    navActions.navigateToDetail(movieId)
+                }
+            )
+        }
     }
 }
 
 
 fun NavigationHelpers.navigateToHome() {
     navController.navigate(Destinations.HOME_ROUTE)
+}
+
+
+fun NavigationHelpers.navigateToHomeGuest() {
+    navController.navigate(Destinations.HOME_GUEST_ROUTE)
 }

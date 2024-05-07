@@ -43,8 +43,9 @@ import androidx.navigation.compose.rememberNavController
 import com.djvmil.entretienmentor.feature.R
 import com.djvmil.entretienmentor.feature.ui.auth.login.navigation.navigateToLogin
 import com.djvmil.entretienmentor.feature.ui.auth.register.navigation.navigateToRegister
-import com.djvmil.entretienmentor.feature.ui.home.navigation.navigateToHome
 import com.djvmil.entretienmentor.feature.navigation.NavigationHelpers
+import com.djvmil.entretienmentor.feature.ui.home.navigation.navigateToHome
+import com.djvmil.entretienmentor.feature.ui.home.navigation.navigateToHomeGuest
 
 @Composable
 fun AuthScreen(navActions: NavigationHelpers) {
@@ -78,7 +79,7 @@ fun TopAuthPage(navActions: NavigationHelpers) {
             )
             TextButton(
                 modifier = Modifier.align(Alignment.TopEnd),
-                onClick = { navActions.navigateToHome()}) {
+                onClick = { navActions.navigateToHomeGuest() }) {
                 Icon(
                     modifier = Modifier.size(15.dp),
                     imageVector = Icons.Rounded.Close,

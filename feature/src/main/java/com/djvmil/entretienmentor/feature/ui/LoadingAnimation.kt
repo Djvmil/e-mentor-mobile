@@ -1,10 +1,12 @@
 package com.djvmil.entretienmentor.feature.ui
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -18,6 +20,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun LoadingAnimation(
     modifier: Modifier = Modifier,
@@ -56,29 +59,33 @@ fun LoadingAnimation(
     val distance = with(LocalDensity.current) { travelDistance.toPx() }
 
     if (isLoading){
-        Box(
-            modifier = modifier
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center,
-        ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(spaceBetween)
+
+        Scaffold(modifier = modifier) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentAlignment = Alignment.Center,
             ) {
-                circleValues.forEach { value ->
-                    Box(
-                        modifier = Modifier
-                            .size(circleSize)
-                            .graphicsLayer {
-                                translationY = -value * distance
-                            }
-                            .background(
-                                color = circleColor,
-                                shape = CircleShape
-                            )
-                    )
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(spaceBetween)
+                ) {
+                    circleValues.forEach { value ->
+                        Box(
+                            modifier = Modifier
+                                .size(circleSize)
+                                .graphicsLayer {
+                                    translationY = -value * distance
+                                }
+                                .background(
+                                    color = circleColor,
+                                    shape = CircleShape
+                                )
+                        )
+                    }
                 }
             }
         }
+
 
     }
 }

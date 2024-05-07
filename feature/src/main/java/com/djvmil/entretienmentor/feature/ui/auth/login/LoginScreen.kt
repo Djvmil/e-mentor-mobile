@@ -6,16 +6,21 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imeNestedScroll
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Face
 import androidx.compose.material3.HorizontalDivider
@@ -82,82 +87,90 @@ fun LoginScreen(
                 .padding(30.dp),
         ){
             HeaderComponent(modifier = Modifier.padding(bottom = 20.dp)) { openDashboard.invoke() }
-            Text(
-                modifier = Modifier.padding(vertical = 5.dp),
-                text = "Let's Sign you in",
-                fontSize = 30.sp,
-                lineHeight = 30.sp,
-                fontFamily = FontFamily(Font(R.font.josefin_sans_semibold))
-            )
 
-            Text(
-                modifier = Modifier.padding(vertical = 5.dp),
-                text = "Welcome back",
-                fontSize = 25.sp,
-                lineHeight = 25.sp,
-                color = MaterialTheme.colorScheme.primary,
-                fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-            )
-
-            Text(
-                modifier = Modifier.padding(vertical = 5.dp),
-                text = "You've been missed!",
-                fontSize = 25.sp,
-                lineHeight = 25.sp,
-                color = MaterialTheme.colorScheme.primary,
-                fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
-            )
-
-            LoginForm(
-                usernameState,
-                passwordState,
-                onSubmit,
-            )
-
-            Row(
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(60.dp)
+                .imePadding() // padding for the bottom for the IME
+                //.imeNestedScroll() // fill the entire window
+                .verticalScroll(rememberScrollState())
             ) {
-                if (uiState.isFail){
-                    val error = uiState as? ScreenUiState.Failure
+                Text(
+                    modifier = Modifier.padding(vertical = 5.dp),
+                    text = "Let's Sign you in",
+                    fontSize = 30.sp,
+                    lineHeight = 30.sp,
+                    fontFamily = FontFamily(Font(R.font.josefin_sans_semibold))
+                )
 
-                    error?.error?.message?.let {
-                        TextFieldError(textError = it)
+                Text(
+                    modifier = Modifier.padding(vertical = 5.dp),
+                    text = "Welcome back",
+                    fontSize = 25.sp,
+                    lineHeight = 25.sp,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+                )
+
+                Text(
+                    modifier = Modifier.padding(vertical = 5.dp),
+                    text = "You've been missed!",
+                    fontSize = 25.sp,
+                    lineHeight = 25.sp,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+                )
+
+                LoginForm(
+                    usernameState,
+                    passwordState,
+                    onSubmit,
+                )
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                ) {
+                    if (uiState.isFail){
+                        val error = uiState as? ScreenUiState.Failure
+
+                        error?.error?.message?.let {
+                            TextFieldError(textError = it)
+                        }
                     }
                 }
-            }
 
-            Box(modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp)
-                .clickable(usernameState.isValid && passwordState.isValid) {
-                    onSubmit.invoke()
-                }
-                .graphicsLayer {
-                    shape = RoundedCornerShape(10.dp)
-                    clip = true
-                }
-                .then(
-                    if ((usernameState.isValid && passwordState.isValid))
-                        Modifier.background(MaterialTheme.colorScheme.primary)
-                    else Modifier.background(MaterialTheme.colorScheme.primary.copy(0.5f))
-                ),
-                contentAlignment = Alignment.Center
-            ){
-                Text(
-                    modifier = Modifier,
-                    text = "Login",
-                    style = TextStyle(
-                        fontSize = 24.sp,
-                        color = MaterialTheme.colorScheme.onPrimary,
-                        fontWeight = FontWeight.W900,
-                        fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+                Box(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .clickable(usernameState.isValid && passwordState.isValid) {
+                        onSubmit.invoke()
+                    }
+                    .graphicsLayer {
+                        shape = RoundedCornerShape(10.dp)
+                        clip = true
+                    }
+                    .then(
+                        if ((usernameState.isValid && passwordState.isValid))
+                            Modifier.background(MaterialTheme.colorScheme.primary)
+                        else Modifier.background(MaterialTheme.colorScheme.primary.copy(0.5f))
+                    ),
+                    contentAlignment = Alignment.Center
+                ){
+                    Text(
+                        modifier = Modifier,
+                        text = "Login",
+                        style = TextStyle(
+                            fontSize = 24.sp,
+                            color = MaterialTheme.colorScheme.onPrimary,
+                            fontWeight = FontWeight.W900,
+                            fontFamily = FontFamily(Font(R.font.helvetica_neue_regular))
+                        )
                     )
-                )
-            }
+                }
 
-            BottomLogin()
+                BottomLogin()
+            }
         }
 
         if (uiState.isLoading){
@@ -169,7 +182,6 @@ fun LoginScreen(
                             .primary
                             .copy(0.5f)
                     )
-                    .fillMaxSize()
                     .align(Alignment.Center),
                 isLoading = true
             )
@@ -267,8 +279,6 @@ private fun BottomLogin() {
     }
 }
 
-typealias ClickHandler = (Button, String) -> Unit
-
 @Composable
 fun TextFieldError(textError: String) {
     Row(modifier = Modifier.fillMaxWidth()) {
@@ -279,22 +289,4 @@ fun TextFieldError(textError: String) {
             color = MaterialTheme.colorScheme.error
         )
     }
-}
-
-@PreviewLightDark()
-@Composable
-fun DefaultPreview() {
-    /*LoginContent(
-        {},
-        {""},
-    ) {}*/
-}
-
-@Preview(showBackground = true, widthDp = 700, heightDp = 500)
-@Composable
-fun DefaultPreviewTablet() {
-    /*LoginContent(
-        {},
-        {""},
-    ) {}*/
 }

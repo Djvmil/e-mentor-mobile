@@ -25,5 +25,5 @@
     <string name="onBoardingTitle3">Play the beat</string>
     <string name="onBoardingText3">Most beginner producers learn make \n creating by simple beats</string>
     <string name="dont_have_an_account_text">"Don't have an account?  "</string>
-
+    <string name="not_connected">⚠️ You aren’t connected to the internet</string>
 </resources>

@@ -12,6 +12,7 @@ interface AppSettingsDataStoreSource {
     suspend fun setTheme(theme: AppTheme)
     fun  getTheme(): Flow<AppTheme?>
     suspend fun setIsLogin(status: Boolean)
+    suspend fun setLogin(status: Boolean, accessToken: String, steps: StepsStarting)
     fun isLogin(): Flow<Boolean?>
     suspend fun setStepsStarting(steps: StepsStarting)
     fun getStepsStarting(): Flow<StepsStarting?>

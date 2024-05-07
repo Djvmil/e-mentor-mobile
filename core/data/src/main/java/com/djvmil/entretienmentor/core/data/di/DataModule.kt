@@ -109,6 +109,7 @@ fun provideKtorClient(
                 }
             }
         }
+
         install(ResponseObserver) {
             onResponse { response ->
                 Log.i("HTTP status", response.status.value.toString())
@@ -131,9 +132,8 @@ fun provideKtorClient(
                     }
                 }
             }
-
-
         }
+
         install(Auth) {
             bearer {
                 sendWithoutRequest {
@@ -141,8 +141,8 @@ fun provideKtorClient(
                 }
                 loadTokens {
                     Log.d("HttpResponseValidator", "loadTokens: ", )
-                    val value = dataStoreSource.getAccessTokenForAuth() ?: ""
-                    BearerTokens(value, value)
+                    val tokenValue = dataStoreSource.getAccessTokenForAuth() ?: ""
+                    BearerTokens(accessToken = tokenValue, refreshToken = tokenValue)
                 }
                 refreshTokens {
                     Log.d("HttpResponseValidator", "refreshTokens: ")

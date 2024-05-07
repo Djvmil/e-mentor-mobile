@@ -5,10 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.djvmil.entretienmentor.core.common.dispatcher.AppDispatchers
 import com.djvmil.entretienmentor.core.common.model.ResultEM
 import com.djvmil.entretienmentor.core.data.model.auth.AuthRequest
-import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSource
 import com.djvmil.entretienmentor.core.domain.usecase.LoginUseCase
 import com.djvmil.entretienmentor.feature.ui.ScreenUiState
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -16,7 +14,6 @@ import kotlinx.coroutines.launch
 class LoginViewModel(
     private val loginUseCase: LoginUseCase,
     private val dispatchers: AppDispatchers,
-    private val dataStoreSource: AppSettingsDataStoreSource
 ) : ViewModel()  {
     private var _uiState = MutableStateFlow<ScreenUiState<String>>(ScreenUiState.Init)
     val uiState = _uiState.asStateFlow()
@@ -26,7 +23,8 @@ class LoginViewModel(
         loginUseCase.invoke(
             AuthRequest(username = username, password = password)
         ).collect { result->
-            delay(4000)
+            //Simulate delay
+            //delay(2000)
             when(result){
                 is ResultEM.Loading -> {
                     _uiState.emit(ScreenUiState.Loading)
@@ -35,11 +33,11 @@ class LoginViewModel(
                     _uiState.emit(ScreenUiState.Success("Success Login"))
                 }
                 is ResultEM.Failure -> {
-                    result.error.throwable?.let { ScreenUiState.Failure(it) }
+                    result.error.throwable
+                        ?.let { ScreenUiState.Failure(it) }
                         ?.let { _uiState.emit(it) }
                 }
             }
-
         }
     }
 
