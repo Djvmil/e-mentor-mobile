@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class AppSettings(
     val isLogin: Boolean = false,
     val accessToken: String? = null,
-    val stepsStarting: StepsStarting? = StepsStarting.NONE,
+    val stepsStarting: StepsStarting = StepsStarting.ON_BOARDING,
     val theme: AppTheme = AppTheme.default()
 )
 internal val APP_SETTING_NULL: AppSettings = AppSettings()

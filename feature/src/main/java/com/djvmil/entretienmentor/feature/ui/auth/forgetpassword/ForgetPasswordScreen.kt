@@ -15,6 +15,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -29,6 +32,8 @@ import androidx.compose.ui.unit.sp
 import com.djvmil.entretienmentor.feature.R
 import com.djvmil.entretienmentor.feature.ui.CustomTextField
 import com.djvmil.entretienmentor.feature.ui.HeaderComponent
+import com.djvmil.entretienmentor.feature.ui.auth.login.model.UsernameState
+import com.djvmil.entretienmentor.feature.ui.auth.login.model.UsernameStateSaver
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -81,13 +86,16 @@ fun ForgetPasswordContent(openDashboard: () -> Unit) {
                 style = TextStyle(fontSize = 40.sp, fontFamily = FontFamily.Cursive)
             )
 
+            val usernameState by rememberSaveable(stateSaver = UsernameStateSaver) {
+                mutableStateOf(UsernameState(label = "Username or Email"))
+            }
+
             CustomTextField(
                 modifier = Modifier
                     .padding(top = 30.dp),
-                placeholder = "Enter your username or email"
-            ){ value ->
+                textFieldState = usernameState
+            )
 
-            }
             Spacer(modifier = Modifier.height(15.dp))
 
 

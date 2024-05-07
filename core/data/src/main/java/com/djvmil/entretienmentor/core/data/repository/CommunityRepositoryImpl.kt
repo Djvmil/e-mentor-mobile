@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 
-class MovieRepositoryImpl(
+class CommunityRepositoryImpl(
     val api: ApiService,
     val dao: CommunityDao,
     val dataStore: AppSettingsDataStoreSource

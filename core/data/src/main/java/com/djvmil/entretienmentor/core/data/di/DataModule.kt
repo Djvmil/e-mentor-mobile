@@ -12,7 +12,7 @@ import com.djvmil.entretienmentor.core.data.repository.AuthRepository
 import com.djvmil.entretienmentor.core.data.repository.AuthRepositoryImpl
 import com.djvmil.entretienmentor.core.data.repository.DataSourceRepositoryImpl
 import com.djvmil.entretienmentor.core.data.repository.CommunityRepository
-import com.djvmil.entretienmentor.core.data.repository.MovieRepositoryImpl
+import com.djvmil.entretienmentor.core.data.repository.CommunityRepositoryImpl
 import com.djvmil.entretienmentor.core.data.source.api.api.ApiService
 import com.djvmil.entretienmentor.core.data.source.api.api.ApiServiceImpl
 import com.djvmil.entretienmentor.core.data.source.api.util.CustomHttpLogger
@@ -28,8 +28,13 @@ import com.djvmil.entretienmentor.core.common.di.dispatchersKoinModule
 import com.djvmil.entretienmentor.core.data.source.db.dao.CommunityDao
 import com.djvmil.entretienmentor.core.data.source.db.dao.CommunityDaoImpl
 import io.ktor.client.HttpClient
+import io.ktor.client.HttpClientConfig
 import io.ktor.client.call.body
+import io.ktor.client.engine.HttpClientEngine
+import io.ktor.client.engine.HttpClientEngineConfig
 import io.ktor.client.engine.android.Android
+import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.engine.okhttp.OkHttpConfig
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.HttpTimeout
@@ -61,15 +66,11 @@ val dataModule = module {
     includes(dispatchersKoinModule)
 
     single { Json { ignoreUnknownKeys = true } }
-    single<CommunityRepository> { MovieRepositoryImpl(api = get(), dao = get(), dataStore = get()) }
+    single<CommunityRepository> { CommunityRepositoryImpl(api = get(), dao = get(), dataStore = get()) }
     single<AuthRepository> { AuthRepositoryImpl(get(), get()) }
     single<CommunityDao> { CommunityDaoImpl(get()) }
 
-    //single<ICrypto>{Crypto(get())}
     singleOf(::DataSourceRepositoryImpl)
-
-    //single { provideAead(androidContext()) }
-
 
     single {
         DataStoreFactory.create(
@@ -89,17 +90,16 @@ val dataModule = module {
         DatabaseSource(driver)
     }
 
+    single<ApiService> { ApiServiceImpl(httpClient = get()) }
     single { provideKtorClient(get()) }
 
-    //single<MovieDao> { MovieDaoImpl(db = get()) }
-    single<ApiService> { ApiServiceImpl(httpClient = get()) }
 }
-
 
 fun provideKtorClient(
     dataStoreSource: AppSettingsDataStoreSource
 ): HttpClient {
     return HttpClient(Android) {
+
         install(Logging) {
             logger = CustomHttpLogger()
             level = LogLevel.ALL
@@ -132,9 +132,8 @@ fun provideKtorClient(
                     }
                 }
             }
-
-
         }
+
         install(Auth) {
             bearer {
                 sendWithoutRequest {
@@ -142,8 +141,8 @@ fun provideKtorClient(
                 }
                 loadTokens {
                     Log.d("HttpResponseValidator", "loadTokens: ", )
-                    val value = dataStoreSource.getAccessTokenForAuth() ?: ""
-                    BearerTokens(value, value)
+                    val tokenValue = dataStoreSource.getAccessTokenForAuth() ?: ""
+                    BearerTokens(accessToken = tokenValue, refreshToken = tokenValue)
                 }
                 refreshTokens {
                     Log.d("HttpResponseValidator", "refreshTokens: ")

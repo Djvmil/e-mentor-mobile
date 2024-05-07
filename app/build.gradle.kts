@@ -58,6 +58,7 @@ dependencies {
     implementation(projects.core.domain)
     implementation(projects.core.common)
 
+    implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)

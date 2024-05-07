@@ -20,15 +20,7 @@ class AppSettingsDataStoreSourceImpl (
     private val appDispatchers: AppDispatchers
 ): AppSettingsDataStoreSource {
     override fun appSetting() = appSettings.data
-        .onEach { Log.d("appSettings", "appSettings = $it") }
-        .map { v -> v.takeIf { it != APP_SETTING_NULL } }
-        .catch { cause: Throwable ->
-            if (cause is IOException) {
-                emit(null)
-            } else {
-                throw cause
-            }
-        }
+        //.distinctUntilChanged()
         .flowOn(appDispatchers.io)
 
     override suspend fun update(transform: suspend (current: AppSettings?) -> AppSettings?) =
@@ -64,6 +56,16 @@ class AppSettingsDataStoreSourceImpl (
         }
     }
 
+    override suspend fun setLogin(status: Boolean, accessToken: String, steps: StepsStarting) {
+        appSettings.updateData {
+            it.copy(
+                isLogin = status,
+                accessToken = accessToken,
+                stepsStarting = steps
+            )
+        }
+    }
+
     override fun isLogin() = appSettings.data
         .onEach { Log.d("getTheme", "getTheme=${it.theme}") }
         .map { v -> v.isLogin }
@@ -87,7 +89,7 @@ class AppSettingsDataStoreSourceImpl (
         .map { v -> v.stepsStarting }
         .catch { cause: Throwable ->
             if (cause is IOException) {
-                emit(StepsStarting.NONE)
+                emit(StepsStarting.ON_BOARDING)
             } else {
                 throw cause
             }
@@ -101,7 +103,7 @@ class AppSettingsDataStoreSourceImpl (
     }
 
     override fun getAccessToken() = appSettings.data
-        .onEach { Log.d("getTheme", "getTheme=${it.theme}") }
+        .onEach { Log.d("getTheme", "getTheme = ${it.theme}") }
         .map { v -> v.accessToken }
         .catch { cause: Throwable ->
             if (cause is IOException) {
@@ -114,7 +116,7 @@ class AppSettingsDataStoreSourceImpl (
 
     override suspend fun getAccessTokenForAuth(): String? = appSettings.data
         .onEach {
-            Log.d("getTheme", "getTheme=${it.theme}")
+            Log.d("getTheme", "getTheme = ${it.theme}")
         }
         .map { v -> v.accessToken }
         .catch { cause: Throwable ->

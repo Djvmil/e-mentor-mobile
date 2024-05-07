@@ -11,6 +11,7 @@ import com.djvmil.entretienmentor.core.data.source.api.api.ApiService
 import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSource
 import com.djvmil.entretienmentor.core.common.model.ErrorEM
 import com.djvmil.entretienmentor.core.common.model.ResultEM
+import com.djvmil.entretienmentor.core.data.source.datastore.model.StepsStarting
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -24,9 +25,18 @@ class AuthRepositoryImpl(
         emit(ResultEM.Loading)
         Log.e("AuthRepositoryImpl", "login Loading")
 
-        apiService.login(loginRequest)
+        apiService
+            .login(loginRequest)
             .onSuccess { response ->
-                dataStoreSource.setAccessToken(response.data?.accesToken!!)
+                Log.e("AuthRepositoryImpl", "response: appSettings ${response.data}" )
+
+                //Save token on the data store
+                response.data?.accesToken?.let {token ->
+                    Log.e("AuthRepositoryImpl", "token: appSettings ${response.data}" )
+                    dataStoreSource.setLogin(status = true, accessToken = token, steps = StepsStarting.ON_HOME_USER)
+                }
+
+                //Send success response
                 emit(ResultEM.Success(response) )
                 Log.e("AuthRepositoryImpl", "login onSuccess: $response")
 

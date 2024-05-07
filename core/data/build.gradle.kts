@@ -27,6 +27,7 @@ dependencies {
 
     implementation(libs.ktor.core)
     implementation(libs.ktor.android)
+    implementation(libs.ktor.okHttp)
     implementation(libs.ktor.serialization)
     implementation(libs.ktor.negotiation)
     implementation(libs.ktor.logging)

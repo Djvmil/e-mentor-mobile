@@ -15,8 +15,8 @@ dependencies {
     api(libs.androidx.compose.foundation.layout)
     api(libs.androidx.compose.constraintlayout)
     api(libs.androidx.material.icons.extended)
-    api(libs.androidx.compose.runtime)
     api(libs.androidx.compose.ui.util)
+    api(libs.androidx.compose.runtime)
     api(libs.compose.coil)
 
     api(libs.material)

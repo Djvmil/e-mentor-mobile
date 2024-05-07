@@ -25,5 +25,18 @@
     <style name="Theme.EntretienMentor.Splash" parent="NightAdjusted.Theme.Splash">
         <item name="windowSplashScreenAnimatedIcon">@drawable/header_auth</item>
         <item name="postSplashScreenTheme">@style/Theme.EntretienMentor</item>
+        <item name="android:navigationBarColor">
+            @android:color/transparent
+        </item>
+
+        <!-- Optional: set to transparent if your app is drawing behind the status bar. -->
+        <item name="android:statusBarColor">
+            @android:color/transparent
+        </item>
+
+        <!-- Optional: set for a light status bar with dark content. -->
+        <item name="android:windowLightStatusBar">
+            true
+        </item>
     </style>
 </resources>
