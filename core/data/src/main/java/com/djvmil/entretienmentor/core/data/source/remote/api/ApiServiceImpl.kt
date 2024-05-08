@@ -1,4 +1,4 @@
-package com.djvmil.entretienmentor.core.data.source.api.api
+package com.djvmil.entretienmentor.core.data.source.remote.api
 
 import com.djvmil.entretienmentor.core.common.model.ErrorEM
 import com.djvmil.entretienmentor.core.common.model.ResultEM
@@ -7,16 +7,18 @@ import com.djvmil.entretienmentor.core.data.model.auth.AuthRequest
 import com.djvmil.entretienmentor.core.data.model.auth.RequestResult
 import com.djvmil.entretienmentor.core.data.model.auth.ResponseAuthData
 import com.djvmil.entretienmentor.core.data.model.safeApiCall
-import com.djvmil.entretienmentor.core.data.source.api.model.CommunityApiModel
-import com.djvmil.entretienmentor.core.data.source.api.util.Route.COMMUNITY_URL
-import com.djvmil.entretienmentor.core.data.source.api.util.Route.LOGIN_URL
-import com.djvmil.entretienmentor.core.data.source.api.util.Route.REGISTER_URL
+import com.djvmil.entretienmentor.core.data.source.remote.model.CommunityApiModel
+import com.djvmil.entretienmentor.core.data.source.remote.util.Route.COMMUNITY_URL
+import com.djvmil.entretienmentor.core.data.source.remote.util.Route.LOGIN_URL
+import com.djvmil.entretienmentor.core.data.source.remote.util.Route.REGISTER_URL
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -26,6 +28,7 @@ class ApiServiceImpl(val httpClient: HttpClient) : ApiService {
             httpClient.post {
                 url(LOGIN_URL)
                 setBody (body)
+                contentType(ContentType.Application.Json)
             }.body()
         }
     }
@@ -35,6 +38,7 @@ class ApiServiceImpl(val httpClient: HttpClient) : ApiService {
             httpClient.post {
                 url(REGISTER_URL)
                 setBody (body)
+                contentType(ContentType.Application.Json)
             }.body()
         }
     }

@@ -1,10 +1,10 @@
-package com.djvmil.entretienmentor.core.data.source.api.api
+package com.djvmil.entretienmentor.core.data.source.remote.api
 
 import com.djvmil.entretienmentor.core.data.model.ApiOperation
 import com.djvmil.entretienmentor.core.data.model.auth.AuthRequest
 import com.djvmil.entretienmentor.core.data.model.auth.RequestResult
 import com.djvmil.entretienmentor.core.data.model.auth.ResponseAuthData
-import com.djvmil.entretienmentor.core.data.source.api.model.CommunityApiModel
+import com.djvmil.entretienmentor.core.data.source.remote.model.CommunityApiModel
 import com.djvmil.entretienmentor.core.common.model.ErrorEM
 import com.djvmil.entretienmentor.core.common.model.ResultEM
 import kotlinx.coroutines.flow.Flow

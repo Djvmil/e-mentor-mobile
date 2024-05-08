@@ -16,6 +16,7 @@ dependencies {
     implementation(projects.core.data)
 
     api(libs.androidx.compose.ui.test)
+    api(libs.truth)
 
     debugApi(libs.androidx.compose.ui.test.manifest)
 

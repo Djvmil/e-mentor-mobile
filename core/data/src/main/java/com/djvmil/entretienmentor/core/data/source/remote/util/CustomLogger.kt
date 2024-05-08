@@ -1,4 +1,4 @@
-package com.djvmil.entretienmentor.core.data.source.api.util
+package com.djvmil.entretienmentor.core.data.source.remote.util
 
 import android.util.Log
 import io.ktor.client.plugins.logging.Logger

@@ -3,7 +3,7 @@ package com.djvmil.entretienmentor.core.data.repository
 import com.djvmil.entretienmentor.core.data.model.CommunityDataModel
 import com.djvmil.entretienmentor.core.data.model.toData
 import com.djvmil.entretienmentor.core.data.model.toDatabase
-import com.djvmil.entretienmentor.core.data.source.api.api.ApiService
+import com.djvmil.entretienmentor.core.data.source.remote.api.ApiService
 import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSource
 import com.djvmil.entretienmentor.core.data.source.db.dao.CommunityDao
 import com.djvmil.entretienmentor.core.common.model.ErrorEM
