@@ -33,6 +33,9 @@ dependencies {
     implementation(libs.ktor.logging)
     implementation(libs.ktor.client.auth)
     implementation(libs.koin.android)
+    implementation ("ch.qos.logback:logback-classic:1.4.7")
+
+
 
     //datastore
     implementation(libs.androidx.datastore.proto)
@@ -47,6 +50,8 @@ dependencies {
 
     //test
     testImplementation(projects.core.testing)
+    testImplementation(libs.mockk)
+    testImplementation(libs.ktor.client.mock)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.kotlinx.serialization.json)
     testImplementation(libs.sqldelight.sqlite.driver)

@@ -13,11 +13,11 @@ import com.djvmil.entretienmentor.core.data.repository.AuthRepositoryImpl
 import com.djvmil.entretienmentor.core.data.repository.DataSourceRepositoryImpl
 import com.djvmil.entretienmentor.core.data.repository.CommunityRepository
 import com.djvmil.entretienmentor.core.data.repository.CommunityRepositoryImpl
-import com.djvmil.entretienmentor.core.data.source.api.api.ApiService
-import com.djvmil.entretienmentor.core.data.source.api.api.ApiServiceImpl
-import com.djvmil.entretienmentor.core.data.source.api.util.CustomHttpLogger
-import com.djvmil.entretienmentor.core.data.source.api.util.Route
-import com.djvmil.entretienmentor.core.data.source.api.util.Route.REFRESH_TOKEN_URL
+import com.djvmil.entretienmentor.core.data.source.remote.api.ApiService
+import com.djvmil.entretienmentor.core.data.source.remote.api.ApiServiceImpl
+import com.djvmil.entretienmentor.core.data.source.remote.util.CustomHttpLogger
+import com.djvmil.entretienmentor.core.data.source.remote.util.Route
+import com.djvmil.entretienmentor.core.data.source.remote.util.Route.REFRESH_TOKEN_URL
 import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSource
 import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSourceImpl
 import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSourceImpl.Companion.DATASTORE_FILE
@@ -28,13 +28,8 @@ import com.djvmil.entretienmentor.core.common.di.dispatchersKoinModule
 import com.djvmil.entretienmentor.core.data.source.db.dao.CommunityDao
 import com.djvmil.entretienmentor.core.data.source.db.dao.CommunityDaoImpl
 import io.ktor.client.HttpClient
-import io.ktor.client.HttpClientConfig
 import io.ktor.client.call.body
-import io.ktor.client.engine.HttpClientEngine
-import io.ktor.client.engine.HttpClientEngineConfig
 import io.ktor.client.engine.android.Android
-import io.ktor.client.engine.okhttp.OkHttp
-import io.ktor.client.engine.okhttp.OkHttpConfig
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.HttpTimeout
@@ -155,9 +150,9 @@ fun provideKtorClient(
                         )
                     }.body<RequestResult<ResponseAuthData>>()
 
-                    dataStoreSource.setAccessToken(token.data?.accesToken.toString())
+                    dataStoreSource.setAccessToken(token.data?.accessToken.toString())
 
-                    BearerTokens(token.data?.accesToken!!, token.data?.accesToken!!)
+                    BearerTokens(token.data?.accessToken!!, token.data?.accessToken!!)
                 }
             }
         }
@@ -178,6 +173,9 @@ fun provideKtorClient(
         install(ContentNegotiation) {
             json(Json {
                 ignoreUnknownKeys = true
+                prettyPrint = true
+                isLenient = true
+                coerceInputValues = true
             })
         }
 

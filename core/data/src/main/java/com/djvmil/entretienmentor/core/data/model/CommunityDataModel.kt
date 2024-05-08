@@ -1,6 +1,6 @@
 package com.djvmil.entretienmentor.core.data.model
 
-import com.djvmil.entretienmentor.core.data.source.api.model.CommunityApiModel
+import com.djvmil.entretienmentor.core.data.source.remote.model.CommunityApiModel
 import com.djvmil.sqldelight.CommunityTable
 
 class CommunityDataModel (

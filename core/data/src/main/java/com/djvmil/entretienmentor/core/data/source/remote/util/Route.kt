@@ -1,4 +1,4 @@
-package com.djvmil.entretienmentor.core.data.source.api.util
+package com.djvmil.entretienmentor.core.data.source.remote.util
 
 object Route {
     const val BASE_URL = "51.75.27.211:8989"
