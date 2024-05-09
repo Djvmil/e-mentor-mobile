@@ -1,5 +1,4 @@
 import com.android.build.api.dsl.ApplicationExtension
-import com.djvmil.entretienmentor.configureFlavors
 import com.djvmil.entretienmentor.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project

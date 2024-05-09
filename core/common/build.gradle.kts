@@ -9,5 +9,7 @@ android {
 dependencies {
     implementation(libs.koin.android)
     implementation(libs.tink.android)
+
+    testImplementation(libs.robolectric)
     testImplementation(projects.core.testing)
 }

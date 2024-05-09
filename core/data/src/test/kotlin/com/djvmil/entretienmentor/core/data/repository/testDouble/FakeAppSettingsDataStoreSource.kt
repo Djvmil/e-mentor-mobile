@@ -5,14 +5,12 @@ import com.djvmil.entretienmentor.core.data.source.datastore.model.AppSettings
 import com.djvmil.entretienmentor.core.data.source.datastore.model.AppTheme
 import com.djvmil.entretienmentor.core.data.source.datastore.model.StepsStarting
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 
 class FakeAppSettingsDataStoreSource: AppSettingsDataStoreSource {
 
     private var appSettings = AppSettings()
-    override fun appSetting(): Flow<AppSettings?> = flow{
-        appSettings
-    }
+    override fun appSetting(): Flow<AppSettings?> = flowOf(appSettings)
 
     override suspend fun update(transform: suspend (current: AppSettings?) -> AppSettings?) = appSettings
 
@@ -20,7 +18,7 @@ class FakeAppSettingsDataStoreSource: AppSettingsDataStoreSource {
         appSettings = appSettings.copy(theme = theme)
     }
 
-    override fun getTheme(): Flow<AppTheme?> = flow { appSettings.theme }
+    override fun getTheme(): Flow<AppTheme?> = flowOf(appSettings.theme)
 
     override suspend fun setIsLogin(status: Boolean) {
         appSettings = appSettings.copy(isLogin = status)
@@ -35,7 +33,7 @@ class FakeAppSettingsDataStoreSource: AppSettingsDataStoreSource {
 
     }
 
-    override fun isLogin(): Flow<Boolean?>  = flow { appSettings.isLogin }
+    override fun isLogin(): Flow<Boolean?>  = flowOf (appSettings.isLogin )
 
     override suspend fun setStepsStarting(steps: StepsStarting) {
         appSettings = appSettings.copy(
@@ -44,7 +42,7 @@ class FakeAppSettingsDataStoreSource: AppSettingsDataStoreSource {
 
     }
 
-    override fun getStepsStarting(): Flow<StepsStarting?> = flow { appSettings.stepsStarting }
+    override fun getStepsStarting(): Flow<StepsStarting?> = flowOf(appSettings.stepsStarting)
 
     override suspend fun setAccessToken(accessToken: String) {
         appSettings = appSettings.copy(
@@ -53,7 +51,7 @@ class FakeAppSettingsDataStoreSource: AppSettingsDataStoreSource {
 
     }
 
-    override fun getAccessToken(): Flow<String?>  = flow { appSettings.accessToken }
+    override fun getAccessToken(): Flow<String?>  = flowOf(appSettings.accessToken)
 
     override suspend fun getAccessTokenForAuth(): String?  = appSettings.accessToken
 }

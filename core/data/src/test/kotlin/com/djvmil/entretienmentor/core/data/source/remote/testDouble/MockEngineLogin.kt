@@ -12,7 +12,6 @@ import io.ktor.http.headersOf
 import io.ktor.http.hostWithPort
 
 object MockEngineLogin {
-
     private val Url.hostWithPortIfRequired: String get() = if (port == protocol.defaultPort) host else hostWithPort
     private val Url.fullUrl: String get() = "${protocol.name}://$hostWithPortIfRequired$fullPath"
 

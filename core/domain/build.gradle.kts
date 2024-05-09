@@ -14,6 +14,5 @@ dependencies {
     testImplementation(projects.core.testing)
 
     implementation(libs.koin.android)
-    implementation(libs.koin.test.junit4)
 
 }

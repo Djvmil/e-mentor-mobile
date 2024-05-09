@@ -19,13 +19,10 @@ class CommunityDaoImpl(
             .asFlow()
             .mapToList(Dispatchers.IO)
 
-
     override fun getById(id: Int): Flow<CommunityTable> =
         query.getById(id.toLong())
             .asFlow()
             .mapToOne(Dispatchers.IO)
-
-
 
     override suspend fun update(community: CommunityTable) {
         query.update(

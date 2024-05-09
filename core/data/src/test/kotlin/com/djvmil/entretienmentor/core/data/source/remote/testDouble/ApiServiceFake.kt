@@ -1,4 +1,4 @@
-package com.djvmil.entretienmentor.core.data.source.remote
+package com.djvmil.entretienmentor.core.data.source.remote.testDouble
 
 import com.djvmil.entretienmentor.core.data.model.auth.RequestExceptionResult
 import com.djvmil.entretienmentor.core.data.model.auth.RequestResult
@@ -24,7 +24,6 @@ import kotlinx.serialization.json.Json
 
 class ApiServiceFake {
     companion object {
-
         private val Url.hostWithPortIfRequired: String get() = if (port == protocol.defaultPort) host else hostWithPort
         private val Url.fullUrl: String get() = "${protocol.name}://$hostWithPortIfRequired$fullPath"
 

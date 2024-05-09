@@ -17,10 +17,12 @@ dependencies {
 
     api(libs.androidx.compose.ui.test)
     api(libs.truth)
+    api(libs.mockk)
+    api(libs.koin.test.junit4)
+    api(libs.kotlinx.coroutines.test)
 
     debugApi(libs.androidx.compose.ui.test.manifest)
 
     implementation(libs.androidx.test.rules)
-    implementation(libs.kotlinx.coroutines.test)
     implementation(libs.kotlinx.datetime)
 }

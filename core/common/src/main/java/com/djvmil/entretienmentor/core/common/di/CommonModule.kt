@@ -2,6 +2,10 @@ package com.djvmil.entretienmentor.core.common.di
 
 import android.content.Context
 import android.util.Log
+import com.djvmil.entretienmentor.core.common.KEY_SET_NAME
+import com.djvmil.entretienmentor.core.common.MASTER_KEY_URI
+import com.djvmil.entretienmentor.core.common.PREFERENCE_FILE
+import com.djvmil.entretienmentor.core.common.crypto.Crypto
 import com.djvmil.entretienmentor.core.common.crypto.CryptoImpl
 import com.djvmil.entretienmentor.core.common.dispatcher.AppDispatchersImpl
 import com.djvmil.entretienmentor.core.common.dispatcher.AppDispatchers
@@ -18,7 +22,7 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-val dispatchersKoinModule = module {
+val commonModule = module {
     singleOf(::ConnectivityManagerNetworkMonitor) { bind<NetworkMonitor>() }
     singleOf(::AppDispatchersImpl){ bind<AppDispatchers>() }
 
@@ -26,8 +30,9 @@ val dispatchersKoinModule = module {
         CoroutineScope(get<AppDispatchersImpl>().io + SupervisorJob())
     }
 
-    singleOf(::CryptoImpl)
-    single { provideAead(get()) }
+    single<Aead> { provideAead(get()) }
+    single<Crypto>{ CryptoImpl(get())}
+
 
 }
 
@@ -37,11 +42,11 @@ private fun provideAead(context: Context): Aead {
 
         return AndroidKeysetManager.Builder()
             .withSharedPref(context,
-                com.djvmil.entretienmentor.core.common.KEYSET_NAME,
-                com.djvmil.entretienmentor.core.common.PREFERENCE_FILE
+                KEY_SET_NAME,
+                PREFERENCE_FILE
             )
             .withKeyTemplate(AesGcmKeyManager.aes256GcmTemplate())
-            .withMasterKeyUri(com.djvmil.entretienmentor.core.common.MASTER_KEY_URI)
+            .withMasterKeyUri(MASTER_KEY_URI)
             .build()
             .keysetHandle
             .getPrimitive(Aead::class.java)

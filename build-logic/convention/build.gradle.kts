@@ -21,7 +21,6 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.android.tools.common)
     compileOnly(libs.ksp.gradlePlugin)
-    implementation(libs.truth)
 }
 
 tasks {

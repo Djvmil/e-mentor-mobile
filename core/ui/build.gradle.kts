@@ -5,6 +5,14 @@ plugins {
 
 android {
     namespace = "com.djvmil.entretienmentor.core.ui"
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            merges += "META-INF/LICENSE.md"
+            merges += "META-INF/LICENSE-notice.md"
+        }
+    }
 }
 
 dependencies {
@@ -27,7 +35,5 @@ dependencies {
 
     debugApi(libs.androidx.compose.ui.tooling)
 
-    testImplementation(libs.androidx.compose.ui.test)
-    androidTestImplementation(libs.androidx.compose.ui.test)
-    androidTestImplementation(projects.core.testing)
+   androidTestImplementation(projects.core.testing)
 }

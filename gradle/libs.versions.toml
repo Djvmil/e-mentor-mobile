@@ -51,7 +51,8 @@ androidx-test-ext-junit = "1.1.5"
 truth = "1.4.2"
 turbine = "1.1.0"
 mockk = "1.13.8"
-
+logback-classic = "1.4.7"
+robolectric = "4.12.1"
 version-catalog-update = "0.8.4"
 
 [libraries]
@@ -95,6 +96,9 @@ junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback-classic" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
 
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-material3-adaptive = { group = "androidx.compose.material3.adaptive", name = "adaptive", version.ref = "androidxComposeMaterial3Adaptive" }
@@ -116,7 +120,6 @@ ktor-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = 
 ktor-okHttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
 ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
-mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koinVersion" }

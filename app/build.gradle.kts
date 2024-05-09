@@ -41,6 +41,8 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            merges += "META-INF/LICENSE.md"
+            merges += "META-INF/LICENSE-notice.md"
         }
     }
 
@@ -52,11 +54,11 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.common)
     implementation(projects.feature)
     implementation(projects.core.ui)
     implementation(projects.core.data)
     implementation(projects.core.domain)
-    implementation(projects.core.common)
 
     implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.core.ktx)
@@ -67,7 +69,6 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
 
     implementation(libs.koin.workmanager)
-    testImplementation(libs.koin.test.junit4)
     androidTestImplementation(projects.core.testing)
     androidTestImplementation(libs.androidx.navigation.testing)
 }
