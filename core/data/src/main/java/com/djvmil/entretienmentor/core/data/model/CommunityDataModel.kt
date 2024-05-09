@@ -11,7 +11,6 @@ class CommunityDataModel (
     val dateUpdated: String?
 )
 
-
 internal fun CommunityApiModel.toData() = CommunityDataModel(
     id = id,
     name = name,

@@ -1,9 +1,11 @@
+import kotlinx.datetime.Instant;
+
 CREATE TABLE communityTable (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     name TEXT NOT NULL,
     description TEXT,
-    dateCreated TEXT,
-    dateUpdated TEXT
+    dateCreated TEXT AS Instant NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    dateUpdated TEXT AS Instant NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 insert:

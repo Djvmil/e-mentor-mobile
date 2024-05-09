@@ -4,13 +4,13 @@ import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import app.cash.sqldelight.coroutines.mapToOne
 import com.djvmil.data.source.db.util.THROW_QUERY_INSERT_MOVIE_EXCEPTION
-import com.djvmil.entretienmentor.DatabaseSource
+import com.djvmil.entretienmentor.EMDatabaseSource
 import com.djvmil.sqldelight.CommunityTable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 
 class CommunityDaoImpl(
-    db: DatabaseSource
+    db: EMDatabaseSource
 ) : CommunityDao {
 
     private val query = db.community_tableQueries

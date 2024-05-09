@@ -17,6 +17,9 @@ dependencies {
 
     api(libs.androidx.compose.ui.test)
     api(libs.truth)
+    api(libs.turbine)
+    api(libs.logback.classic)
+    api(libs.robolectric)
     api(libs.mockk)
     api(libs.koin.test.junit4)
     api(libs.kotlinx.coroutines.test)
