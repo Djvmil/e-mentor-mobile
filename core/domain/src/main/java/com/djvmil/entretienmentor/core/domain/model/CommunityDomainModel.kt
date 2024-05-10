@@ -2,9 +2,8 @@ package com.djvmil.entretienmentor.core.domain.model
 
 import com.djvmil.entretienmentor.core.data.model.CommunityDataModel
 
-
 data class CommunityDomainModel(
-    val id: Int,
+    val id: Long,
     val name: String?,
     val description: String?,
     val dateCreated: String?,

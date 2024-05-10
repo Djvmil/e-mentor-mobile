@@ -9,4 +9,4 @@ data class AppSettings(
     val stepsStarting: StepsStarting = StepsStarting.ON_BOARDING,
     val theme: AppTheme = AppTheme.default()
 )
-internal val APP_SETTING_NULL: AppSettings = AppSettings()
+internal val APP_SETTING_DEFAULT: AppSettings = AppSettings()

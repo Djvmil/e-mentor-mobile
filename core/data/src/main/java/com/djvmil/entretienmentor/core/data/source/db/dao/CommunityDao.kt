@@ -10,7 +10,10 @@ interface CommunityDao {
 
     suspend fun update(community: CommunityTable)
 
+    suspend fun insert(community: CommunityTable)
+
     suspend fun insertAll(communities: List<CommunityTable>)
 
+    suspend fun delete(id: Long)
     suspend fun deleteAll()
 }

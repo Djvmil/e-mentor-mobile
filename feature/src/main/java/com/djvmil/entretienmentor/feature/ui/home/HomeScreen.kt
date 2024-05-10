@@ -1,6 +1,5 @@
 package com.djvmil.entretienmentor.feature.ui.home
 
-
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -154,7 +153,7 @@ fun ShowCommunities(
     ) {
         items(
             items = communities,
-            key = { community -> community.id }
+            key = { community -> community.id!! }
         ) { community ->
             CommunityItem(
                 community = community,

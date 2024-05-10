@@ -9,6 +9,9 @@ CREATE TABLE communityTable (
 insert:
 INSERT OR IGNORE INTO communityTable VALUES (:id, :name, :description, :dateCreated, :dateUpdated);
 
+delete:
+DELETE FROM communityTable WHERE id = :id;
+
 deleteAll:
 DELETE FROM communityTable;
 

@@ -9,6 +9,9 @@ CREATE TABLE blogTable (
 insert:
 INSERT OR IGNORE INTO blogTable VALUES (:id, :title, :content, :dateCreated, :dateUpdated);
 
+delete:
+DELETE FROM blogTable WHERE id = :id;
+
 deleteAll:
 DELETE FROM blogTable;
 

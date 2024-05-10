@@ -22,9 +22,9 @@ import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStor
 import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSourceImpl
 import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSourceImpl.Companion.DATASTORE_FILE
 import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsSerializer
-import com.djvmil.data.source.db.util.DATABASE_NAME
-import com.djvmil.entretienmentor.DatabaseSource
-import com.djvmil.entretienmentor.core.common.di.dispatchersKoinModule
+import com.djvmil.entretienmentor.core.data.source.db.util.DATABASE_NAME
+import com.djvmil.entretienmentor.EMDatabaseSource
+import com.djvmil.entretienmentor.core.common.di.commonModule
 import com.djvmil.entretienmentor.core.data.source.db.dao.CommunityDao
 import com.djvmil.entretienmentor.core.data.source.db.dao.CommunityDaoImpl
 import io.ktor.client.HttpClient
@@ -55,10 +55,9 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import java.io.File
 
-
 val dataModule = module {
 
-    includes(dispatchersKoinModule)
+    includes(commonModule)
 
     single { Json { ignoreUnknownKeys = true } }
     single<CommunityRepository> { CommunityRepositoryImpl(api = get(), dao = get(), dataStore = get()) }
@@ -74,15 +73,17 @@ val dataModule = module {
         )
     }
 
-    single<AppSettingsDataStoreSource>{ AppSettingsDataStoreSourceImpl(get(), get()) }
+    single<AppSettingsDataStoreSource>{ AppSettingsDataStoreSourceImpl(get()) }
 
     single {
         val driver: SqlDriver = AndroidSqliteDriver(
-            DatabaseSource.Schema,
+            EMDatabaseSource.Schema,
             androidContext(),
             DATABASE_NAME
         )
-        DatabaseSource(driver)
+        EMDatabaseSource(
+            driver
+        )
     }
 
     single<ApiService> { ApiServiceImpl(httpClient = get()) }

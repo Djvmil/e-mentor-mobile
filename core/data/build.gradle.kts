@@ -14,7 +14,7 @@ android {
 
 sqldelight {
     databases {
-        create("DatabaseSource") {
+        create("EMDatabaseSource") {
             packageName.set("com.djvmil.entretienmentor")
         }
     }
@@ -27,15 +27,12 @@ dependencies {
 
     implementation(libs.ktor.core)
     implementation(libs.ktor.android)
-    implementation(libs.ktor.okHttp)
     implementation(libs.ktor.serialization)
     implementation(libs.ktor.negotiation)
     implementation(libs.ktor.logging)
     implementation(libs.ktor.client.auth)
     implementation(libs.koin.android)
-    implementation ("ch.qos.logback:logback-classic:1.4.7")
-
-
+    implementation(libs.kotlinx.datetime)
 
     //datastore
     implementation(libs.androidx.datastore.proto)
@@ -47,13 +44,9 @@ dependencies {
     implementation(libs.primitive.adapters)
     implementation(libs.androidx.paging3.extensions)
 
-
     //test
     testImplementation(projects.core.testing)
-    testImplementation(libs.mockk)
     testImplementation(libs.ktor.client.mock)
-    testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.kotlinx.serialization.json)
-    testImplementation(libs.sqldelight.sqlite.driver)
     testImplementation(libs.sqldelight.sqlite.driver)
 }

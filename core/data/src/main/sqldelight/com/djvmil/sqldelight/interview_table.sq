@@ -11,6 +11,9 @@ CREATE TABLE interviewTable (
 insert:
 INSERT OR IGNORE INTO interviewTable VALUES (:id, :title, :description, :requiredSkills, :company, :dateCreated, :dateUpdated);
 
+delete:
+DELETE FROM interviewTable WHERE id = :id;
+
 deleteAll:
 DELETE FROM interviewTable;
 
