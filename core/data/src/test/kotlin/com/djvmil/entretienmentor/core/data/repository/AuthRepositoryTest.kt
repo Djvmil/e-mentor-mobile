@@ -35,7 +35,7 @@ class AuthRepositoryTest {
     fun setup() {
         coEvery {
             apiService.login(bodyRequest)
-        } returns ApiOperation.Success(FAKE_DATA.requestResult)
+        } returns ApiOperation.Success(FAKE_DATA.fakeRequestResult)
 
         dataStoreSource = FakeAppSettingsDataStoreSource()
         authRepository = AuthRepositoryImpl(apiService = apiService, dataStoreSource = dataStoreSource)
@@ -45,8 +45,8 @@ class AuthRepositoryTest {
     @Test
     fun login_Assert_Response_Success() = runTest {
         //GIVEN
-        val expectedUserResponse = FAKE_DATA.requestResult.data?.user
-        val expectedAccessToken = FAKE_DATA.requestResult.data?.accessToken
+        val expectedUserResponse = FAKE_DATA.fakeRequestResult.data?.user
+        val expectedAccessToken = FAKE_DATA.fakeRequestResult.data?.accessToken
 
         //WHEN
         val actualData = authRepository.login(bodyRequest)
@@ -76,7 +76,7 @@ class AuthRepositoryTest {
     @Test
     fun login_Assert_Saved_OnDataStore() = runTest {
         //GIVEN
-        val expectedAppSettingDataTest = FAKE_DATA.appSettingDataTest
+        val expectedAppSettingDataTest = FAKE_DATA.fakeAppSettingData
 
         //WHEN
         dataStoreSource.setLogin(

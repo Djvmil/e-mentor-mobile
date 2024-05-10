@@ -22,15 +22,11 @@ import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStor
 import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSourceImpl
 import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsDataStoreSourceImpl.Companion.DATASTORE_FILE
 import com.djvmil.entretienmentor.core.data.source.datastore.AppSettingsSerializer
-import com.djvmil.data.source.db.util.DATABASE_NAME
+import com.djvmil.entretienmentor.core.data.source.db.util.DATABASE_NAME
 import com.djvmil.entretienmentor.EMDatabaseSource
 import com.djvmil.entretienmentor.core.common.di.commonModule
-import com.djvmil.entretienmentor.core.data.source.db.TimestampInstantAdapter
 import com.djvmil.entretienmentor.core.data.source.db.dao.CommunityDao
 import com.djvmil.entretienmentor.core.data.source.db.dao.CommunityDaoImpl
-import com.djvmil.sqldelight.BlogTable
-import com.djvmil.sqldelight.CommunityTable
-import com.djvmil.sqldelight.InterviewTable
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.android.Android
@@ -86,19 +82,7 @@ val dataModule = module {
             DATABASE_NAME
         )
         EMDatabaseSource(
-            driver,
-            communityTableAdapter = CommunityTable.Adapter(
-                dateCreatedAdapter = TimestampInstantAdapter,
-                dateUpdatedAdapter = TimestampInstantAdapter,
-            ),
-            blogTableAdapter = BlogTable.Adapter(
-                dateCreatedAdapter = TimestampInstantAdapter,
-                dateUpdatedAdapter = TimestampInstantAdapter,
-            ),
-            interviewTableAdapter = InterviewTable.Adapter(
-                dateCreatedAdapter = TimestampInstantAdapter,
-                dateUpdatedAdapter = TimestampInstantAdapter,
-            )
+            driver
         )
     }
 

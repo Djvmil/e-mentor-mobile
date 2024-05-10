@@ -24,7 +24,7 @@ class ApiServiceTest {
     fun login_Assert_Response_Success() = runTest {
         //GIVEN
         apiService = ApiServiceFake.build(ApiResponseType.RESPONSE_DATA_VALID)
-        val bodyRequest = FAKE_DATA.authRequest
+        val bodyRequest = FAKE_DATA.fakeAuthRequest
 
         //WHEN
         val actualResult = apiService.login(bodyRequest)
@@ -33,7 +33,7 @@ class ApiServiceTest {
         actualResult.mapSuccess {
             assertThat(it.code).isEqualTo(200)
             assertThat(it.data).isNotNull()
-            assertThat(it.data?.accessToken).isEqualTo(FAKE_DATA.requestResult.data?.accessToken)
+            assertThat(it.data?.accessToken).isEqualTo(FAKE_DATA.fakeRequestResult.data?.accessToken)
         }
     }
 

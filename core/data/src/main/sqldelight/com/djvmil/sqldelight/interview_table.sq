@@ -1,17 +1,18 @@
-import kotlinx.datetime.Instant;
-
 CREATE TABLE interviewTable (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     title TEXT NOT NULL,
     description TEXT,
     requiredSkills TEXT,
     company TEXT,
-    dateCreated TEXT AS Instant NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    dateUpdated TEXT AS Instant NOT NULL DEFAULT CURRENT_TIMESTAMP
+    dateCreated TEXT,
+    dateUpdated TEXT
 );
 
 insert:
 INSERT OR IGNORE INTO interviewTable VALUES (:id, :title, :description, :requiredSkills, :company, :dateCreated, :dateUpdated);
+
+delete:
+DELETE FROM interviewTable WHERE id = :id;
 
 deleteAll:
 DELETE FROM interviewTable;

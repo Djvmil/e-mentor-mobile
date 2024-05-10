@@ -3,7 +3,7 @@ package com.djvmil.entretienmentor.core.data.source.datastore
 import androidx.datastore.core.DataStoreFactory
 import app.cash.turbine.test
 import com.djvmil.entretienmentor.core.common.test.MainDispatcherRule
-import com.djvmil.entretienmentor.core.data.common.FAKE_DATA.appSettingDataTest
+import com.djvmil.entretienmentor.core.data.common.FAKE_DATA.fakeAppSettingData
 import com.djvmil.entretienmentor.core.data.source.datastore.model.AppSettings
 import com.djvmil.entretienmentor.core.data.source.datastore.testDouble.FakeCrypto
 import com.google.common.truth.Truth
@@ -67,7 +67,7 @@ class AppSettingsDataStoreSourceTest {
     @Test
     fun check_update_appSetting() = runTest {
         //GIVEN
-        val expectedAppSetting = appSettingDataTest
+        val expectedAppSetting = fakeAppSettingData
 
         //WHEN
         appSettingsDataStore.update { expectedAppSetting }

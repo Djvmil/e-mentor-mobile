@@ -1,5 +1,6 @@
 package com.djvmil.entretienmentor.core.data.source.remote.model
 
+import com.djvmil.entretienmentor.core.data.source.db.util.DEFAULT_ID
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -8,7 +9,7 @@ data class UserApiModel(
     val country: String? = null,
     val firstname: String? = null,
     val roles: List<RolesUserApi?>? = null,
-    val userID: Int? = null,
+    val userID: Int? = DEFAULT_ID.toInt(),
     val birthDate: String? = null,
     val isEmailVerified: String? = null,
     val lastname: String? = null,

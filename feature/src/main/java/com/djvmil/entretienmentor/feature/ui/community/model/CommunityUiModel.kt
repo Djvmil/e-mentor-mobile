@@ -4,7 +4,7 @@ import com.djvmil.entretienmentor.core.domain.model.CommunityDomainModel
 
 
 data class CommunityUiModel(
-    val id: Int,
+    val id: Int?,
     val name: String? ,
     val description: String?,
     val dateCreated: String?,
@@ -12,7 +12,7 @@ data class CommunityUiModel(
 )
 
 internal fun CommunityDomainModel.toUi() = CommunityUiModel(
-    id = id,
+    id = id.toInt(),
     name = name,
     description = description,
     dateCreated = dateCreated,
@@ -20,7 +20,7 @@ internal fun CommunityDomainModel.toUi() = CommunityUiModel(
 )
 
 internal fun CommunityUiModel.toDomain() = CommunityDomainModel(
-    id = id,
+    id = id!!.toLong(),
     name = name,
     description = description,
     dateCreated = dateCreated,

@@ -49,7 +49,7 @@ fun CommunityItem(
         ConstraintLayout(
             modifier = Modifier
                 .wrapContentSize()
-                .clickable { onShowDetail(community.id) }
+                .clickable { onShowDetail(community.id!!) }
         ) {
             val (
                 image,
