@@ -47,6 +47,7 @@ import com.djvmil.entretienmentor.feature.ui.CustomTextFieldPassword
 import com.djvmil.entretienmentor.feature.ui.HeaderComponent
 import com.djvmil.entretienmentor.feature.ui.LoadingAnimation
 import com.djvmil.entretienmentor.feature.ui.ScreenUiState.Failure
+import com.djvmil.entretienmentor.feature.ui.ScreenUiState.Loading
 import com.djvmil.entretienmentor.feature.ui.auth.login.model.PasswordState
 import com.djvmil.entretienmentor.feature.ui.auth.login.model.TextFieldState
 import com.djvmil.entretienmentor.feature.ui.auth.login.model.UsernameState
@@ -56,6 +57,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun LoginScreen(openDashboard: () -> Unit, viewModel: LoginViewModel = koinViewModel()) {
   val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
   val usernameState by
       rememberSaveable(stateSaver = UsernameStateSaver) {
         mutableStateOf(UsernameState(label = "Username or Email"))
@@ -114,8 +116,22 @@ fun LoginScreen(openDashboard: () -> Unit, viewModel: LoginViewModel = koinViewM
                 Row(
                     modifier = Modifier.fillMaxWidth().height(60.dp)
                 ) {
-                    if (uiState is Failure && (uiState as Failure).error.message != null) {
-                        (uiState as Failure).error.message?.let { TextFieldError(textError = it) }
+
+                    when(val result = uiState){
+                        is Loading -> {
+                            LoadingAnimation(
+                                modifier =
+                                Modifier.background(MaterialTheme.colorScheme.primary.copy(0.5f)),
+                                isLoading = true
+                            )
+                        }
+                        is Failure -> {
+                            result.error.message?.let { TextFieldError(textError = it) }
+
+                        }
+                        else -> {
+
+                        }
                     }
                 }
             }
@@ -151,13 +167,6 @@ fun LoginScreen(openDashboard: () -> Unit, viewModel: LoginViewModel = koinViewM
           }
     }
 
-    if (uiState.isLoading) {
-      LoadingAnimation(
-          modifier =
-              Modifier.background(MaterialTheme.colorScheme.primary.copy(0.5f))
-                  .align(Alignment.Center),
-          isLoading = true)
-    }
   }
 }
 
