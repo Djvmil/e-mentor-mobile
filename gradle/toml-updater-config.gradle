@@ -1,0 +1,51 @@
+versionCatalogUpdate {
+    // sort the catalog by key (default is true)
+    sortByKey.set(true)
+    // Referenced that are pinned are not automatically updated.
+    // They are also not automatically kept however (use keep for that).
+    pin {
+        /* // pins all libraries and plugins using the given versions
+        versions.add("my-version-name")
+
+        // pins specific libraries that are in the version catalog
+        libraries.add(libs.my.library.reference)
+
+        // pins specific plugins that are in the version catalog
+        plugins.add(libs.plugins.my.plugin)
+
+        // pins all libraries (not plugins) for the given groups
+        groups.add("com.somegroup")
+                */
+    }
+    keep {
+       /* // keep has the same options as pin to keep specific entries
+        versions.add("my-version-name")
+        libraries.add(libs.my.library.reference)
+        plugins.add(libs.plugins.my.plugin)
+        groups.add("com.somegroup")*/
+
+        // keep versions without any library or plugin reference
+        keepUnusedVersions.set(true)
+        // keep all libraries that aren't used in the project
+        keepUnusedLibraries.set(true)
+        // keep all plugins that aren't used in the project
+        keepUnusedPlugins.set(true)
+    }
+}
+
+def isNonStable = { String version ->
+    def regex = /^[0-9,.v-]+(-r)?$/
+    return !(version ==~ regex)
+}
+
+tasks.named("dependencyUpdates").configure {
+    resolutionStrategy {
+        componentSelection {
+            configureEach {
+                if (isNonStable(it.candidate.version) && !isNonStable(it.currentVersion)) {
+                    reject('Release candidate')
+                }
+            }
+        }
+    }
+}
