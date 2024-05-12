@@ -36,12 +36,11 @@ fun CommunityItem(community: CommunityUiModel, onShowDetail: (movieId: Int) -> U
 
   Surface(
       modifier = Modifier.background(Color.White).padding(all = SmallPadding).wrapContentSize(),
-      // .clip(RoundedCornerShape(size = MovieItemRound)),
       shadowElevation = SmallEvelation,
       tonalElevation = SmallEvelation) {
         ConstraintLayout(
             modifier = Modifier.wrapContentSize().clickable { onShowDetail(community.id!!) }) {
-              val (image, gradiant, textComment, iconComment, textLike, iconLike, isLiked) =
+              val (image, gradiant, textComment, iconComment, textLike, iconLike) =
                   createRefs()
 
               Image(

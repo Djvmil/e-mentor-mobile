@@ -97,7 +97,6 @@ fun rtlCurve(size: Size) =
 
 @Composable
 fun CurvePath(modifier: Modifier) {
-  var text by remember { mutableStateOf("") }
 
   Column(Modifier.fillMaxSize()) {
     Box(

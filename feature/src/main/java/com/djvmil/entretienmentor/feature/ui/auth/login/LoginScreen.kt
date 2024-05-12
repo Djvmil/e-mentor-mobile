@@ -63,7 +63,7 @@ fun LoginScreen(openDashboard: () -> Unit, viewModel: LoginViewModel = koinViewM
   val passwordState = remember { PasswordState(label = "Password") }
 
   val onSubmit = {
-    if (usernameState.isValid && passwordState.isValid) {
+    if(usernameState.isValid && passwordState.isValid) {
       viewModel.onLoginClick(usernameState.text, passwordState.text)
     }
   }
@@ -111,11 +111,14 @@ fun LoginScreen(openDashboard: () -> Unit, viewModel: LoginViewModel = koinViewM
             )
 
             Row(modifier = Modifier.fillMaxWidth().height(60.dp)) {
-              if (uiState.isFail) {
-                val error = uiState as? ScreenUiState.Failure
 
-                error?.error?.message?.let { TextFieldError(textError = it) }
-              }
+                when(val value = uiState){
+                    is ScreenUiState.Failure -> {
+
+                        value.error.message?.let { TextFieldError(textError = it) }
+                    }
+                    else ->{}
+                }
             }
 
             Box(

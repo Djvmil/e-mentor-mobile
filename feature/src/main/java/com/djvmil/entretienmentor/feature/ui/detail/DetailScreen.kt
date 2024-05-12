@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -56,6 +57,9 @@ fun DetailScreen(
     viewModel.getCommunity(communityId)
   }
 
+    Button(onClick = {onBackClicked.invoke()}) {
+        Text(text = "Back")
+    }
   when (uiState) {
     ResultEM.Loading -> {
       // Todo: Implement Shimmer

@@ -1,6 +1,7 @@
 package com.djvmil.entretienmentor.feature.ui.auth.register
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -55,13 +56,16 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun RegisterScreen(openDashboard: () -> Unit, viewModel: RegisterViewModel = koinViewModel()) {
-  RegisterContent(openDashboard)
+  RegisterContent(openDashboard) { viewModel.onRegisterClick() }
 }
 
 @Composable
-fun RegisterContent(openDashboard: () -> Unit) {
+fun RegisterContent(openDashboard: () -> Unit, onRegisterClick: () -> Unit) {
+
   Column(
-      modifier = Modifier.background(MaterialTheme.colorScheme.background).padding(30.dp),
+      modifier = Modifier
+          .background(MaterialTheme.colorScheme.background)
+          .padding(30.dp),
   ) {
     val firstnameState = remember { TextFieldNotEmptyState(label = "Firstname") }
     val lastnameState = remember { TextFieldState(label = "Lastname") }
@@ -78,9 +82,10 @@ fun RegisterContent(openDashboard: () -> Unit) {
     HeaderComponent(Modifier.padding(vertical = 10.dp)) { openDashboard.invoke() }
     Column(
         modifier =
-            Modifier.imePadding() // padding for the bottom for the IME
-                // .imeNestedScroll() // fill the entire window
-                .verticalScroll(rememberScrollState())) {
+        Modifier
+            .imePadding() // padding for the bottom for the IME
+            // .imeNestedScroll() // fill the entire window
+            .verticalScroll(rememberScrollState())) {
           Text(
               modifier = Modifier.padding(vertical = 5.dp),
               text = "Let's Sign you in",
@@ -128,13 +133,15 @@ fun RegisterContent(openDashboard: () -> Unit) {
 
           Box(
               modifier =
-                  Modifier.fillMaxWidth()
-                      .height(50.dp)
-                      .graphicsLayer {
-                        shape = RoundedCornerShape(10.dp)
-                        clip = true
-                      }
-                      .background(MaterialTheme.colorScheme.primary),
+              Modifier
+                  .fillMaxWidth()
+                  .height(50.dp)
+                  .clickable { onRegisterClick.invoke() }
+                  .graphicsLayer {
+                      shape = RoundedCornerShape(10.dp)
+                      clip = true
+                  }
+                  .background(MaterialTheme.colorScheme.primary),
               contentAlignment = Alignment.Center) {
                 Text(
                     modifier = Modifier,
@@ -154,17 +161,23 @@ fun RegisterContent(openDashboard: () -> Unit) {
               horizontalArrangement = Arrangement.Center,
               verticalAlignment = Alignment.CenterVertically) {
                 Icon(
-                    modifier = Modifier.padding(5.dp).size(40.dp),
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .size(40.dp),
                     imageVector = Icons.Rounded.Face,
                     contentDescription = stringResource(id = R.string.Message))
 
                 Icon(
-                    modifier = Modifier.padding(5.dp).size(40.dp),
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .size(40.dp),
                     imageVector = Icons.Rounded.Face,
                     contentDescription = stringResource(id = R.string.Message))
 
                 Icon(
-                    modifier = Modifier.padding(5.dp).size(40.dp),
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .size(40.dp),
                     imageVector = Icons.Rounded.Face,
                     contentDescription = stringResource(id = R.string.Message))
               }
@@ -175,7 +188,9 @@ fun RegisterContent(openDashboard: () -> Unit) {
           ) {
             Column(modifier = Modifier) {
               Row(
-                  modifier = Modifier.fillMaxWidth().padding(vertical = 3.dp),
+                  modifier = Modifier
+                      .fillMaxWidth()
+                      .padding(vertical = 3.dp),
                   horizontalArrangement = Arrangement.Center,
                   verticalAlignment = Alignment.CenterVertically) {
                     Text(
@@ -204,5 +219,5 @@ fun RegisterContent(openDashboard: () -> Unit) {
 @PreviewLightDark
 @Composable
 fun DefaultPreview() {
-  RegisterContent({})
+  RegisterContent({}, {  })
 }
