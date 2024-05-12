@@ -10,6 +10,7 @@ name: Main Workflow
 jobs:
   sonarcloud:
     runs-on: ubuntu-latest
+    environment: E-MentorEnv
     steps:
       - uses: actions/checkout@v4
         with:
@@ -18,7 +19,6 @@ jobs:
       - name: SonarCloud Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.EM_GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.EM_SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ vars.EM_SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
           LC_ALL: "ru_RU.UTF-8"
