@@ -46,7 +46,6 @@ import com.djvmil.entretienmentor.feature.ui.CustomTextField
 import com.djvmil.entretienmentor.feature.ui.CustomTextFieldPassword
 import com.djvmil.entretienmentor.feature.ui.HeaderComponent
 import com.djvmil.entretienmentor.feature.ui.LoadingAnimation
-import com.djvmil.entretienmentor.feature.ui.ScreenUiState
 import com.djvmil.entretienmentor.feature.ui.ScreenUiState.Failure
 import com.djvmil.entretienmentor.feature.ui.auth.login.model.PasswordState
 import com.djvmil.entretienmentor.feature.ui.auth.login.model.TextFieldState
@@ -115,10 +114,8 @@ fun LoginScreen(openDashboard: () -> Unit, viewModel: LoginViewModel = koinViewM
                 Row(
                     modifier = Modifier.fillMaxWidth().height(60.dp)
                 ) {
-                    if (uiState is Failure) {
-                        (uiState as Failure).error.message?.let { message ->
-                            TextFieldError(textError = message)
-                        }
+                    if (uiState is Failure && (uiState as Failure).error.message != null) {
+                        (uiState as Failure).error.message?.let { TextFieldError(textError = it) }
                     }
                 }
             }

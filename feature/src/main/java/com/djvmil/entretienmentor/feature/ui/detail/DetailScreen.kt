@@ -1,6 +1,7 @@
 package com.djvmil.entretienmentor.feature.ui.detail
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -97,7 +98,7 @@ fun DetailScaffold(
     modifier: Modifier,
     content: @Composable () -> Unit,
 ) {
-  val backgroundColor = Color.Transparent
+
   Box(modifier = modifier.fillMaxSize()) {
     Surface(modifier = Modifier.fillMaxSize(), content = content)
   }
@@ -120,7 +121,8 @@ fun Header(movie: CommunityUiModel, viewModel: DetailViewModel) {
         painter = rememberAsyncImagePainter(model = movie.name),
         contentDescription = null,
         modifier =
-            Modifier.aspectRatio(DetailImageAspectRatio).constrainAs(image) {
+            Modifier
+                .clickable { viewModel.getMovieUseCase }.aspectRatio(DetailImageAspectRatio).constrainAs(image) {
               width = Dimension.fillToConstraints
               linkTo(start = parent.start, end = parent.end, top = parent.top, bottom = info.top)
             },
@@ -142,6 +144,7 @@ fun Header(movie: CommunityUiModel, viewModel: DetailViewModel) {
             Modifier.padding(start = NormalPadding, top = SmallPadding)
                 .size(DetailIcon)
                 .constrainAs(iconComment) {
+
                   start.linkTo(info.start)
                   top.linkTo(info.top)
                 },
