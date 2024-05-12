@@ -1,0 +1,17 @@
+{
+  "code": 200,
+  "massage": "Success Login",
+  "data": {
+    "accessToken": "ashfbhsfhshfksh.kjshfkjhjkshjkfhkshjkf.ioeu82h3dfbm",
+    "user": {
+      "country": "France",
+      "firstname": "admin",
+      "roles": [],
+      "lastname": "admin",
+      "phoneNumber": "0745441397",
+      "email": "admin@em.com",
+      "username": "admin@em.com"
+    }
+  },
+  "timestamp": "11763456789"
+}

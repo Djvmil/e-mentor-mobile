@@ -1,98 +1,126 @@
+import com.djvmil.entretienmentor.EMBuildType
+
 plugins {
-    alias(libs.plugins.com.android.application)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.djvmil.ementor.app)
+    alias(libs.plugins.djvmil.ementor.app.compose)
+    alias(libs.plugins.djvmil.ementor.app.flavors)
+    alias(libs.plugins.module.graph) apply true // Plugin applied to allow module graph generation
 }
 
 android {
     namespace = "com.djvmil.entretienmentor"
-    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.djvmil.entretienmentor"
-        minSdk = 24
-        targetSdk = 34
         versionCode = 2
         versionName = "0.0.1" // X.Y.Z; X = Major, Y = minor, Z = Patch level
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner = "com.djvmil.entretienmentor.core.testing.EMTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix = EMBuildType.DEBUG.applicationIdSuffix
+        }
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            isMinifyEnabled = true
+            applicationIdSuffix = EMBuildType.RELEASE.applicationIdSuffix
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+
+            // To publish on the Play store a private signing key is required, but to allow anyone
+            // who clones the code to sign and run the release variant, use the debug signing key.
+            // TODO: Abstract the signing configuration to a separate file to avoid hardcoding this.
+            signingConfig = signingConfigs.named("debug").get()
+
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get()
-    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            merges += "META-INF/LICENSE.md"
+            merges += "META-INF/LICENSE-notice.md"
+            merges += "META-INF/INDEX.LIST"
         }
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+/*
+    project.gradle.addBuildListener(object: BuildListener {
+        override fun beforeSettings(settings: Settings) {
+            super.beforeSettings(settings)
+            println("⚈ ⚈ ⚈ beforeSettings Tasks ⚈ ⚈ ⚈")
+        }
+
+        override fun settingsEvaluated(settings: Settings) {
+            println("⚈ ⚈ ⚈ settingsEvaluated Tasks ⚈ ⚈ ⚈")
+        }
+
+        override fun projectsLoaded(gradle: Gradle) {
+            println("⚈ ⚈ ⚈ projectEvaluated Tasks ⚈ ⚈ ⚈")
+        }
+
+        override fun projectsEvaluated(gradle: Gradle) {
+            println("⚈ ⚈ ⚈ projectsEvaluated Tasks ⚈ ⚈ ⚈")
+        }
+
+        override fun buildFinished(result: BuildResult) {
+            println("⚈ ⚈ ⚈ buildFinished Tasks ⚈ ⚈ ⚈")
+        }
+    })*/
 }
 
 dependencies {
+    implementation(projects.core.common)
+    implementation(projects.feature)
+    implementation(projects.core.ui)
+    implementation(projects.core.data)
+    implementation(projects.core.domain)
 
-    implementation(project(":domain"))
-    implementation(project(":data"))
-    implementation(project(":core"))
-    implementation(project(":common"))
+    implementation(libs.androidx.lifecycle.runtimeCompose)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+    implementation(libs.koin.compose.navigation)
 
-    val composeBom = platform(libs.compose.bom)
-
-    implementation(libs.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.activity.compose)
-    implementation(composeBom)
-    implementation(libs.compose.constraintlayout)
-    implementation(libs.compose.coil)
-    implementation(libs.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.ui.tooling.preview)
-    implementation(libs.material3)
     implementation(libs.androidx.core.splashscreen)
-    implementation(libs.kotlinx.collections.immutable)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(composeBom)
-    androidTestImplementation(libs.ui.test.junit4)
-    debugImplementation(libs.ui.tooling)
-    debugImplementation(libs.ui.test.manifest)
 
-    implementation(libs.accompanist.pager)
-    implementation(libs.androidx.graphics.shapes)
+    implementation(libs.koin.workmanager)
+    testImplementation(projects.core.testing)
+    androidTestImplementation(projects.core.testing)
+    androidTestImplementation(libs.androidx.navigation.testing)
+}
 
-    implementation(libs.koin.android)
-    implementation(libs.koin.compose)
-    implementation(libs.koin.compose.navigation)
-    implementation(libs.koin.test.junit4)
+// androidx.test is forcing JUnit, 4.12. This forces it to use 4.13
+configurations.configureEach {
+    resolutionStrategy {
+        force(libs.junit4)
+        // Temporary workaround for https://issuetracker.google.com/174733673
+        force("org.objenesis:objenesis:2.6")
+    }
+}
 
-    implementation("androidx.compose.material:material-icons-extended:1.2.3")
+dependencyGuard {
+    configuration("releaseRuntimeClasspath")
+    //configuration("prodReleaseRuntimeClasspath")
+}
 
-    implementation(libs.koin.android)
-    implementation(libs.koin.compose)
-    implementation(libs.koin.compose.navigation)
-    implementation(libs.koin.test.junit4)
-
-    implementation(libs.compose.navigation)
-
+moduleGraphAssert {
+    maxHeight = 4
+    allowed = arrayOf(
+       // ":.* -> :domain:.*",
+       // ":.* -> :core:.*",
+    )
+    restricted = arrayOf(
+       // ":core:.* -X> :feature",
+        ":feature:.* -X> :feature:.*"
+    )
+    assertOnAnyBuild = false
 }
