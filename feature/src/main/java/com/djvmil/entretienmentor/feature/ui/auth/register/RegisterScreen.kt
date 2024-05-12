@@ -5,10 +5,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imeNestedScroll
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -56,9 +58,12 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun RegisterScreen(openDashboard: () -> Unit, viewModel: RegisterViewModel = koinViewModel()) {
-  RegisterContent(openDashboard) { viewModel.onRegisterClick() }
+  RegisterContent(openDashboard) {
+      viewModel.onRegisterClick()
+  }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun RegisterContent(openDashboard: () -> Unit, onRegisterClick: () -> Unit) {
 
@@ -70,8 +75,7 @@ fun RegisterContent(openDashboard: () -> Unit, onRegisterClick: () -> Unit) {
     val firstnameState = remember { TextFieldNotEmptyState(label = "Firstname") }
     val lastnameState = remember { TextFieldState(label = "Lastname") }
     val phoneNumberState = remember { TextFieldState(label = "Phone Number") }
-    val emailState by
-        rememberSaveable(stateSaver = UsernameStateSaver) {
+    val emailState by rememberSaveable(stateSaver = UsernameStateSaver) {
           mutableStateOf(UsernameState(label = "Username or Email"))
         }
     val passwordState = remember { PasswordState(label = "Password") }
@@ -84,7 +88,7 @@ fun RegisterContent(openDashboard: () -> Unit, onRegisterClick: () -> Unit) {
         modifier =
         Modifier
             .imePadding() // padding for the bottom for the IME
-            // .imeNestedScroll() // fill the entire window
+            .imeNestedScroll() // fill the entire window
             .verticalScroll(rememberScrollState())) {
           Text(
               modifier = Modifier.padding(vertical = 5.dp),
